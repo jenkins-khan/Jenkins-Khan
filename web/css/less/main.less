@@ -1,0 +1,159 @@
+
+.box-shadow (@x: 0, @y: 0, @blur: 15px, @color: #000) {
+  box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  -webkit-box-shadow: @arguments;
+}
+
+body {
+  background-color: @backgroundColor;
+  margin: 0 50px 0 50px;
+  font-size: @basefont;
+  font-family: 'Verdana';
+  color: @textColor;
+  
+  padding-top: 80px;
+  
+  h1 {
+    color: @white;
+  }
+  
+  pre {
+    background-color: @white;
+  }
+  
+  h3 {
+    margin-top: 0px;
+    margin-bottom: 30px;
+    .label {
+      float: none;
+    }
+  }
+  
+  a {
+    color: @textColor;
+    outline: none;
+    text-decoration: none;
+    
+    &.jenkins {
+      background-image: url(../../images/jenkins.png);
+      background-repeat: no-repeat;
+      background-position: left center;
+      border-bottom: 1px dashed @black;
+      padding-left: 20px;
+      &:hover {
+        border-bottom: 1px solid @black;
+      }
+    } 
+  }
+  
+  li {
+    list-style-type: none;
+    padding: 0px;
+  }
+  
+  ul {
+    padding: 0px;
+  }
+  
+  ul.build-parameters {
+    margin:0px;
+    padding: 0px;
+    font-size: @basefont * .6;
+    li {
+      margin:0px;
+      padding: 0px;
+      width: auto;
+    }
+  }
+  
+
+  form {
+    background-color: @baseColorLight;
+    .border-radius(5px);
+    
+    .form-header {
+      font-weight: bold;
+      background-color: @baseColor;
+      padding: 10px 20px;
+      .border-radius(5px 5px 0 0);
+    }
+    
+    .form-content {
+       padding: 20px;
+    }
+    
+    .form-footer {
+      clear: both;
+      padding: 10px 20px;
+      text-align: right;
+    }
+    
+    .field {
+      padding-top: 10px;
+      
+      input {
+        width: 250px;
+      }
+    }
+    
+  }
+  
+  .error_list {
+    float: left;
+    margin-right: 15px;
+    li {
+      font-weight: bold;
+      color: @red;
+    }
+  }
+
+  .topbar{
+    .nav {
+      .delay-button {
+        .border-radius(4px);
+        .gradientBar(@blue, @blueDark);
+        
+        &.active {
+          > a {
+            background-color: rgba(0, 0, 0, 0.2);
+          }
+        }
+        
+        > a {
+          color: @white;
+          background-image: url(../../images/fatcow/clock_go.png);
+          background-repeat: no-repeat;
+          background-position: 40px center;
+          width: 65px;
+        }
+        
+        &:hover {
+          background-position: 0 -15px;
+          color: #333;
+          > a {
+            background-image: url(../../images/fatcow/clock_go.png);
+            background-color: transparent;
+            border-color: @blueDark;
+          }
+        }
+      }
+    }
+    
+    a {
+      &.settings {
+        background-image: url(../../images/fatcow/setting_tools.png);
+        background-repeat: no-repeat;
+        background-position: 15px center;
+        text-indent: -10000px; 
+        width: 40px; 
+      }
+    }
+    
+  }
+  #sfWebDebugBar {
+    bottom:0;
+    right:0;
+    top:auto;
+  }
+}
