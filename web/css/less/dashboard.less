@@ -1,0 +1,174 @@
+body {
+  .sidebar {
+    float: left;
+    width: @sidebarWidth;
+    
+    ul {
+      li {
+        
+        .label {
+          width: auto;
+          float: none;
+          display: block;
+          line-height: 16px;
+        }
+        &:hover {
+          a.delete-group-run,
+          a.duplicate-group-run {
+            display: block;
+          }
+        }
+        a {
+          &.group-run,
+          &.add-run {
+            display: block;
+            margin-bottom: 2px;
+            margin-right: 2px;
+            background-color: @baseColorLight;
+            min-height: @runItemMinHeight;
+            padding: 10px;
+            padding-top: 14px;
+            .leftborder-radius( 5px );
+            &:hover {
+              background-color: @baseColorLighter;
+            }
+            &.active {
+              background-color: @baseColor;
+              margin-right: 0px;
+              a {
+               color: @white;
+              }
+              
+            }
+          }
+          
+          &.add-run {
+            background-image: url(../../images/fatcow/add.png);
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            height: 32px;
+            text-indent: 42px;
+            
+            &.disabled {
+              background-image: url(../../images/fatcow/add_disabled.png);
+            }
+          }
+          
+          &.delete-group-run,
+          &.duplicate-group-run {
+            display:none;
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            height: 16px;
+            width: 32px;
+            float: right;
+          }
+          &.delete-group-run {
+            background-image: url(../../images/fatcow/delete.png);
+            margin-top: -22px;
+          } 
+          &.duplicate-group-run {
+            background-image: url(../../images/fatcow/page_copy.png);
+            margin-top: -44px;
+          }
+        }   
+      }
+    }
+  }
+  
+  .content {
+    float: left;
+    background-color: @baseColor;
+    width: @contentWidth;
+    min-height: @contentMinHeight;
+    .rightborder-radius( 5px );
+    
+    ul {
+      padding: 20px;
+      clear: left;
+      li {
+        
+        width: @contentWidth - (40px * 2);
+        background-color: @baseColorLight;
+        margin-bottom: 10px;
+        padding: 15px 20px;
+        .border-radius(5px);
+        
+        .run-infos {
+          td {
+            width: 100px;
+            &.status {
+              
+              .label {
+                //float: none;
+              }
+            }
+            &.name {
+              width: 235px;
+              
+              ul.build-parameters {
+                margin:0px;
+                padding: 0px;
+                li {
+                  margin:0px;
+                  padding: 0px;
+                  width: auto;
+                }
+              }
+            }
+            &.infos {
+              width: 250px;
+              font-size: @basefont * .7;
+            }
+            &.job-progress {
+              width: 150px;
+              .progress {
+                margin-bottom: 0px;
+              }
+            }
+            &.bouton {
+              width:35px;
+              
+              a {
+                float: left;
+                background-repeat: no-repeat;
+                background-position: center center;
+                height: 32px;
+                width: 32px;
+                overflow: hidden;
+                text-indent: -1000px;
+                &.run-again {
+                  background-image: url(../../images/update.png);
+                }
+                &.cancel {
+                  background-image: url(../../images/fatcow/cancel.png);
+                }
+              }
+            }
+          }
+        }
+        &.group_run_infos {
+          background-color: @baseColorLighter
+        }
+        &.add-build {
+          height: 32px;
+          padding: 0px;
+          width: @contentWidth - 40px;
+          height: 50px;
+          a {
+            background-image: url(../../images/fatcow/add.png);
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            display: block;
+            padding: 15px 20px;
+            text-indent: 34px;
+            &.disabled {
+              background-image: url(../../images/fatcow/add_disabled.png);
+            }
+          }
+          
+        }
+      }
+    }
+  }
+}

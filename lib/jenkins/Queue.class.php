@@ -1,0 +1,57 @@
+<?php
+ 
+class Jenkins_Queue 
+{
+  /**
+   * @var array
+   */
+  private $queue;
+
+  /**
+   * @var Jenkins
+   */
+  protected $jenkins;
+  
+  /**
+   * @param $queue
+   */
+  public function __construct($queue, Jenkins $jenkins)
+  {
+    $this->queue = $queue;
+    $this->setJenkins($jenkins);
+  }
+  
+  /**
+   * @return array
+   */
+  public function getJobQueues()
+  {
+    $jobs = array();
+    
+    foreach ($this->queue->items as $item)
+    {
+      $jobs[] = new Jenkins_JobQueue($item, $this->getJenkins());
+    }
+    
+    return $jobs;
+  }
+
+  /**
+   * @return \Jenkins
+   */
+  public function getJenkins()
+  {
+    return $this->jenkins;
+  }
+
+  /**
+   * @param \Jenkins $jenkins
+   */
+  public function setJenkins(Jenkins $jenkins)
+  {
+    $this->jenkins = $jenkins;
+
+    return $this;
+  }
+
+}

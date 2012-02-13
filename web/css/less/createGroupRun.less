@@ -1,0 +1,87 @@
+body {
+  form {
+    @groupRunLabel: 200px;
+    
+    label {
+      width: @groupRunLabel;
+      float:left;
+    }
+    
+    &#addBuildForm {
+      
+      > div {
+        clear: left;
+      }
+      
+      .parameters {
+        label {
+          float: none;
+        }
+      }
+      
+      .buttons {
+        margin-top: 10px;
+      }
+    }
+    
+    &#groupRunForm {
+      .tabs {
+        margin-top: 10px;
+        margin-bottom: 0px;
+        float: none;
+        > li {
+          &.cart {
+            .border-radius(4px 4px 0 0);
+            .gradientBar(@blue, @blueDark);
+            > a {
+              color: @white;
+              background-image: url(../../images/fatcow/cart.png);
+              background-repeat: no-repeat;
+              background-position: 40px center;
+              width: 50px;
+            }
+            
+            &:hover {
+              background-position: 0 -15px;
+              color: #333;
+              > a {
+                background-image: url(../../images/fatcow/cart_go.png);
+                background-color: transparent;
+                border-color: @blueDark;
+              }
+            }
+          }
+        }
+      }
+      .jobs-container {
+        border: 1px solid #ddd;
+        border-top: 0px;
+        float: left;
+        width: 100%;
+        
+        .actions {
+          margin: 2px 10px;
+        }
+        .jobs {
+          font-size: @basefont * 0.75;
+          margin: 2px 10px;
+          background-color: @baseColorLighter;
+          border: 1px solid @baseColor;
+          padding: 8px 20px;
+          width: 25%;
+          float: left;
+          .border-radius(5px);
+         
+          .parameters {
+            @paddingParameters: 20px;
+            padding-left: @paddingParameters;
+            
+            label {
+              width: @groupRunLabel - @paddingParameters;
+            }
+          } 
+        }
+      }
+    }
+  }
+}   
