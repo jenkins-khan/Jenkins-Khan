@@ -1,0 +1,11 @@
+all:
+  .settings:
+    enabled_modules:
+      - sfGuardAuth
+      - jenkins
+      
+    login_module:           sfGuardAuth
+    login_action:           signin
+     
+    secure_module:          sfGuardAuth
+    secure_action:          secure

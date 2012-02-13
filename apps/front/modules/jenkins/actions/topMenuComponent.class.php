@@ -1,0 +1,42 @@
+<?php
+ 
+class topMenuComponent extends sfComponent
+{
+
+  /**
+   * Execute any application/business logic for this component.
+   *
+   * @param sfRequest $request The current sfRequest object
+   *
+   * @return mixed     A string containing the view name associated with this action
+   */
+  function execute($request)
+  {
+    $nbJobDelayed = count(JenkinsRunPeer::getDelayed($this->getUser()));
+    
+    
+    $menus = array(
+      'Dashboard' => array(
+        'url' => 'jenkins/index'
+      ),
+      'Create a build branch' => array(
+        'url' =>'jenkins/createGroupRun',
+      ),
+      $nbJobDelayed => array(
+        'url' => 'jenkins/delayed',
+        'title' => 'See delayed list',
+        'class' => 'delay-button',
+      ),
+    );
+
+    $activeLink = sprintf(
+      '%s/%s',
+      $this->getContext()->getActionStack()->getFirstEntry()->getModuleName(),
+      $this->getContext()->getActionStack()->getFirstEntry()->getActionName()
+    );
+    
+    $this->setVar('menus', $menus);
+    $this->setVar('activeLink', $activeLink);
+    $this->setVar('user', $this->getUser());
+  }
+}

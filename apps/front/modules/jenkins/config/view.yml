@@ -1,0 +1,18 @@
+indexSuccess:
+  javascripts:
+    - jenkins/jenkinsDashboard.js
+
+addBuildSuccess:
+  javascripts:
+    - jenkins/addBuildForm.js
+
+
+createGroupRunSuccess:
+  javascripts:
+    - jenkins/createGroupRunForm.js
+    
+    
+delayedSuccess:
+  javascripts:
+    - jquery/jquery-ui-1.8.16.custom.min.js
+    - jenkins/delayedRun.js

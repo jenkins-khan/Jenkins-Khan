@@ -1,0 +1,22 @@
+
+.label {
+  padding: 5px;
+  text-align: center;
+  margin-right: 5px;
+  background-color: @grayLight;
+  font-size: @basefont * .75;
+  font-weight: bold;
+  color: @white;
+  text-transform: uppercase;
+  min-width: 80px;
+  float: left;
+  .border-radius(3px);
+  &.important { background-color: @red; }
+  &.warning   { background-color: @orange; }
+  &.success   { background-color: @green; }
+  &.notice    { background-color: @blue; }
+  &.waiting   { background-color: @gray; }
+  &.aborted   { background-color: @purple; }
+  &.delayed   { background-color: @yellow; }
+  &.black     { background-color: @black; }
+}
