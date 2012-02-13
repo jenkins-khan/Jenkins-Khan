@@ -21,7 +21,7 @@ abstract class baseJenkinsAction extends sfAction
     }
     
     $jenkinsFactory = new Jenkins_Factory();
-    $jenkins        = $jenkinsFactory->build('http://srogier-desktop:8080/');
+    $jenkins        = $jenkinsFactory->build($this->getUser()->getProfile()->getJenkinsUrl());
     $this->setJenkins($jenkins);
 
     //à chaque hit on met à jour
