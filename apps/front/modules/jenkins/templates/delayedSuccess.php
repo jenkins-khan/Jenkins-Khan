@@ -10,7 +10,7 @@
     <?php echo $form->renderGlobalErrors(); ?>
   
     <?php if (0 === count($form['runs'])): ?>
-      <div class="alert-message warning">There is no jobs in delayed list</div>
+      <div class="alert-message warning">There is no job in delayed list</div>
     <?php else: ?>
       <div class="actions">
         <a href="#" id="addViewAllRun" class="btn">Select all jobs</a>
