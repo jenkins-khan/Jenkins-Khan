@@ -1,0 +1,98 @@
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+
+// Drop shadows
+.box-shadow(@shadow: 0 1px 3px rgba(0,0,0,.25)) {
+  -webkit-box-shadow: @shadow;
+  -moz-box-shadow: @shadow;
+  box-shadow: @shadow;
+}
+
+body {
+  
+  @fontsize: 14px;
+  
+  background-color: #404040;
+  padding-top: 60px;
+  
+  .fork-me {
+    z-index: 10000;
+  }
+
+  a {
+    color: #fff;
+  }
+
+  .screenshots {
+    text-align: center;
+  }
+  a.screenshot {
+    .border-radius(5px);
+    
+    img {
+      .box-shadow(10px 10px 10px rgba(0,0,0,.2));
+      margin: 0 30px;
+    }
+  }
+
+  h1 {
+    float: left;
+    .small {
+      font-size: 20px;
+    }
+  }
+
+  .download {
+    text-align: right;
+  }
+
+  .bloc {
+    background-color: #BFBFBF;
+    margin: 30px;
+    padding: 30px;
+    .border-radius(5px);
+    
+    font-size: @fontsize;
+  
+    h2 {
+      font-weight: bold;
+      background-color: #808080;
+      padding: 10px 20px;
+      .border-radius(5px 5px 0 0);
+      margin: -30px -30px 30px -30px;
+      color: #000;
+    }
+
+    h3 {
+      margin-top: 30px;
+    }
+  }
+
+  li, p {
+    line-height: 24px;
+  }
+  p {
+    font-size: @fontsize;
+  }
+
+  ul.bubble {
+    margin: 20px;
+    li {
+      display: inline;
+      .border-radius(5px);
+      border: 1px solid #404040;
+      background-color: #0088CC;
+      color: #fff;
+      font-weight: bold;
+      margin: 10px;
+      padding: 10px 20px;
+      a {
+        text-decoration: underline; 
+      }
+    }
+  }
+
+}

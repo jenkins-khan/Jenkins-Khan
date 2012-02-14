@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Jenkins Khan - Jenkins' Dashboard</title>
+  <link rel="shortcut icon" href="images/genghis.png"/>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="all"/>
+  <link rel="stylesheet/less" type="text/css" href="css/gh-pages.less" media="all"/>
+  <script type="text/javascript" src="js/less-1.2.2.min.js"></script>
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <h1>
+          <a href="http://github.com/pmsipilot/Jenkins-Khan" class="brand">Jenkins Khan</a>
+          <!-- <span class="small"> by <a href="http://www.pmsipilot.org">PMSIpilot</a></span> -->
+        </h1>
+        <ul class="nav">
+          <li><a href="#screenshots">Screenshots</a></li>
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#requirements">Requirements</a></li>
+          <li><a href="#help">Help</a></li>
+          <li><a href="#contributing">Contributing</a></li>
+          <li><a href="#authors">Authors</a></li>
+          <li><a href="http://team-fusion.pmsipilot.com">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <a href="http://github.com/pmsipilot/Jenkins-Khan">
+    <img
+      style="position: fixed; top: 0; right: 0; border: 0;"
+      src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+      alt="Fork me on GitHub"  class="fork-me"/>
+  </a>
+
+  <div class="bloc header">
+    <h1>
+      <a href="http://github.com/pmsipilot/Jenkins-Khan">
+        <img src="images/genghis.png" alt="Jenkins Khan">
+        Jenkins Khan
+      </a>
+      <span class="small">
+        by <a href="http://www.pmsipilot.org">PMSIpilot</a>
+      </span>
+    </h1>
+    <div class="download">
+      <a href="http://github.com/pmsipilot/Jenkins-Khan/zipball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png">
+      </a>
+      <a href="http://github.com/pmsipilot/Jenkins-Khan/tarball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png">
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="bloc">
+    <h2 id="screenshots">Screenshots</h2>
+    <div class="screenshots">
+      <a class="screenshot" href="images/dashboard.png" title="Jenkins Khan Dashboard" target="_blank">
+        <img src="images/mini_dashboard.png" alt="Jenkins Khan Dashboard" />
+      </a>
+      <a class="screenshot" href="images/create_build_branch.png" title="Create a build branch" target="_blank">
+        <img src="images/mini_create_build_branch.png" alt="Create a build branch" />
+      </a>
+    </div>
+  </div>
+  <div class="bloc">
+    <h2 id="introduction">Introduction</h2>
+
+    <h3>Jenkins Khan is a php tool that helps you to manage a <a href="http://jenkins-ci.org/">Jenkins</a> integration server.</h3>
+    <p>
+      With Jenkins Khan you can easily launch different jobs on your working branch and check the result of each job
+      group by your branches.
+    </p>
+    
+    <h3>Why</h3>
+    <p>
+      When it comes to working with many branches, Jenkins is not very user-friendly. 
+      It's kind a mess to check your jobs state on every branch. We need an overview.
+    </p>
+
+    <h3>How ?</h3>
+    <p>
+      Jenkins Khan uses Jenkins' API to retrieve the configuration, jobs, jobs parameters, view, status, etc. 
+      You just have to register your Jenkins Url in Jenkins Khan and enjoy the fun.
+    </p>
+
+    <h3>Technology stack</h3>
+    <p>
+      <strong>Jenkins Khan is a standalone LAMP project.</strong><br/>
+      It is based on web common technologies :
+      <ul class="bubble">
+        <li><a href="http://www.symfony-project.org/">symfony 1.x</a></li>
+        <li><a href="http://jquery.com/">jQuery</a></li>
+        <li><a href="http://twitter.github.com/bootstrap/index.html">Twitter bootstrap</a></li>
+        <li><a href="http://lesscss.org/">LESS</a></li>
+      </ul>
+      You can easily install it on your own server.
+    </p>
+
+    <h3>Licence</h3>
+    <p>
+      <strong>Jenkins Khan is an open-source project.</strong><br />
+      It is published under <a href="http://en.wikipedia.org/wiki/MIT_License">MIT license</a> : you can use it Like A
+      Boss !</p>
+  </div>
+  <div class="bloc">
+    <h2 id="features">Features</h2>
+    <ul class="puces">
+      <li>Display branch by branch the result of each Jenkins' build</li>
+      <li>
+        Fully based on Jenkins' API
+        <ul>
+          <li>No configuration (except your Jenkins' url)</li>
+          <li>All views, jobs, configuration are immediatly available</li>
+        </ul>
+      </li>
+      <li>Relaunch build one by one</li>
+      <li>Relaunch every build on a build branch</li>
+      <li>Register build without launching them on Jenkins</li>
+      <li>User-friendly interface.</li>
+    </ul>
+  </div>
+  <div class="bloc">
+    <h2 id="requirements">Requirements</h2>
+  
+    <ul class="bubble">
+      <li>PHP 5.2+</li>
+      <li>MySQL 5+</li>
+      <li>Jenkins 1.4+</li>
+      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin">Jenkins Git Plugin</a></li>
+    </ul>
+  </div>
+  <div class="bloc">
+    <h2 id="help">Help</h2>
+  
+    <p>Help is hosted in the <a href="http://github.com/pmsipilot/Jenkins-Khan/wiki">project wiki</a> on Github :</p>
+    <ul class="puces">
+      <li><a href="https://github.com/pmsipilot/Jenkins-Khan/wiki/How-to-install-Jenkins-Khan">How to install Jenkins Khan</a> </li>
+    </ul>
+  </div>
+  <div class="bloc">
+    <h2 id="contributing">Contributing</h2>
+  
+    <p>Get the <a href="http://github.com/pmsipilot/Jenkins-Khan">source code</a> on GitHub and use <a
+      href="http://help.github.com/send-pull-requests/">pull requests</a> to improve it.</p>
+  </div>
+  <div class="bloc">
+    <h2 id="authors">Authors</h2>
+  
+    <p>Jenkins Khan is an 
+      <a href="http://tom.preston-werner.com/2011/11/22/open-source-everything.html">open-source</a>
+      <a href="http://zachholman.com/posts/why-github-hacks-on-side-projects/">side project</a> of 
+      <a href="http://pmsipilot.com">PMSIpilot</a>, developped by :
+    </p>
+    <ul class="bubble">
+      <li><a href="http://github.com/srogier/" title="Github profil">Sébastien Rogier</a></li>
+      <li><a href="http://github.com/agallou/" title="Github profil">Adrien Gallou</a></li>
+    </ul>
+  </div>
+</body>
+</html>
