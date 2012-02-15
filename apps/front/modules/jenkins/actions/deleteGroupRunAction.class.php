@@ -27,7 +27,7 @@ class deleteGroupRunAction extends baseJenkinsAction
     //suppression du group run
     $jenkinsGroupRun->delete(null);
     
-    $this->getUser()->setFlash('info', sprintf('The build branch [%s] has been deleted', $jenkinsGroupRun->getLabel()));
+    $this->getUser()->setFlash('notice', sprintf('Build branch [%s] has been deleted', $jenkinsGroupRun->getLabel()));
     
     $this->redirect('jenkins/index');
   }

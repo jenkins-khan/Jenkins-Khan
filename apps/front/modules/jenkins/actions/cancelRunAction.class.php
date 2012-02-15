@@ -43,7 +43,7 @@ class cancelRunAction extends baseJenkinsAction
     {
       $jobQueue->cancel();
       $jenkinsRun->computeJobBuildNumber($jenkins, $this->getUser());
-      $this->getUser()->setFlash('info', sprintf('Build [%s] has been removed from Jenkins queue.', $jenkinsRun->getJobName()));
+      $this->getUser()->setFlash('notice', sprintf('Build [%s] has been removed from Jenkins queue.', $jenkinsRun->getJobName()));
     }
     else
     {

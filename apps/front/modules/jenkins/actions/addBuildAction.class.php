@@ -91,7 +91,7 @@ class addBuildAction extends baseJenkinsAction
           ));
         }
 
-        $this->getUser()->setFlash('info', sprintf('Le run [%s] a été ajouté', $run->getJobName()));
+        $this->getUser()->setFlash('info', sprintf('Build [%s] has been added to build branch [%s]', $run->getJobName(), $jenkinsGroupRun->getLabel()));
 
         if ($request->hasParameter('add_and_continue'))
         {
