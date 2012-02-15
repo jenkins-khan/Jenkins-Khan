@@ -52,7 +52,6 @@ class createGroupRunAction extends baseJenkinsAction
 
         foreach ($form->getValue('builds') as $jobName => $jobInfo)
         {
-          //pas chec
           if (!$jobInfo['job_name'])
           {
             continue;
@@ -76,12 +75,7 @@ class createGroupRunAction extends baseJenkinsAction
           if ($autoLaunch)
           {
             //launcher les builds
-            $this->getJenkins()->launchJob($jobName, array_merge(
-              $parameters,
-              array(
-                Jenkins_Job::BRANCH_PARAMETER_NAME => $form->getValue('git_branch')
-              )
-            ));
+            $run->launch($this->getJenkins(), $parameters);
           }
         }
 

@@ -33,6 +33,8 @@ class rebuildAction extends baseJenkinsAction
     $jenkinsRun->setJobBuildNumber(null);
     $jenkinsRun->save();
 
+    $jenkinsRun->launch($this->getJenkins(), $inputParameters);
+    
     $jenkins->launchJob($jenkinsRun->getJobName(), $inputParameters);
 
     $this->getUser()->setFlash('notice', sprintf('Build [%s] has been relaunched', $jenkinsRun->getJobName()));

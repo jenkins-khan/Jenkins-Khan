@@ -83,12 +83,7 @@ class addBuildAction extends baseJenkinsAction
         //launcher les builds
         if ($autoLaunch)
         {
-          $this->getJenkins()->launchJob($jobName, array_merge(
-            $jobParameters,
-            array(
-              Jenkins_Job::BRANCH_PARAMETER_NAME => $jenkinsGroupRun->getGitBranch()
-            )
-          ));
+          $run->launch($this->getJenkins(), $jobParameters);
         }
 
         $this->getUser()->setFlash('info', sprintf('Build [%s] has been added to build branch [%s]', $run->getJobName(), $jenkinsGroupRun->getLabel()));
