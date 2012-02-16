@@ -1,0 +1,11 @@
+[symfony]
+  name=JenkinsKhan
+  author=Your name here
+  orm=Propel
+
+[production]
+  host=
+  port=
+  user=
+  dir=
+  parameters="-azc --force --progress --delete --exclude-from=config/rsync_exclude.txt"
