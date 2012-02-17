@@ -36,14 +36,11 @@ body {
     text-decoration: none;
     
     &.jenkins {
+      .dashed(@black);
       background-image: url(../../images/jenkins.png);
       background-repeat: no-repeat;
       background-position: left center;
-      border-bottom: 1px dashed @black;
       padding-left: 20px;
-      &:hover {
-        border-bottom: 1px solid @black;
-      }
     } 
   }
   
@@ -78,10 +75,25 @@ body {
     h3 {
       font-weight: bold;
       font-size: 1.5em;
+      
+      img {
+        margin-right: 20px;
+      }
     }
     
-    ul {
-      font-family: monospace;
+    .informations {
+      dt, dd {
+        padding: 10px 0;
+      }
+    
+      dt {
+        width: 200px;
+        float: left;
+        font-weight: bold;
+      }
+      a {
+        .dashed(@black)
+      }
     }
   }
   
