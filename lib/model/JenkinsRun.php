@@ -318,4 +318,18 @@ class JenkinsRun extends BaseJenkinsRun
     return true;
   }
 
+  /**
+   * @param Jenkins $jenkins
+   * @param array   $parameters
+   */
+  public function launch(Jenkins $jenkins, $parameters = array())
+  {
+    $jenkins->launchJob($this->getJobName(), array_merge(
+      $parameters,
+      array(
+        Jenkins_Job::BRANCH_PARAMETER_NAME => $this->getGitBranch()
+      )
+    ));
+  }
+
 } // JenkinsRun

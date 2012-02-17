@@ -20,7 +20,7 @@ default:
     - jquery/jquery.js
   
   components:
-    messages_flash: [jenkins, messagesFlash]
-    menu: [jenkins, topMenu]
+    messages_flash: [default, messagesFlash]
+    menu: [default, topMenu]
 
 
