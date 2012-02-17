@@ -29,10 +29,10 @@ body a {
   text-decoration: none;
 }
 body a.jenkins {
+  border-bottom: 1px dashed #000000;
   background-image: url(../../images/jenkins.png);
   background-repeat: no-repeat;
   background-position: left center;
-  border-bottom: 1px dashed #000000;
   padding-left: 20px;
 }
 body a.jenkins:hover {
@@ -67,8 +67,22 @@ body .error-container h3 {
   font-weight: bold;
   font-size: 1.5em;
 }
-body .error-container ul {
-  font-family: monospace;
+body .error-container h3 img {
+  margin-right: 20px;
+}
+body .error-container .informations dt, body .error-container .informations dd {
+  padding: 10px 0;
+}
+body .error-container .informations dt {
+  width: 200px;
+  float: left;
+  font-weight: bold;
+}
+body .error-container .informations a {
+  border-bottom: 1px dashed #000000;
+}
+body .error-container .informations a:hover {
+  border-bottom: 1px solid #000000;
 }
 body form {
   background-color: #bfbfbf;

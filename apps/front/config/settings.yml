@@ -3,6 +3,7 @@ all:
     enabled_modules:
       - sfGuardAuth
       - jenkins
+      - default
       
     login_module:           sfGuardAuth
     login_action:           signin
