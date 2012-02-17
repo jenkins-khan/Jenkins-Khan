@@ -20,6 +20,8 @@ class configureAction extends sfAction
       if ($form->isValid())
       {
         $form->save();
+        $this->getUser()->setFlash('notice', 'Your profile has been saved');
+        $this->redirect('user/configure');
       }
     }
     

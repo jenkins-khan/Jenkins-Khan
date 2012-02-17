@@ -38,7 +38,7 @@ class delayedAction extends baseJenkinsAction
             $parameters = array_merge($parameters, $runParameters);
           }
           
-          $jenkins->launchJob($run->getJobName(), $parameters);
+          $run->launch($this->getJenkins(), $parameters);
           $run->setLaunched(true);
           $run->save();
         }

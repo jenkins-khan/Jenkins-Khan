@@ -1,8 +1,23 @@
 # Project files
+.cache
+.idea
+/web/uploads/*
+/web/*_dev.php
+/web/test.php
 /cache/*
 /log/*
-/web/*_dev.php
-/web/uploads/*
+/data/sql/*
+/data/fixtures/*
+/doc/*
+/test/*
+/config/databases.yml
+/config/propel.ini
+/config/*-dist
+/config/schema*
+/config/properties.ini
+/config/rsync_exclude.txt
+*.lck
+.gitignore
 
 # SCM files
 .arch-params
@@ -13,3 +28,4 @@ _darcs
 .monotone
 .svn
 CVS
+

@@ -54,16 +54,34 @@ body {
   
   ul {
     padding: 0px;
+    
+    &.build-parameters {
+       margin:0px;
+       padding: 0px;
+       font-size: @basefont * .6;
+       li {
+         margin:0px;
+         padding: 0px;
+         width: auto;
+       }
+     }
   }
   
-  ul.build-parameters {
-    margin:0px;
-    padding: 0px;
-    font-size: @basefont * .6;
-    li {
-      margin:0px;
-      padding: 0px;
-      width: auto;
+   
+  .error-container {
+    background-color: @baseColorLight;
+    .border-radius(5px);
+    
+    margin: 0 50px;
+    padding: 50px;
+    
+    h3 {
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+    
+    ul {
+      font-family: monospace;
     }
   }
   

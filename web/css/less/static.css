@@ -55,6 +55,21 @@ body ul.build-parameters li {
   padding: 0px;
   width: auto;
 }
+body .error-container {
+  background-color: #bfbfbf;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin: 0 50px;
+  padding: 50px;
+}
+body .error-container h3 {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+body .error-container ul {
+  font-family: monospace;
+}
 body form {
   background-color: #bfbfbf;
   -webkit-border-radius: 5px;
@@ -1032,7 +1047,7 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 body form.login {
   display: block;
   margin: 0 auto;
-  width: 450px;
+  width: 500px;
 }
 body .sidebar {
   float: left;
