@@ -6,7 +6,7 @@
 
   <?php if ($jenkins->isAvailable()): ?>
     <li>
-      <div class="alert-message success"><?php echo link_to('Jenkins local', $jenkins->getUrl(), array('title' => 'Accéder à Jenkins', 'class' => 'jenkins')) ?> est lancé</div>
+      <div class="alert-message success"><?php echo link_to('Jenkins', $jenkins->getUrl(), array('title' => 'Open Jenkins', 'class' => 'jenkins')) ?> is running.</div>
     </li>
   <?php endif; ?>
   
