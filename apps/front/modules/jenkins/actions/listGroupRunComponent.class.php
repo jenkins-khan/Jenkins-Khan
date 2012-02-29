@@ -29,8 +29,10 @@ class listGroupRunComponent extends sfComponent
 
     $durationFormatter = new durationFormatter();
     
-    $runs     = JenkinsRunPeer::doSelect($criteriaRun);
-    $dataRuns = array();
+    $runs                  = JenkinsRunPeer::doSelect($criteriaRun);
+    $dataRuns              = array();
+    $isGroupRunRebuildable = false;
+
     foreach ($runs as $run)
     {
       $isCancelable = false;
@@ -50,6 +52,11 @@ class listGroupRunComponent extends sfComponent
       {
         $isCancelable = true;
       }
+
+      if ($run->isRebuildable())
+      {
+        $isGroupRunRebuildable = true;
+      }
       
       /** @var JenkinsRun $run */
       $dataRuns[$run->getId()] = array(
@@ -60,7 +67,7 @@ class listGroupRunComponent extends sfComponent
         'parameters'       => $run->getLaunched() ? $run->getJenkinsBuildCleanedParameter($jenkins) : $run->decodeParameters(),
         'url'              => $run->getUrlBuild($jenkins),
         'is_cancelable'    => $isCancelable,
-        'is_rebuildable'   => $run->getLaunched(),
+        'is_rebuildable'   => $run->isRebuildable(),
         'is_running'       => $isRunning,
         'progress'         => $progress,
       );
@@ -69,6 +76,7 @@ class listGroupRunComponent extends sfComponent
     
     $currentGroup = JenkinsGroupRunPeer::retrieveByPK($groupRunId);
 
+    $this->setVar('is_group_run_rebuildable', $isGroupRunRebuildable);
     $this->setVar('runs', $dataRuns);
     $this->setVar('current_group_run', array(
       'id'         => null === $currentGroup ? null : $currentGroup->getId(),

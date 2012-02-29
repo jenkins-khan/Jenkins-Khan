@@ -332,4 +332,12 @@ class JenkinsRun extends BaseJenkinsRun
     ));
   }
 
+  /**
+   * @return bool
+   */
+  public function isRebuildable()
+  {
+    return $this->getLaunched();
+  }
+
 } // JenkinsRun

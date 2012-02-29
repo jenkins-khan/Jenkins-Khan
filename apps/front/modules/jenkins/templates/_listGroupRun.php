@@ -1,6 +1,7 @@
 <?php /** @var array $runs */ ?>
 <?php /** @var array $current_group_run */ ?>
 <?php /** @var Jenkins $jenkins */ ?>
+<?php /** @var bool $is_group_run_rebuildable */ ?>
 
 <ul>
   <?php if (null === $current_group_run['id']): ?>
@@ -11,6 +12,11 @@
     
       <li class="group_run_infos">
         Build git branch : <?php echo $current_group_run['git_branch'] ?>
+        <?php if ($is_group_run_rebuildable): ?>
+        <span class="bouton">
+          <?php echo link_to('Relaunch', 'jenkins/rebuild?group_run_id='.$current_group_run['id'], array('class' => 'run-again', 'title' => 'Relaunch build branch')) ?>
+        </span>
+        <?php endif; ?>
       </li>
     
       <?php foreach ($runs as $id => $run): ?>
