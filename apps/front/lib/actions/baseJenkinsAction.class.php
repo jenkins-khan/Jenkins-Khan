@@ -19,7 +19,7 @@ abstract class baseJenkinsAction extends sfAction
       $this->getUser()->setFlash('error', "There is no url for your Jenkins");
       $this->redirect('user/configure');
     }
-    
+
     $jenkinsFactory = new Jenkins_Factory();
     $jenkins        = $jenkinsFactory->build($this->getUser()->getProfile()->getJenkinsUrl());
     $this->setJenkins($jenkins);
@@ -33,7 +33,7 @@ abstract class baseJenkinsAction extends sfAction
     {
       $this->getUser()->setFlash('error', 'Jenkins is not started');
     }
-    
+
     $this->setVar('jenkins', $jenkins);
   }
 
