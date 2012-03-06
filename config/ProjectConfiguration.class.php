@@ -9,6 +9,7 @@ class ProjectConfiguration extends sfProjectConfiguration
   {
     $this->enablePlugins('sfPropelORMPlugin');
     $this->enablePlugins('sfGuardPlugin');
+    $this->enablePlugins('sfLESSPlugin');
     
     sfWidgetFormSchema::setDefaultFormFormatterName('div');
   }
