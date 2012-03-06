@@ -4,7 +4,7 @@ propel:
     date: { type: DATE, required: true }
     user_id: { type: CHAR, size: 36, required: true }
     label: { type: CHAR, size:100, required: true }
-    git_branch: {type: CHAR, size: 32, required: true }
+    git_branch: {type: CHAR, size: 40, required: true }
     _uniques: { natural_pk: [user_id, git_branch] }
     
   jenkins_run:
@@ -12,7 +12,7 @@ propel:
     jenkins_group_run_id: { type: INTEGER, size: '11', required: true, foreignTable: jenkins_group_run, foreignReference: id, onDelete: restrict }
     job_name: {type: CHAR, size: 30, required: true }
     job_build_number: {type: INTEGER, size: '11'}
-    git_branch: {type: CHAR, size: 32, required: true }
+    git_branch: {type: CHAR, size: 40, required: true }
     launched: {type: INTEGER, size: 1, required: true, default: 1}
     parameters: {type: LONGVARCHAR,  required: false}
   configuration:

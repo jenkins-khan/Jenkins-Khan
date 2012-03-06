@@ -46,7 +46,7 @@ class JenkinsGroupRunTableMap extends TableMap
 		$this->addColumn('DATE', 'Date', 'DATE', true, null, null);
 		$this->addColumn('USER_ID', 'UserId', 'CHAR', true, 36, null);
 		$this->addColumn('LABEL', 'Label', 'CHAR', true, 100, null);
-		$this->addColumn('GIT_BRANCH', 'GitBranch', 'CHAR', true, 32, null);
+		$this->addColumn('GIT_BRANCH', 'GitBranch', 'CHAR', true, 40, null);
 		// validators
 	} // initialize()
 
