@@ -28,7 +28,7 @@ abstract class BaseJenkinsRunForm extends BaseFormPropel
       'jenkins_group_run_id' => new sfValidatorPropelChoice(array('model' => 'JenkinsGroupRun', 'column' => 'id')),
       'job_name'             => new sfValidatorString(array('max_length' => 30)),
       'job_build_number'     => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
-      'git_branch'           => new sfValidatorString(array('max_length' => 32)),
+      'git_branch'           => new sfValidatorString(array('max_length' => 40)),
       'launched'             => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
       'parameters'           => new sfValidatorString(array('required' => false)),
     ));
