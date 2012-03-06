@@ -46,7 +46,7 @@ class JenkinsRunTableMap extends TableMap
 		$this->addForeignKey('JENKINS_GROUP_RUN_ID', 'JenkinsGroupRunId', 'INTEGER', 'jenkins_group_run', 'ID', true, 11, null);
 		$this->addColumn('JOB_NAME', 'JobName', 'CHAR', true, 30, null);
 		$this->addColumn('JOB_BUILD_NUMBER', 'JobBuildNumber', 'INTEGER', false, 11, null);
-		$this->addColumn('GIT_BRANCH', 'GitBranch', 'CHAR', true, 32, null);
+		$this->addColumn('GIT_BRANCH', 'GitBranch', 'CHAR', true, 40, null);
 		$this->addColumn('LAUNCHED', 'Launched', 'INTEGER', true, 1, 1);
 		$this->addColumn('PARAMETERS', 'Parameters', 'LONGVARCHAR', false, null, null);
 		// validators

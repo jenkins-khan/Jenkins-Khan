@@ -26,7 +26,7 @@ abstract class BaseJenkinsGroupRunForm extends BaseFormPropel
       'date'       => new sfValidatorDate(),
       'user_id'    => new sfValidatorString(array('max_length' => 36)),
       'label'      => new sfValidatorString(array('max_length' => 100)),
-      'git_branch' => new sfValidatorString(array('max_length' => 32)),
+      'git_branch' => new sfValidatorString(array('max_length' => 40)),
     ));
 
     $this->validatorSchema->setPostValidator(
