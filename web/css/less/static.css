@@ -388,13 +388,10 @@ body .content ul li .run-infos td.job-progress {
 body .content ul li .run-infos td.job-progress .progress {
   margin-bottom: 0px;
 }
-body .content ul li .run-infos td.bouton,
-body .content ul li.group_run_infos span.bouton
-{
+body .content ul li .run-infos td.bouton {
   width: 35px;
 }
-body .content ul li .run-infos td.bouton a,
-body .content ul li.group_run_infos span.bouton a {
+body .content ul li .run-infos td.bouton a {
   float: left;
   background-repeat: no-repeat;
   background-position: center center;
@@ -403,16 +400,9 @@ body .content ul li.group_run_infos span.bouton a {
   overflow: hidden;
   text-indent: -1000px;
 }
-body .content ul li .run-infos td.bouton a.run-again,
-body .content ul li.group_run_infos span.bouton a.run-again
-{
+body .content ul li .run-infos td.bouton a.run-again {
   background-image: url(../../images/update.png);
 }
-
-body .content ul li.group_run_infos span.bouton a {
-  float: right;
-}
-
 body .content ul li .run-infos td.bouton a.cancel {
   background-image: url(../../images/fatcow/cancel.png);
 }
