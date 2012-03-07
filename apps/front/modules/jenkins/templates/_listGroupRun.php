@@ -27,6 +27,7 @@
                     <li><?php echo link_to('Relaunch', url_for('branch_rebuild', array('branch_name' => $current_group_run['git_branch'])), array('title' => 'Relaunch build branch')) ?></li>
                     <li><?php echo link_to('Relaunch (delayed)', url_for('branch_rebuild_delayed', array('branch_name' => $current_group_run['git_branch'])), array('title' => 'Relaunch build branch (delayed)')) ?></li>
                    <?php endif ?>
+                  <li><?php echo link_to('Add job', $current_group_run['url_add_build'], array('title' => 'Add job to this build branch')) ?></li>
                 </ul>
               </div>
             </td>
@@ -81,7 +82,7 @@
       <?php endforeach; ?>
       <?php if ($jenkins->isAvailable()): ?>  
         <li class="add-build">
-          <?php echo link_to('Add a job to this build branch', 'jenkins/addBuild?group_run_id='.$current_group_run['id'], array('class' => 'add-build', 'title' => 'Add a job to this build branch')); ?>
+          <?php echo link_to('Add a job to this build branch', $current_group_run['url_add_build'], array('class' => 'add-build', 'title' => 'Add a job to this build branch')); ?>
         </li>
       <?php else: ?>
         <li class="add-build"><a href="#" class="disabled">Add a job to this build branch</a></li>

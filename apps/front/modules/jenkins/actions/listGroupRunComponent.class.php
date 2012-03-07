@@ -69,8 +69,9 @@ class listGroupRunComponent extends sfComponent
     $this->setVar('is_group_run_rebuildable', $isGroupRunRebuildable);
     $this->setVar('runs', $dataRuns);
     $this->setVar('current_group_run', array(
-      'id'         => null === $currentGroup ? null : $currentGroup->getId(),
-      'git_branch' => null === $currentGroup ? null : $currentGroup->getGitBranch(),
+      'id'            => null === $currentGroup ? null : $currentGroup->getId(),
+      'git_branch'    => null === $currentGroup ? null : $currentGroup->getGitBranch(),
+      'url_add_build' => null === $currentGroup ? null : 'jenkins/addBuild?group_run_id='.$currentGroup->getId(),
     ));
   }
 
