@@ -140,7 +140,7 @@
    * 
    */
   $.fn.createGroupRunForm.defaults = {
-    viewTabSelector:         '.tabs li',
+    viewTabSelector:         '.jenkins-view li',
     inputGitBranchSelector:  ':input[name*="git_branch"]',
     inputGroupNameSelector:  ':input[name*="label"]',
     viewAttributeName:       'view',
@@ -149,7 +149,7 @@
     jobsContainerSelector:   '.jobs',
     removeViewAllJobSelector:'#removeViewAllJob',
     addViewAllJobSelector:   '#addViewAllJob',
-    cartSelector:            '.tabs li.cart',
+    cartSelector:            '.cart',
     jobCounterAttribute:     'jobscounter'
   };
 

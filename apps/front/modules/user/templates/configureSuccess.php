@@ -15,6 +15,6 @@
   </div>
   
   <div class="form-footer">
-    <input type="submit" value="Save" class="btn large primary" />
+    <input type="submit" value="Save" class="btn btn-large btn-primary" />
   </div>
 </form>

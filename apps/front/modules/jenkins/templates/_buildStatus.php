@@ -52,4 +52,4 @@ if (isset($label))
 }
 
 ?>
-<span class="label <?php echo $class ?>"><?php echo $message ?></span>
+<span class="label jenkins-status <?php echo $class ?>"><?php echo $message ?></span>

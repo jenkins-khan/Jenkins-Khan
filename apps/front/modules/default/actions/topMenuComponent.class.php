@@ -25,7 +25,7 @@ class topMenuComponent extends sfComponent
       $nbJobDelayed => array(
         'url' => 'jenkins/delayed',
         'title' => 'See delayed list',
-        'class' => 'delay-button',
+        'class' => 'btn btn-primary btn-delayed',
       ),
     );
 
