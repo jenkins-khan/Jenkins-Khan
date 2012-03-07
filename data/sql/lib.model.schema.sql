@@ -15,7 +15,7 @@ CREATE TABLE `jenkins_group_run`
 	`date` DATE NOT NULL,
 	`user_id` CHAR(36) NOT NULL,
 	`label` CHAR(100) NOT NULL,
-	`git_branch` CHAR(32) NOT NULL,
+	`git_branch` CHAR(40) NOT NULL,
 	PRIMARY KEY (`id`),
 	UNIQUE INDEX `natural_pk` (`user_id`, `git_branch`)
 ) ENGINE=InnoDB;
@@ -32,7 +32,7 @@ CREATE TABLE `jenkins_run`
 	`jenkins_group_run_id` INTEGER(11) NOT NULL,
 	`job_name` CHAR(30) NOT NULL,
 	`job_build_number` INTEGER(11),
-	`git_branch` CHAR(32) NOT NULL,
+	`git_branch` CHAR(40) NOT NULL,
 	`launched` INTEGER(1) DEFAULT 1 NOT NULL,
 	`parameters` TEXT,
 	PRIMARY KEY (`id`),

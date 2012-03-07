@@ -43,7 +43,7 @@ class GroupRunForm extends sfForm
 
     $this->setValidator('user_id', new sfValidatorString(array()));
     $this->setValidator('label', new sfValidatorString(array('max_length' => 100)));
-    $this->setValidator('git_branch', new sfValidatorString(array('max_length' => 30)));
+    $this->setValidator('git_branch', new sfValidatorString(array('max_length' => 40)));
     $this->setValidator('auto_launch', new sfValidatorString(array('required' => false)));
 
     $widgets    = array();

@@ -18,7 +18,7 @@ class rebuildBranchAction extends baseJenkinsAction
     $groupRun->rebuild($this->getJenkins(), $request->getParameter('delayed') == 1);
     JenkinsRunPeer::fillEmptyJobBuildNumber($this->getJenkins(), $this->getUser(), $criteria);
 
-    $this->getUser()->setFlash('notice', sprintf('The build [%s] has been relaunched', $groupRun->getLabel()));
+    $this->getUser()->setFlash('info', sprintf('The build [%s] has been relaunched', $groupRun->getLabel()));
 
     $this->redirect($this->generateUrl('branch_view', $groupRun));
   }

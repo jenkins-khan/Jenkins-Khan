@@ -32,8 +32,8 @@
     </div>
   </div>
   <div class="form-footer">
-    <input type="submit" name="add" value="Add" class="btn large primary"/>
-    <input type="submit" name="add_and_continue" value="Add and continue" class="btn large primary"/>
+    <input type="submit" name="add" value="Add" class="btn btn-large btn-primary"/>
+    <input type="submit" name="add_and_continue" value="Add and continue" class="btn btn-large btn-primary"/>
   </div>
 </form>
 
