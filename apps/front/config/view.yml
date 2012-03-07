@@ -12,12 +12,15 @@ default:
   layout:         layout
   
   stylesheets:    
-    #- ../css/less/bootstrap.less: {rel:  stylesheet/less }
+    - ../bootstrap/css/bootstrap.min.css
     - less/static.css
+    #- ../css/less/bootstrap.less: {rel:  stylesheet/less }
+    #- less/static.css
   
   javascripts:
-    #- less-1.1.3.min.js
-    - jquery/jquery.js
+    - jquery/jquery-1.7.1.min.js
+    - ../bootstrap/js/bootstrap.min.js
+    #- less-1.2.2.min.js
   
   components:
     messages_flash: [default, messagesFlash]

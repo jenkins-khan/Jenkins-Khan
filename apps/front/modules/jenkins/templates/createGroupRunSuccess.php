@@ -26,17 +26,16 @@
       <?php echo $form['auto_launch']->renderLabel(); ?>
       <?php echo $form['auto_launch']->render() ?>
     </div>
-  
-  
-    <ul class="tabs">
+
+    <div class="cart" jobscounter="42">
+      <a href="#" title="Click to create" class="btn btn-primary btn-large">42</a>
+    </div>
+    <ul class="nav nav-tabs jenkins-view">
       <?php foreach ($views as $key => $view): ?>
         <li class="<?php $default_active_view==$view && print 'active'; ?>" view="<?php echo $view ?>">
           <a href="#" title="Afficher la vue <?php echo $view; ?>"><?php echo $view; ?></a>
         </li>
       <?php endforeach; ?>
-      <li class="cart" jobscounter="42">
-        <a href="#" title="Click to create">42</a>
-      </li>
     </ul>
     
     <div class="jobs-container">
@@ -66,7 +65,7 @@
     </div>
   </div>
   <div class="form-footer">
-    <input type="submit" value="Create" class="btn large primary" /> 
+    <input type="submit" value="Create" class="btn btn-large btn-primary" /> 
   </div>
 </form>
   

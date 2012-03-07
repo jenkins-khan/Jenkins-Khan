@@ -29,6 +29,10 @@ body {
       float: none;
     }
   }
+
+  .alert {
+    line-height: 14px;
+  }
   
   a {
     color: @textColor;
@@ -42,13 +46,25 @@ body {
       background-position: left center;
       padding-left: 20px;
     } 
+  
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      color: @textColor;
+      outline: none;
+    }
   }
   
   li {
     list-style-type: none;
     padding: 0px;
+    line-height: 14px;
   }
   
+  ol, ul {
+    margin: 0px; //reset bootstrap margin
+  }
+
   ul {
     padding: 0px;
     
@@ -63,7 +79,6 @@ body {
        }
      }
   }
-  
    
   .error-container {
     background-color: @baseColorLight;
@@ -126,7 +141,6 @@ body {
         width: 250px;
       }
     }
-    
   }
   
   .error_list {
@@ -138,33 +152,34 @@ body {
     }
   }
 
-  .topbar{
-    .nav {
-      .delay-button {
-        .border-radius(4px);
-        .gradientBar(@blue, @blueDark);
-        
-        &.active {
-          > a {
-            background-color: rgba(0, 0, 0, 0.2);
+  .navbar {
+    .container {
+      width: 100%;
+      h1 {
+        margin-left: 20px;
+      }
+    
+      .nav {
+        .btn-delayed {
+          height: 100%;
+          margin-top: 0px;
+          padding: 0px;
+          text-align: left;
+
+          &.active {
+            > a {
+              background-color: rgba(0, 0, 0, 0.2);
+            }
           }
-        }
-        
-        > a {
-          color: @white;
-          background-image: url(../../images/fatcow/clock_go.png);
-          background-repeat: no-repeat;
-          background-position: 40px center;
-          width: 65px;
-        }
-        
-        &:hover {
-          background-position: 0 -15px;
-          color: #333;
           > a {
+            color: @white;
             background-image: url(../../images/fatcow/clock_go.png);
-            background-color: transparent;
-            border-color: @blueDark;
+            background-repeat: no-repeat;
+            background-position: 40px center;
+            width: 65px;
+            &:hover {
+              background-image: url(../../images/fatcow/clock_go.png);
+            }
           }
         }
       }
