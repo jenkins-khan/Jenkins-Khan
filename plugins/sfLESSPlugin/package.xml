@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.4.6" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>sfLESSPlugin</name>
+ <channel>plugins.symfony-project.org</channel>
+ <summary>symfony less.js plugin</summary>
+ <description>sfLESSPlugin is a less.js plugin for symfony applications. It's descendant of sfLessPhpPlugin, but with LESS2 compiler in mind.</description>
+ <lead>
+  <name>ever.zet</name>
+  <user>everzet</user>
+  <email>ever.zet@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2010-07-01</date>
+ <version>
+  <release>1.1.0</release>
+  <api>1.0.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.symfony-project.org/license">MIT license</license>
+ <notes>-</notes>
+ <contents>
+  <dir name="/">
+   <file role="data" name="README" />
+   <file role="data" name="LICENSE" />
+   <dir name="web">
+     <dir name="images">
+       <file role="data" name="css_go.png" />
+     </dir>
+     <dir name="js">
+       <file role="data" name="less-1.0.30.min.js" />
+     </dir>
+   </dir>
+   <dir name="config">
+    <file role="data" name="sfLESSPluginConfiguration.class.php" />
+   </dir>
+   <dir name="lib">
+    <file role="data" name="sfLESS.class.php" />
+    <file role="data" name="sfWebDebugPanelLESS.class.php" />
+    <dir name="task">
+     <file role="data" name="lessCompileTask.class.php" />
+    </dir>
+    <dir name="helper">
+      <file role="data" name="LessCssHelper.php" />
+    </dir>
+   </dir>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+    <php>
+      <min>5.2.0</min>
+    </php>
+    <pearinstaller>
+      <min>1.4.1</min>
+    </pearinstaller>
+    <package>
+      <name>symfony</name>
+      <channel>pear.symfony-project.com</channel>
+      <min>1.2.0</min>
+      <max>1.5.0</max>
+      <exclude>1.5.0</exclude>
+    </package>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+
+  <release>
+   <version>
+     <release>1.1.0</release>
+     <api>1.0.0</api>
+   </version>
+   <stability>
+     <release>stable</release>
+     <api>stable</api>
+   </stability>
+   <license uri="http://www.symfony-project.org/license">MIT license</license>
+   <date>2010-07-01</date>
+   <license>MIT</license>
+   <notes>
+     * added an helper to include less stylesheets in layouts / templates
+     * [client side] less javascript updated to version 1.0.30
+     * [server side] added a visual feedback when some files have been compiled
+     * [server side] added an optional dependency check
+   </notes>
+  </release>
+
+  <release>
+   <version>
+     <release>1.0.1</release>
+     <api>1.0.0</api>
+   </version>
+   <stability>
+     <release>stable</release>
+     <api>stable</api>
+   </stability>
+   <license uri="http://www.symfony-project.org/license">MIT license</license>
+   <date>2010-06-23</date>
+   <license>MIT</license>
+   <notes>
+     * added permissions change routines
+   </notes>
+  </release>
+
+  <release>
+    <version>
+      <release>1.0.0</release>
+      <api>1.0.0</api>
+    </version>
+    <stability>
+      <release>stable</release>
+      <api>stable</api>
+    </stability>
+    <license uri="http://www.symfony-project.org/license">MIT license</license>
+    <date>2010-06-21</date>
+    <license>MIT</license>
+    <notes>
+      * first version
+    </notes>
+  </release>
+
+ </changelog>
+</package>

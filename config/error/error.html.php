@@ -8,7 +8,7 @@
   <meta name="title" content="Jenkins Khan" />
   <title>Jenkins Khan</title>
   <link rel="shortcut icon" type="image/png"  href="<?php echo $path ?>/images/genghis.png" />
-  <link rel="stylesheet" type="text/css" media="screen"  href="<?php echo $path ?>/css/less/static.css" />
+  <link rel="stylesheet" type="text/css" media="screen"  href="<?php echo $path ?>/css/boostrap.css" />
 </head>
 <body>
 <div class="topbar">
