@@ -14,7 +14,8 @@
         Build git branch : <?php echo $current_group_run['git_branch'] ?>
         <?php if ($is_group_run_rebuildable): ?>
         <span class="bouton">
-          <?php echo link_to('Relaunch', 'jenkins/rebuild?group_run_id='.$current_group_run['id'], array('class' => 'run-again', 'title' => 'Relaunch build branch')) ?>
+          <?php echo link_to('Relaunch', url_for('branch_rebuild', array('branch_name' => $current_group_run['git_branch'])), array('title' => 'Relaunch build branch')) ?>
+          <?php echo link_to('Relaunch (delayed)', url_for('branch_rebuild_delayed', array('branch_name' => $current_group_run['git_branch'])), array('title' => 'Relaunch build branch (delayed)')) ?>
         </span>
         <?php endif; ?>
       </li>
@@ -45,8 +46,13 @@
               <?php endif; ?>
             </td>
             <td class="bouton">
-              <?php if ($run['is_rebuildable']): ?>
-                <?php echo link_to('Relaunch',  'jenkins/rebuild?run_id='.$id, array('class' => 'run-again', 'title' => 'Relaunch build')) ?>
+              <?php if ($run['url_rebuild']): ?>
+                <?php echo link_to('Relaunch', $run['url_rebuild'], array('class' => 'run-again', 'title' => 'Relaunch build')) ?>
+              <?php endif; ?>
+            </td>
+            <td class="infos">
+              <?php if ($run['url_rebuild_delayed']): ?>
+                <?php echo link_to('Relaunch (delayed)', $run['url_rebuild_delayed'], array('title' => 'Relaunch build (delayed)')) ?>
               <?php endif; ?>
             </td>
           </tr>

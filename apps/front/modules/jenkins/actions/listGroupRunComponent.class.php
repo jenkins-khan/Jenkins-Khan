@@ -4,32 +4,23 @@ class listGroupRunComponent extends sfComponent
 {
 
   /**
-   * Execute any application/business logic for this component.
-   *
-   * In a typical database-driven application, execute() handles application
-   * logic itself and then proceeds to create a model instance. Once the model
-   * instance is initialized it handles all business logic for the action.
-   *
-   * A model should represent an entity in your application. This could be a
-   * user account, a shopping cart, or even a something as simple as a
-   * single product.
-   *
-   * @param sfRequest $request The current sfRequest object
-   *
-   * @return mixed     A string containing the view name associated with this action
+   * @param sfWebRequest $request
    */
-  function execute($request)
+  public function execute($request)
   {
     /** @var Jenkins $jenkins */
     $groupRunId = $this->getVar('group_run_id');
     $jenkins    = $this->getVar('jenkins');
-    
-    $criteriaRun = new Criteria();
-    $criteriaRun->add(JenkinsRunPeer::JENKINS_GROUP_RUN_ID, $groupRunId);
 
-    $durationFormatter = new durationFormatter();
-    
-    $runs                  = JenkinsRunPeer::doSelect($criteriaRun);
+    $currentGroup          = JenkinsGroupRunPeer::retrieveByPK($groupRunId);
+
+    if (null === $currentGroup)
+    {
+      throw new sfException(sprintf('group run "%s" not found', $groupRunId));
+    }
+
+    $durationFormatter     = new durationFormatter();
+    $runs                  = $currentGroup->getJenkinsRuns();
     $dataRuns              = array();
     $isGroupRunRebuildable = false;
 
@@ -60,21 +51,19 @@ class listGroupRunComponent extends sfComponent
       
       /** @var JenkinsRun $run */
       $dataRuns[$run->getId()] = array(
-        'job_name'         => $run->getJobName(),
-        'start_time'       => $run->getStartTime($jenkins),
-        'duration'         => $durationFormatter->formatte($run->getDuration($jenkins)),
-        'result'           => $run->getJenkinsResult($jenkins),
-        'parameters'       => $run->getLaunched() ? $run->getJenkinsBuildCleanedParameter($jenkins) : $run->decodeParameters(),
-        'url'              => $run->getUrlBuild($jenkins),
-        'is_cancelable'    => $isCancelable,
-        'is_rebuildable'   => $run->isRebuildable(),
-        'is_running'       => $isRunning,
-        'progress'         => $progress,
+        'job_name'            => $run->getJobName(),
+        'start_time'          => $run->getStartTime($jenkins),
+        'duration'            => $durationFormatter->formatte($run->getDuration($jenkins)),
+        'result'              => $run->getJenkinsResult($jenkins),
+        'parameters'          => $run->getLaunched() ? $run->getJenkinsBuildCleanedParameter($jenkins) : $run->decodeParameters(),
+        'url'                 => $run->getUrlBuild($jenkins),
+        'is_cancelable'       => $isCancelable,
+        'url_rebuild'         => $run->isRebuildable() ? $this->generateUrl('run_rebuild', $run) : false,
+        'url_rebuild_delayed' => $run->isRebuildable() ? $this->generateUrl('run_rebuild_delayed', $run) : false,
+        'is_running'          => $isRunning,
+        'progress'            => $progress,
       );
     }
-    
-    
-    $currentGroup = JenkinsGroupRunPeer::retrieveByPK($groupRunId);
 
     $this->setVar('is_group_run_rebuildable', $isGroupRunRebuildable);
     $this->setVar('runs', $dataRuns);
@@ -83,4 +72,5 @@ class listGroupRunComponent extends sfComponent
       'git_branch' => null === $currentGroup ? null : $currentGroup->getGitBranch(),
     ));
   }
+
 }

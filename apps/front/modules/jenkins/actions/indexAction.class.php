@@ -12,7 +12,17 @@ class indexAction extends baseJenkinsAction
    */
   function execute($request)
   {
-    $currentGroupId   = $request->getParameter('group_run_id');
+    if ($request->hasParameter('branch_name'))
+    {
+      $userId     = $this->getUser()->getUsername();
+      $groupRun   = JenkinsGroupRunPeer::retrieveByNaturalPk($userId, $request->getParameter('branch_name'));
+      $currentGroupId = $groupRun->getId();
+    }
+    else
+    {
+      $currentGroupId   = $request->getParameter('group_run_id');
+    }
+
     $jenkins          = $this->getJenkins();
     $criteriaGroupRun = new Criteria();
     $criteriaGroupRun->add(JenkinsGroupRunPeer::USER_ID, $this->getUser()->getUsername(), Criteria::EQUAL);
@@ -35,10 +45,12 @@ class indexAction extends baseJenkinsAction
         'git_branch' => $groupRun->getGitBranch(),
         'date'       => $groupRun->getDate('d/m/Y H:i:s'),
         'result'     => $groupRun->getResult($jenkins),
+        'object'     => $groupRun,
       );
     }
 
     $this->setVar('group_runs', $dataGroupRuns);
     $this->setVar('current_group_run_id', $currentGroupId);
   }
+
 }

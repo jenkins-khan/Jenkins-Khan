@@ -71,11 +71,6 @@ class JenkinsRun extends BaseJenkinsRun
     $result = $defaultStatus;
     $build  = null;
 
-    if (!$this->getLaunched())
-    {
-      return JenkinsRun::DELAYED;
-    }
-
     if ($jenkins->isAvailable())
     {
       if ($this->isInJenkinsQueue($jenkins))
@@ -84,10 +79,22 @@ class JenkinsRun extends BaseJenkinsRun
       }
 
       $build = $this->getJenkinsBuild($jenkins);
+
       if (null !== $build)
       {
-        return $build->getResult();
+
+        $result = $build->getResult();
+        if ($result != JenkinsRun::RUNNING && !$this->getLaunched())
+        {
+          return JenkinsRun::DELAYED;
+        }
+        return $result;
       }
+    }
+
+    if (!$this->getLaunched())
+    {
+      return JenkinsRun::DELAYED;
     }
 
     return $result;
@@ -338,6 +345,38 @@ class JenkinsRun extends BaseJenkinsRun
   public function isRebuildable()
   {
     return $this->getLaunched();
+  }
+
+  /**
+   * @param Jenkins $jenkins
+   * @param bool    $delayed
+   *
+   * @return $this
+   */
+  public function rebuild(Jenkins $jenkins, $delayed = false)
+  {
+    $build           = $this->getJenkinsBuild($jenkins);
+    $inputParameters = array();
+    if (null !== $build)
+    {
+      //peu importe ce qui est stocké dans la base => Jenkins fait toujours foi
+      $inputParameters = $build->getInputParameters();
+    }
+
+    if ($delayed)
+    {
+      $this->setLaunched(false);
+    }
+
+    $this->save();
+
+    if (!$delayed)
+    {
+      $this->launch($jenkins, $inputParameters);
+    }
+
+
+    return $this;
   }
 
 } // JenkinsRun
