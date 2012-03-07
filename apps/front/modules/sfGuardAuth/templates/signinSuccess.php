@@ -4,6 +4,6 @@
     <?php echo $form ?>
   </div>
   <div class="form-footer">
-    <input class="btn large primary" type="submit" value="Log in" />
+    <input class="btn btn-large btn-primary" type="submit" value="Log in" />
   </div>
 </form>

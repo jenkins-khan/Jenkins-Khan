@@ -3,9 +3,9 @@
 <?php /** @var int     nb_delayed */ ?>
 <?php /** @var myUser  $user */ ?>
 
-<div class="topbar">
-  <div class="topbar-inner">
-    <div class="container-fluid">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
       <h1><a class="brand" href="#">Jenkins Khan</a></h1>
       <?php if ($user->isAuthenticated()): ?>
         <ul class="nav">
@@ -17,16 +17,19 @@
             </li>
           <?php endforeach; ?>
         </ul>
-        <div class="pull-right">
-          <ul>
-            <li class="<?php 'user/configure' === $activeLink && print 'active' ?>">
-              <?php echo link_to('Configuration', 'user/configure', array('class' => 'settings', 'title' => 'Configure your profile')) ?>
-            </li>
-            <li><?php echo link_to('Logout', '@sf_guard_signout') ?><li>
-          </ul>
-        </div>
+        
+        <ul class="nav pull-right">
+          <li class="<?php 'user/configure' === $activeLink && print 'active' ?>">
+            <?php echo link_to('Configuration', 'user/configure', array('class' => 'settings', 'title' => 'Configure your profile')) ?>
+          </li>
+          <li><?php echo link_to('Logout', '@sf_guard_signout') ?><li>
+        </ul>
       <?php endif; ?> 
     </div>
   </div>
-</div><?php
+</div>
+  
+<script type="text/javascript">
+  $('.dropdown-toggle').dropdown();
+</script>
 
