@@ -5,7 +5,7 @@
   <?php include_metas() ?>
   <?php include_title() ?>
   <link rel="shortcut icon" type="image/png"  href="<?php echo _compute_public_path('genghis', 'images', 'png') ?>" />
-  <?php include_stylesheets() ?>
+  <?php include_less_stylesheets() ?>
   <?php include_javascripts() ?>
 </head>
 <body>
