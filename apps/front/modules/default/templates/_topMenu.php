@@ -15,6 +15,20 @@
                 'title' => isset($menu['title']) ? $menu['title'] : $name
               )); ?>
             </li>
+            <?php if (isset($menu['dropdowns']) && count($menu['dropdowns'])): ?>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <?php foreach ($menu['dropdowns'] as $name => $dropdown): ?>
+                  <li>
+                    <?php echo link_to($name, $dropdown['url'], array(
+                      'title' => isset($dropdown['title']) ? $dropdown['title'] : $name
+                    )) ?>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            </li>
+            <?php endif ?>
           <?php endforeach; ?>
         </ul>
         

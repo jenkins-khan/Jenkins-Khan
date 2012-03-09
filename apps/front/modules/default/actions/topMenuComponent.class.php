@@ -26,6 +26,12 @@ class topMenuComponent extends sfComponent
         'url' => 'jenkins/delayed',
         'title' => 'See delayed list',
         'class' => 'btn btn-primary btn-delayed',
+        'dropdowns' => array(
+          'Launch all' => array(
+            'url' => 'jenkins/launchAllDelayed',
+            'title' => 'Launch all delayed jobs',
+          ),
+        )
       ),
     );
 

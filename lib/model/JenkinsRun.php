@@ -379,4 +379,27 @@ class JenkinsRun extends BaseJenkinsRun
     return $this;
   }
 
+  /**
+   * @param Jenkins $jenkins
+   *
+   * @return JenkinsRun
+   */
+  public function launchDelayed(Jenkins $jenkins)
+  {
+    $parameters  = array(
+      Jenkins_Job::BRANCH_PARAMETER_NAME => $this->getGitBranch()
+    );
+    $runParameters = $this->decodeParameters();
+    if (is_array($runParameters))
+    {
+      $parameters = array_merge($parameters, $runParameters);
+    }
+
+    $this->launch($jenkins, $parameters);
+    $this->setLaunched(true);
+    $this->save();
+
+    return $this;
+  }
+
 } // JenkinsRun
