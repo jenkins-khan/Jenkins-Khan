@@ -71,6 +71,11 @@ class JenkinsRun extends BaseJenkinsRun
     $result = $defaultStatus;
     $build  = null;
 
+    if (!$this->getLaunched())
+    {
+      return JenkinsRun::DELAYED;
+    }
+
     if ($jenkins->isAvailable())
     {
       if ($this->isInJenkinsQueue($jenkins))
@@ -79,22 +84,10 @@ class JenkinsRun extends BaseJenkinsRun
       }
 
       $build = $this->getJenkinsBuild($jenkins);
-
       if (null !== $build)
       {
-
-        $result = $build->getResult();
-        if ($result != JenkinsRun::RUNNING && !$this->getLaunched())
-        {
-          return JenkinsRun::DELAYED;
-        }
-        return $result;
+        return $build->getResult();
       }
-    }
-
-    if (!$this->getLaunched())
-    {
-      return JenkinsRun::DELAYED;
     }
 
     return $result;
@@ -217,7 +210,7 @@ class JenkinsRun extends BaseJenkinsRun
 
     $criteria = new Criteria();
     $criteria->add(JenkinsRunPeer::ID, $this->getId());
-    JenkinsRunPeer::updateJobBuildNumber($jenkins, $user, $criteria);
+    JenkinsRunPeer::fillEmptyJobBuildNumber($jenkins, $user, $criteria);
   }
 
   /**
@@ -362,6 +355,8 @@ class JenkinsRun extends BaseJenkinsRun
       //peu importe ce qui est stocké dans la base => Jenkins fait toujours foi
       $inputParameters = $build->getInputParameters();
     }
+
+    $this->setJobBuildNumber(null);
 
     if ($delayed)
     {
