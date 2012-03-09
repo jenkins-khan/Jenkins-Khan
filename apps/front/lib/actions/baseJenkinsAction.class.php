@@ -27,7 +27,7 @@ abstract class baseJenkinsAction extends sfAction
     //à chaque hit on met à jour
     if ($jenkins->isAvailable())
     {
-      JenkinsRunPeer::updateJobBuildNumber($jenkins, $this->getUser());
+      JenkinsRunPeer::fillEmptyJobBuildNumber($jenkins, $this->getUser());
     }
     else
     {

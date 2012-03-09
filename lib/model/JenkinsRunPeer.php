@@ -21,7 +21,8 @@ class JenkinsRunPeer extends BaseJenkinsRunPeer
 {
 
   /**
-   * Verify and fill number revision from jenkins server for JenkinsRun
+   * Verify and fill number revision from jenkins server
+   * for JenkinsRun which doesn't have revision number
    *
    * @static
    *
@@ -29,7 +30,7 @@ class JenkinsRunPeer extends BaseJenkinsRunPeer
    * @param myUser        $user
    * @param Criteria|null $criteria
    */
-  public static function updateJobBuildNumber(Jenkins $jenkins, myUser $user, Criteria $criteria = null)
+  public static function fillEmptyJobBuildNumber(Jenkins $jenkins, myUser $user, Criteria $criteria = null)
   {
     if (null === $criteria)
     {
@@ -37,6 +38,8 @@ class JenkinsRunPeer extends BaseJenkinsRunPeer
     }
     
     $criteria->addJoin(JenkinsRunPeer::JENKINS_GROUP_RUN_ID, JenkinsGroupRunPeer::ID, Criteria::JOIN);
+    $criteria->add(JenkinsRunPeer::JOB_BUILD_NUMBER, null, Criteria::ISNULL);
+    $criteria->add(JenkinsRunPeer::LAUNCHED, 1, Criteria::EQUAL);
     $criteria->add(JenkinsGroupRunPeer::USER_ID, $user->getUsername(), Criteria::EQUAL);
 
     $emptyRunsByJobName = array();
