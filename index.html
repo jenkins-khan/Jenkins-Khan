@@ -7,21 +7,24 @@
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="all"/>
   <link rel="stylesheet/less" type="text/css" href="css/gh-pages.less" media="all"/>
   <script type="text/javascript" src="js/less-1.2.2.min.js"></script>
+  <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-scrollspy.js"></script>
 </head>
-<body>
-  <div class="navbar navbar-fixed-top">
+<body data-spy="scroll" >
+  <div id="navbar" class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
         <h1>
           <a href="http://github.com/pmsipilot/Jenkins-Khan" class="brand">Jenkins Khan</a>
-          <!-- <span class="small"> by <a href="http://www.pmsipilot.org">PMSIpilot</a></span> -->
         </h1>
         <ul class="nav">
           <li><a href="#screenshots">Screenshots</a></li>
           <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#advantages">Why?</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="#requirements">Requirements</a></li>
-          <li><a href="#help">Help</a></li>
+          <li><a href="#documentation">Documentation</a></li>
           <li><a href="#contributing">Contributing</a></li>
           <li><a href="#authors">Authors</a></li>
         </ul>
@@ -29,11 +32,8 @@
     </div>
   </div>
 
-
   <a href="http://github.com/pmsipilot/Jenkins-Khan">
-    <img
-      style="position: fixed; top: 0; right: 0; border: 0;"
-      src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+    <img src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
       alt="Fork me on GitHub"  class="fork-me"/>
   </a>
 
@@ -48,52 +48,53 @@
       </span>
     </h1>
     <div class="download">
-      <a href="http://github.com/pmsipilot/Jenkins-Khan/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png">
-      </a>
+      <a href="http://github.com/pmsipilot/Jenkins-Khan/zipball/master"><img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
       <a href="http://github.com/pmsipilot/Jenkins-Khan/tarball/master">
         <img border="0" width="90" src="http://github.com/images/modules/download/tar.png">
       </a>
     </div>
 
+    <p>Jenkins Khan, manage feature branches with Jenkins. Seamlessly.</p>
+      
   </div>
   
   <div class="bloc">
     <h2 id="screenshots">Screenshots</h2>
     <div class="screenshots">
-      <a class="screenshot" href="images/dashboard.png" title="Jenkins Khan Dashboard" target="_blank">
-        <img src="images/mini_dashboard.png" alt="Jenkins Khan Dashboard" />
-      </a>
-      <a class="screenshot" href="images/create_build_branch.png" title="Create a build branch" target="_blank">
-        <img src="images/mini_create_build_branch.png" alt="Create a build branch" />
+      <a href="images/dashboard.png" title="Jenkins Khan Dashboard" target="_blank">
+        <img class="screenshot"  src="images/mini_dashboard.png" alt="Jenkins Khan Dashboard" /></a>
+      <a href="images/create_build_branch.png" title="Create a build branch" target="_blank">
+        <img class="screenshot" src="images/mini_create_build_branch.png" alt="Create a build branch" />
       </a>
     </div>
   </div>
   <div class="bloc">
     <h2 id="introduction">Introduction</h2>
 
-    <h3>Jenkins Khan is a php tool that helps you to manage a <a href="http://jenkins-ci.org/">Jenkins</a> integration server.</h3>
+    <h3>Jenkins Khan is a PHP tool that helps you to manage a <a href="http://jenkins-ci.org/">Jenkins</a> integration server.</h3>
+    
     <p>
       With Jenkins Khan you can easily launch different jobs on your working branch and check the result of each job
       group by your branches.
     </p>
     
-    <h3>Why</h3>
+    <h3>Why?</h3>
     <p>
-      When it comes to working with many branches, Jenkins is not very user-friendly. 
-      It's kind a mess to check your jobs state on every branch. We need an overview.
+      If you’ve ever tried to use Jenkins with feature branches, you know that’s not the right tool for this situation.
+      It's kind of a mess to check your jobs state on every branch. We need an overview.
+      Jenkins Khan is a tool over Jenkins to ease the testing of you feature branches.
     </p>
 
-    <h3>How ?</h3>
+    <h3>How?</h3>
     <p>
-      Jenkins Khan uses Jenkins' API to retrieve the configuration, jobs, jobs parameters, view, status, etc. 
-      You just have to register your Jenkins Url in Jenkins Khan and enjoy the fun.
+      Jenkins Khan uses Jenkins' API to retrieve the configuration, jobs, jobs parameters, views, statuses, etc. 
+      You just have to register your Jenkins URL in Jenkins Khan and enjoy the fun.
     </p>
 
     <h3>Technology stack</h3>
     <p>
       <strong>Jenkins Khan is a standalone LAMP project.</strong><br/>
-      It is based on web common technologies :
+      It is based on common web technologies:
       <ul class="bubble">
         <li><a href="http://www.symfony-project.org/">symfony 1.x</a></li>
         <li><a href="http://jquery.com/">jQuery</a></li>
@@ -106,23 +107,87 @@
     <h3>Licence</h3>
     <p>
       <strong>Jenkins Khan is an open-source project.</strong><br />
-      It is published under <a href="http://en.wikipedia.org/wiki/MIT_License">MIT license</a> : you can use it Like A
-      Boss !</p>
+      It is published under <a href="http://en.wikipedia.org/wiki/MIT_License">MIT license</a>.
+    </p>
   </div>
+  
+  <div class="bloc">
+    <h2 id="usage">How do we use it?</h2>
+    
+    <p>
+      Here, at <a href="http://www.pmsipilot.com">PMSIpilot</a>, when we have to work on a feature, the workflow is this one :
+      <ul>
+        <li>Create a feature branch</li>
+        <li>Work on the feature</li>
+        <li>Execute locally relevants tests on the feature branch</li>
+        <li>Merge the feature branch into master</li>
+      </ul>
+      So, Jenkins Khan is here to help us to follow the execution of the tests run branch by branch. 
+    </p>
+    
+    <p>
+      Because we have a lot of tests suite, we don't launch all of them on each feature branch.
+      So, web choose the most relevant job, launch them and start working on another feature while tests are running
+    </p>
+    
+    <p>
+      It's important to us having a simple view with jobs launched branch by branch and the status of these branches.
+    </p>
+  </div>
+  
+  <div class="bloc">
+    <h2 id="advantages">Why use Jenkins Khan?</h2>
+    <table class="compare">
+      <thead>
+        <tr>
+          <th>Jenkins Khan</th>
+          <th>Jenkins CI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <img src="images/jenkins_khan_board.png" alt="Jenkins Khan Board" class="screenshot"/> 
+          </td>
+          <td>
+            <img src="images/jenkins_board.png" alt="Jenkins Ci Board" class="screenshot"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ul>
+              <li>Branch view oriented</li>
+              <li>User friendly interface</li>
+              <li>Plugged on top of Jenkins</li>
+              <li>Schedulable jobs</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Job view oriented</li>
+              <li>3 click from homepage to branch's job</li>
+              <li>Too much information</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
   <div class="bloc">
     <h2 id="features">Features</h2>
-    <ul class="puces">
+    <ul>
       <li>Display branch by branch the result of each Jenkins' build</li>
       <li>
         Fully based on Jenkins' API
         <ul>
-          <li>No configuration (except your Jenkins' url)</li>
-          <li>All views, jobs, configuration are immediatly available</li>
+          <li>No configuration (except your Jenkins' URL)</li>
+          <li>All views, jobs, configurations are immediatly available</li>
         </ul>
       </li>
-      <li>Relaunch build one by one</li>
+      <li>Relaunch builds</li>
       <li>Relaunch every build on a build branch</li>
-      <li>Register build without launching them on Jenkins</li>
+      <li>Register or schedule builds without launching them on Jenkins</li>
       <li>User-friendly interface.</li>
     </ul>
   </div>
@@ -131,15 +196,16 @@
   
     <ul class="bubble">
       <li>PHP 5.2+</li>
+      <li>PHP Curl extension</li>
       <li>MySQL 5+</li>
       <li>Jenkins 1.4+</li>
       <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin">Jenkins Git Plugin</a></li>
     </ul>
   </div>
   <div class="bloc">
-    <h2 id="help">Help</h2>
+    <h2 id="documentation">Documentation</h2>
   
-    <p>Help is hosted in the <a href="http://github.com/pmsipilot/Jenkins-Khan/wiki">project wiki</a> on Github :</p>
+    <p>Documentation is hosted in the <a href="http://github.com/pmsipilot/Jenkins-Khan/wiki">project wiki</a> on Github:</p>
     <ul class="puces">
       <li><a href="https://github.com/pmsipilot/Jenkins-Khan/wiki/How-to-install-Jenkins-Khan">How to install Jenkins Khan</a> </li>
     </ul>
@@ -156,12 +222,19 @@
     <p>Jenkins Khan is an 
       <a href="http://tom.preston-werner.com/2011/11/22/open-source-everything.html">open-source</a>
       <a href="http://zachholman.com/posts/why-github-hacks-on-side-projects/">side project</a> of 
-      <a href="http://pmsipilot.com">PMSIpilot</a>, developped by :
+      <a href="http://pmsipilot.com">PMSIpilot</a>, developped by:
     </p>
     <ul class="bubble">
       <li><a href="http://github.com/srogier/" title="Github profil">Sébastien Rogier</a></li>
       <li><a href="http://github.com/agallou/" title="Github profil">Adrien Gallou</a></li>
     </ul>
+    
+    Thanks to the <a href="https://github.com/pmsipilot" title="Github profil">PMSIpilot team</a> for their suggestions and support.
   </div>
 </body>
 </html>
+<script language="JavaScript">
+  $(document).ready(function() {
+    $('#navbar').scrollspy()
+  });
+</script> 

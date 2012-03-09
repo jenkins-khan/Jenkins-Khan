@@ -19,23 +19,33 @@ body {
   padding-top: 60px;
   
   .fork-me {
+    position: fixed; 
+    top: 0; 
+    right: 0; 
+    border: 0;
     z-index: 10000;
   }
 
   a {
-    color: #fff;
+    color: #005580;
   }
 
   .screenshots {
     text-align: center;
   }
-  a.screenshot {
-    .border-radius(5px);
-    
-    img {
-      .box-shadow(10px 10px 10px rgba(0,0,0,.2));
+
+  a {
+    .screenshot {
       margin: 0 30px;
     }
+  }
+
+  .screenshot {
+    .border-radius(5px);
+    border-color: #808080;
+    border-style: solid;
+    border-width: 1px 0 0 1px;
+    .box-shadow(20px 10px 10px rgba(0,0,0,.2));
   }
 
   h1 {
@@ -78,6 +88,16 @@ body {
     font-size: @fontsize;
   }
 
+  .compare {
+    width: 100%;
+  
+    th {
+      font-size: 18px;
+      text-align: left;
+      width: 50%;
+    }
+  } 
+
   ul.bubble {
     margin: 20px;
     li {
@@ -90,6 +110,7 @@ body {
       margin: 10px;
       padding: 10px 20px;
       a {
+        color: #fff;
         text-decoration: underline; 
       }
     }
