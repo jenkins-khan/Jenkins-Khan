@@ -73,6 +73,7 @@
                     <li><?php echo link_to('Delay', $run['url_rebuild_delayed'], array('title' => 'Relaunch build (delayed)')) ?></li>
                   <?php endif; ?>
                   <li><?php echo link_to('Console log', $run['url_console_log'], array('title' => 'View console log')) ?></li>
+                  <li><?php echo link_to('Go to test report', $run['url_test_report']) ?></li>
                 </ul>
               </div>
             </td>
