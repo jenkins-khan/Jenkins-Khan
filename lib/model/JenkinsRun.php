@@ -332,4 +332,46 @@ class JenkinsRun extends BaseJenkinsRun
     ));
   }
 
+  /**
+   * @return bool
+   */
+  public function isRebuildable()
+  {
+    return $this->getLaunched();
+  }
+
+  /**
+   * @param Jenkins $jenkins
+   * @param bool    $delayed
+   *
+   * @return $this
+   */
+  public function rebuild(Jenkins $jenkins, $delayed = false)
+  {
+    $build           = $this->getJenkinsBuild($jenkins);
+    $inputParameters = array();
+    if (null !== $build)
+    {
+      //peu importe ce qui est stocké dans la base => Jenkins fait toujours foi
+      $inputParameters = $build->getInputParameters();
+    }
+
+    $this->setJobBuildNumber(null);
+
+    if ($delayed)
+    {
+      $this->setLaunched(false);
+    }
+
+    $this->save();
+
+    if (!$delayed)
+    {
+      $this->launch($jenkins, $inputParameters);
+    }
+
+
+    return $this;
+  }
+
 } // JenkinsRun

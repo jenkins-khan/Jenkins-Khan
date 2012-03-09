@@ -101,5 +101,31 @@ class JenkinsGroupRun extends BaseJenkinsGroupRun
 
     return $default;
   }
+
+  /**
+   * @param Jenkins $jenkins
+   * @param bool    $delayed
+   *
+   * @return $this
+   */
+  public function rebuild(Jenkins $jenkins, $delayed = false)
+  {
+    /** @var JenkinsRun $run */
+    foreach ($this->getJenkinsRuns() as $run)
+    {
+      if (!$run->isRebuildable())
+      {
+        continue;
+      }
+      $run->rebuild($jenkins, $delayed);
+    }
+    return $this;
+  }
+
+  public function getBranchName()
+  {
+    return $this->getGitBranch();
+  }
+
   
 } // JenkinsGroupRun

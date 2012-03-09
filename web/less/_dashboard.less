@@ -83,11 +83,10 @@ body {
     min-height: @contentMinHeight;
     .rightborder-radius( 5px );
     
-    ul {
+    > ul {
       padding: 20px;
       clear: left;
-      li {
-        
+      > li {
         width: @contentWidth - (40px * 2);
         background-color: @baseColorLight;
         margin-bottom: 10px;
@@ -114,6 +113,17 @@ body {
                   padding: 0px;
                   width: auto;
                 }
+              }
+            }
+            &.actions {
+              width: auto;
+              .dropdown-menu {
+                min-width: 50px;
+              }
+              .dropdown-toggle {
+                padding-top: 2px;
+                height: 12px;
+                width: 25px;
               }
             }
             &.infos {
@@ -148,7 +158,13 @@ body {
           }
         }
         &.group_run_infos {
-          background-color: @baseColorLighter
+          background-color: @baseColorLighter;
+          position: relative;
+          height: 30px;
+          table {
+            position: absolute;
+            right:19px;
+          }
         }
         &.add-build {
           height: 32px;

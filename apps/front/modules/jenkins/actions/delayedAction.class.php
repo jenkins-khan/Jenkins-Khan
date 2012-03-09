@@ -41,6 +41,7 @@ class delayedAction extends baseJenkinsAction
           $run->launch($this->getJenkins(), $parameters);
           $run->setLaunched(true);
           $run->save();
+          $run->computeJobBuildNumber($this->getJenkins(), $this->getUser());
         }
         
         $this->redirect('jenkins/index');
