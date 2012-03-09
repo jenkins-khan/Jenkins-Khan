@@ -18,6 +18,43 @@ sf_guard_password:
   url:   /request_password
   param: { module: sfGuardAuth, action: password }
 
+
+branch_rebuild:
+  url: /branch/:branch_name/rebuild
+  param: { module: jenkins, action: rebuildBranch }
+
+branch_rebuild_delayed:
+  url: /branch/:branch_name/rebuild/delayed
+  param: { module: jenkins, action: rebuildBranch, delayed: 1 }
+
+branch_view:
+  url: /branch/:branch_name/view
+  class: sfPropelRoute
+  options: { model: JenkinsGroupRun, type: object }
+  param: { module: jenkins, action: index }
+  requirements:
+    branch_name: .*
+    sf_method: [get]
+
+run_rebuild:
+  url: /run/:id/rebuild
+  class: sfPropelRoute
+  options: { model: JenkinsRun, type: object }
+  param: { module: jenkins, action: rebuildRun }
+  requirements:
+    branch_name: \d+
+    sf_method: [get]
+
+run_rebuild_delayed:
+  url: /run/:id/rebuild/delayed
+  class: sfPropelRoute
+  options: { model: JenkinsRun, type: object }
+  param: { module: jenkins, action: rebuildRun, delayed: 1 }
+  requirements:
+      branch_name: \d+
+      sf_method: [get]
+
+
 # generic rules
 # please, remove them by adding more specific rules
 default_index:

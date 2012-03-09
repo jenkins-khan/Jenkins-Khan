@@ -19,4 +19,20 @@
  */
 class JenkinsGroupRunPeer extends BaseJenkinsGroupRunPeer {
 
+
+  /**
+   * @param int            $userId
+   * @param string         $gitBranch
+   * @param null|PropelPDO $con
+   *
+   * @return JenkinsGroupRun
+   */
+  public static function retrieveByNaturalPk($userId, $gitBranch, PropelPDO $con = null)
+  {
+    $criteria = new Criteria();
+    $criteria->add(self::USER_ID, $userId);
+    $criteria->add(self::GIT_BRANCH, $gitBranch);
+    return self::doSelectOne($criteria, $con);
+  }
+
 } // JenkinsGroupRunPeer

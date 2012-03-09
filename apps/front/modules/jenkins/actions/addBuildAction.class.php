@@ -84,6 +84,7 @@ class addBuildAction extends baseJenkinsAction
         if ($autoLaunch)
         {
           $run->launch($this->getJenkins(), $jobParameters);
+          $run->computeJobBuildNumber($this->getJenkins(), $this->getUser());
         }
 
         $this->getUser()->setFlash('info', sprintf('Build [%s] has been added to build branch [%s]', $run->getJobName(), $jenkinsGroupRun->getLabel()));

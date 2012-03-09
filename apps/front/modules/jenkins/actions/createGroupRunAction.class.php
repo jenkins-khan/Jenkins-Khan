@@ -76,6 +76,7 @@ class createGroupRunAction extends baseJenkinsAction
           {
             //launcher les builds
             $run->launch($this->getJenkins(), $parameters);
+            $run->computeJobBuildNumber($this->getJenkins(), $this->getUser());
           }
         }
 
