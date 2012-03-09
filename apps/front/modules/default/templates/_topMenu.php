@@ -16,7 +16,7 @@
               )); ?>
             </li>
             <?php if (isset($menu['dropdowns']) && count($menu['dropdowns'])): ?>
-            <li class="dropdown">
+            <li class="dropdown <?php echo $menu['dropdown_class'] ?>">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <?php foreach ($menu['dropdowns'] as $name => $dropdown): ?>

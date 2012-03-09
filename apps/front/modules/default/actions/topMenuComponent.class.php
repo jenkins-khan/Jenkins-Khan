@@ -13,23 +13,23 @@ class topMenuComponent extends sfComponent
   function execute($request)
   {
     $nbJobDelayed = count(JenkinsRunPeer::getDelayed($this->getUser()));
-    
-    
+
     $menus = array(
-      'Dashboard' => array(
+      'Dashboard'             => array(
         'url' => 'jenkins/index'
       ),
       'Create a build branch' => array(
-        'url' =>'jenkins/createGroupRun',
+        'url' => 'jenkins/createGroupRun',
       ),
-      $nbJobDelayed => array(
-        'url' => 'jenkins/delayed',
-        'title' => 'See delayed list',
-        'class' => 'btn btn-primary btn-delayed',
-        'dropdowns' => array(
-          'Launch all' => array(
-            'url' => 'jenkins/launchAllDelayed',
-            'title' => 'Launch all delayed jobs',
+      $nbJobDelayed           => array(
+        'url'            => 'jenkins/delayed',
+        'title'          => 'See delayed list',
+        'class'          => 'btn btn-primary btn-delayed',
+        'dropdown_class' => 'btn btn-primary btn-delayed-caret',
+        'dropdowns'      => array(
+          'Launch all delayed jobs' => array(
+            'url'   => 'jenkins/launchAllDelayed',
+            'title' => sprintf('Launch all delayed jobs (%s)', $nbJobDelayed),
           ),
         )
       ),
