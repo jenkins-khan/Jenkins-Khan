@@ -3,7 +3,11 @@ web/css/*
 
 lib/model/om/*
 lib/model/map/*
+lib/filter/base/*
+lib/form/base/*
 
 plugins/*/lib/model/om
 plugins/*/lib/model/map
+plugins/*/lib/filter/base
+plugins/*/lib/form/base
 
