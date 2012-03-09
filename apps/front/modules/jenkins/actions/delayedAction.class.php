@@ -26,21 +26,9 @@ class delayedAction extends baseJenkinsAction
           {
             continue;
           }
-          
+
           $run = JenkinsRunPeer::retrieveByPK($id);
-          
-          $parameters  = array(
-            Jenkins_Job::BRANCH_PARAMETER_NAME => $run->getGitBranch()
-          );
-          $runParameters = $run->decodeParameters();
-          if (is_array($runParameters))
-          {
-            $parameters = array_merge($parameters, $runParameters);
-          }
-          
-          $run->launch($this->getJenkins(), $parameters);
-          $run->setLaunched(true);
-          $run->save();
+          $run->launchDelayed($this->getJenkins());
           $run->computeJobBuildNumber($this->getJenkins(), $this->getUser());
         }
         
