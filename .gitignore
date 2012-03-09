@@ -1,2 +1,9 @@
 .idea
 web/css/*
+
+lib/model/om/*
+lib/model/map/*
+
+plugins/*/lib/model/om
+plugins/*/lib/model/map
+
