@@ -58,6 +58,7 @@ class listGroupRunComponent extends sfComponent
         'parameters'          => $run->getLaunched() ? $run->getJenkinsBuildCleanedParameter($jenkins) : $run->decodeParameters(),
         'url'                 => $run->getUrlBuild($jenkins),
         'url_console_log'     => $run->getUrlBuild($jenkins) . '/console',
+        'url_test_report'     => $run->getUrlBuild($jenkins) . '/testReport',
         'is_cancelable'       => $isCancelable,
         'url_rebuild'         => $run->isRebuildable() ? $this->generateUrl('run_rebuild', $run) : false,
         'url_rebuild_delayed' => $run->isRebuildable() ? $this->generateUrl('run_rebuild_delayed', $run) : false,
