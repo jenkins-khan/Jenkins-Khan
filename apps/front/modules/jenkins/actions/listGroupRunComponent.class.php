@@ -16,7 +16,7 @@ class listGroupRunComponent extends sfComponent
 
     if (null === $currentGroup)
     {
-      throw new sfException(sprintf('group run "%s" not found', $groupRunId));
+      return sfView::NONE;
     }
 
     $durationFormatter     = new durationFormatter();
