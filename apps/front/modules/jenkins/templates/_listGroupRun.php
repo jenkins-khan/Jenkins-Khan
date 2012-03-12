@@ -22,12 +22,12 @@
                   <?php echo $current_group_run['git_branch'] ?>
                   <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu dropdown-right">
                   <?php if ($is_group_run_rebuildable): ?>
-                    <li><?php echo link_to('Relaunch', url_for('branch_rebuild', array('branch_name' => $current_group_run['git_branch'])), array('title' => 'Relaunch build branch')) ?></li>
-                    <li><?php echo link_to('Relaunch (delayed)', url_for('branch_rebuild_delayed', array('branch_name' => $current_group_run['git_branch'])), array('title' => 'Relaunch build branch (delayed)')) ?></li>
+                    <li><?php echo link_to('Relaunch all jobs', url_for('branch_rebuild', array('branch_name' => $current_group_run['git_branch'])), array('title' => 'Relaunch all jobs')) ?></li>
+                    <li><?php echo link_to('Add all jobs in delayed list', url_for('branch_rebuild_delayed', array('branch_name' => $current_group_run['git_branch'])), array('title' => 'Add all jobs in delayed list')) ?></li>
                    <?php endif ?>
-                  <li><?php echo link_to('Add job', $current_group_run['url_add_build'], array('title' => 'Add job to this build branch')) ?></li>
+                  <li><?php echo link_to('Add a job', $current_group_run['url_add_build'], array('title' => 'Add a job to this build branch')) ?></li>
                 </ul>
               </div>
             </td>
@@ -68,12 +68,12 @@
             <td class="actions">
               <div class="btn-group">
                 <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                <ul class="dropdown-menu ">
+                <ul class="dropdown-menu dropdown-right">
                   <?php if ($run['url_rebuild_delayed']): ?>
                     <li><?php echo link_to('Delay', $run['url_rebuild_delayed'], array('title' => 'Relaunch build (delayed)')) ?></li>
                   <?php endif; ?>
-                  <li><?php echo link_to('Go to console log', $run['url_console_log'], array('title' => 'View Jenkins console log')) ?></li>
-                  <li><?php echo link_to('Go to test report', $run['url_test_report']) ?></li>
+                  <li><?php echo link_to('Go to console log', $run['url_console_log'], array('title' => 'View Jenkins console log', 'class' => 'jenkins', 'target' => '_blank')) ?></li>
+                  <li><?php echo link_to('Go to test report', $run['url_test_report'], array('class' => 'jenkins','target' => '_blank')) ?></li>
                 </ul>
               </div>
             </td>

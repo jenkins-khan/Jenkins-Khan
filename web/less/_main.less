@@ -112,7 +112,27 @@ body {
       }
     }
   }
-  
+
+  .dropdown-menu {
+    .jenkins, 
+    .jenkins:hover {
+      border:none;
+    }
+    
+    &.dropdown-right {
+      left: auto; /** reset parent's left property */
+      float: right;
+      right: 0px;
+      text-align: right;
+      
+      .jenkins,
+      .jenkins:hover {
+        background-position: right center;
+        padding-right: 20px;
+        padding-left: 0px;
+      }
+    }
+  }
 
   form {
     background-color: @baseColorLight;
@@ -183,13 +203,14 @@ body {
             }
           }
         }
+
         .btn-delayed-caret {
           height: 100%;
           margin-top: 0px;
-          /*padding: 5px 0px 2px;*/
-          width: 3px;
+          width: 6px;
+          padding: 4px 7px;
           a {
-            padding: 10px 0px 10px;
+            padding: 11px 0px 10px;
           }
         }
       }
