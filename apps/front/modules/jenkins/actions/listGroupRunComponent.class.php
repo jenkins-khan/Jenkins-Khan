@@ -55,7 +55,7 @@ class listGroupRunComponent extends sfComponent
         'start_time'          => $run->getStartTime($jenkins),
         'duration'            => $durationFormatter->formatte($run->getDuration($jenkins)),
         'result'              => $run->getJenkinsResult($jenkins),
-        'parameters'          => $run->getLaunched() ? $run->getJenkinsBuildCleanedParameter($jenkins) : $run->decodeParameters(),
+        'parameters'          => $run->getLaunched() && $isRunning ? $run->getJenkinsBuildCleanedParameter($jenkins) : $run->decodeParameters(),
         'url'                 => $run->getUrlBuild($jenkins),
         'url_console_log'     => $run->getUrlBuild($jenkins) . '/console',
         'url_test_report'     => $run->getUrlBuild($jenkins) . '/testReport',
