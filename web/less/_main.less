@@ -112,7 +112,27 @@ body {
       }
     }
   }
-  
+
+  .dropdown-menu {
+    .jenkins, 
+    .jenkins:hover {
+      border:none;
+    }
+    
+    &.dropdown-right {
+      left: auto; /** reset parent's left property */
+      float: right;
+      right: 0px;
+      text-align: right;
+      
+      .jenkins,
+      .jenkins:hover {
+        background-position: right center;
+        padding-right: 20px;
+        padding-left: 0px;
+      }
+    }
+  }
 
   form {
     background-color: @baseColorLight;
