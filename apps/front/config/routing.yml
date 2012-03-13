@@ -45,6 +45,16 @@ run_rebuild:
     branch_name: \d+
     sf_method: [get]
 
+run_remove:
+  url: /run/:id/remove
+  class: sfPropelRoute
+  options: { model: JenkinsRun, type: object }
+  param: { module: jenkins, action: removeBuild }
+  requirements:
+    branch_name: \d+
+    sf_method: [get]
+
+
 run_rebuild_delayed:
   url: /run/:id/rebuild/delayed
   class: sfPropelRoute
