@@ -8,11 +8,12 @@
   <meta name="title" content="Jenkins Khan" />
   <title>Jenkins Khan</title>
   <link rel="shortcut icon" type="image/png"  href="<?php echo $path ?>/images/genghis.png" />
-  <link rel="stylesheet" type="text/css" media="screen"  href="<?php echo $path ?>/css/boostrap.css" />
+  <link rel="stylesheet" type="text/css" media="screen"  href="<?php echo $path ?>/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen"  href="<?php echo $path ?>/css/bootstrap.css" />
 </head>
 <body>
-<div class="topbar">
-  <div class="topbar-inner">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
     <div class="container-fluid">
       <h1><a class="brand" href="#">Jenkins Khan</a></h1>
     </div>
