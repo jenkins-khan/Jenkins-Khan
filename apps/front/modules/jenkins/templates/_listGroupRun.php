@@ -72,6 +72,9 @@
                   <?php if ($run['url_rebuild_delayed']): ?>
                     <li><?php echo link_to('Delay', $run['url_rebuild_delayed'], array('title' => 'Relaunch build (delayed)')) ?></li>
                   <?php endif; ?>
+                  <li>
+                    <?php echo link_to('Remove build', $run['url_remove'], array('title' => 'Remove build from build branch', 'class' => 'remove-build')) ?>
+                  </li>
                   <li><?php echo link_to('Go to console log', $run['url_console_log'], array('title' => 'View Jenkins console log', 'class' => 'jenkins', 'target' => '_blank')) ?></li>
                   <li><?php echo link_to('Go to test report', $run['url_test_report'], array('class' => 'jenkins','target' => '_blank')) ?></li>
                 </ul>

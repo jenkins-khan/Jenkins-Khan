@@ -29,6 +29,7 @@ class listGroupRunComponent extends sfComponent
       $isCancelable = false;
       $progress     = null;
       $isRunning    = false;
+      $urlBuild     = $run->getUrlBuild($jenkins);
       if (!$jenkins->isAvailable())
       {
         $isCancelable = false;
@@ -49,6 +50,7 @@ class listGroupRunComponent extends sfComponent
         $isGroupRunRebuildable = true;
       }
       
+      
       /** @var JenkinsRun $run */
       $dataRuns[$run->getId()] = array(
         'job_name'            => $run->getJobName(),
@@ -56,14 +58,16 @@ class listGroupRunComponent extends sfComponent
         'duration'            => $durationFormatter->formatte($run->getDuration($jenkins)),
         'result'              => $run->getJenkinsResult($jenkins),
         'parameters'          => $run->getLaunched() && $isRunning ? $run->getJenkinsBuildCleanedParameter($jenkins) : $run->decodeParameters(),
-        'url'                 => $run->getUrlBuild($jenkins),
-        'url_console_log'     => $run->getUrlBuild($jenkins) . '/console',
-        'url_test_report'     => $run->getUrlBuild($jenkins) . '/testReport',
-        'is_cancelable'       => $isCancelable,
-        'url_rebuild'         => $run->isRebuildable() ? $this->generateUrl('run_rebuild', $run) : false,
-        'url_rebuild_delayed' => $run->isRebuildable() ? $this->generateUrl('run_rebuild_delayed', $run) : false,
         'is_running'          => $isRunning,
         'progress'            => $progress,
+        'is_cancelable'       => $isCancelable,
+        
+        'url'                 => $urlBuild,
+        'url_console_log'     => $urlBuild . '/console',
+        'url_test_report'     => $urlBuild . '/testReport',
+        'url_remove'          => $this->generateUrl('run_remove', $run),
+        'url_rebuild'         => $run->isRebuildable() ? $this->generateUrl('run_rebuild', $run) : false,
+        'url_rebuild_delayed' => $run->isRebuildable() ? $this->generateUrl('run_rebuild_delayed', $run) : false,
       );
     }
 

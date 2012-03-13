@@ -20,7 +20,11 @@
           });
           
           $(options.deleteGroupSelector, $this).click(function(){
-            return confirm('Are you sure you want to delete this build branch');
+            return confirm('Are you sure you want to delete this build branch?');
+          });
+
+          $(options.removeBuild, $this).click(function(){
+            return confirm('Are you sure you want to remove this build from build branch?');
           });
           
           window.setInterval(
@@ -71,6 +75,7 @@
    */
   $.fn.jenkinsDashboard.defaults = {
     deleteGroupSelector: 'a.delete-group-run',
+    removeBuild: 'a.remove-build',
     contentGroupSelector: '.content',
     urlReloadListGroupRun: null,
     reloadDelay: 60000
