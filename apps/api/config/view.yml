@@ -11,5 +11,4 @@ default:
 
   javascripts:    []
 
-  has_layout:     true
-  layout:         layout
+  has_layout:     false
