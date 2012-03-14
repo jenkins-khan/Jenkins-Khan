@@ -1,8 +1,13 @@
 <?php
 
 /** @method myUser getUser() */
-abstract class baseApiJenkinsAction extends commonJenkinsAction
+abstract class baseApiJenkinsAction extends sfAction
 {
+
+  /**
+   * @var Jenkins
+   */
+  protected $jenkins;
 
   /**
    *
@@ -10,7 +15,9 @@ abstract class baseApiJenkinsAction extends commonJenkinsAction
   public function preExecute()
   {
     $this->forward404Unless(Configuration::get('api_enabled', false), 'Api is disabled');
-    parent::preExecute();
+    $jenkinsFactory = new Jenkins_Factory();
+    $jenkins        = $jenkinsFactory->build($this->getJenkinsUrl());
+    $this->setJenkins($jenkins);
   }
 
   /**
@@ -42,6 +49,26 @@ abstract class baseApiJenkinsAction extends commonJenkinsAction
   protected function getUserName()
   {
     return $this->getRequest()->getParameter('username');
+  }
+
+  /**
+   * @return \Jenkins
+   */
+  public function getJenkins()
+  {
+    return $this->jenkins;
+  }
+
+  /**
+   * @param \Jenkins $jenkins
+   *
+   * @return $this
+   */
+  public function setJenkins(Jenkins $jenkins)
+  {
+    $this->jenkins = $jenkins;
+
+    return $this;
   }
 
 }
