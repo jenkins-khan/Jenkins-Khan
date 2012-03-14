@@ -1,3 +1,5 @@
 branch_status:
   url: /user/:username/branch/:branch_name/status
   param: { module: branch, action: status }
+  options:
+    segment_separators: [/]
