@@ -15,11 +15,9 @@ class statusAction extends baseApiJenkinsAction
 
     $userId   = $this->getGuardUser()->getUsername();
     $groupRun = JenkinsGroupRunPeer::retrieveByNaturalPk($userId, $branchName);
-    if (null === $groupRun)
-    {
-      $status = 'UNTESTED';
-    }
-    else
+
+    $status = null;
+    if (null !== $groupRun)
     {
       $status = $groupRun->getResult($this->getJenkins());
     }
