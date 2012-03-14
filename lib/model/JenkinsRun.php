@@ -210,7 +210,7 @@ class JenkinsRun extends BaseJenkinsRun
 
     $criteria = new Criteria();
     $criteria->add(JenkinsRunPeer::ID, $this->getId());
-    JenkinsRunPeer::fillEmptyJobBuildNumber($jenkins, $user, $criteria);
+    JenkinsRunPeer::fillEmptyJobBuildNumber($jenkins, $user->getUsername(), $criteria);
   }
 
   /**
