@@ -35,20 +35,10 @@ abstract class baseApiJenkinsAction extends sfAction
    */
   protected function getGuardUser()
   {
-    $guardUser = sfGuardUserPeer::retrieveByUsername($this->getUserName());
-    if (null === $guardUser)
-    {
-      throw new sfException(sprintf('user "%s" not found', $username));
-    }
-    return $guardUser;
-  }
-
-  /**
-   * @return string
-   */
-  protected function getUserName()
-  {
-    return $this->getRequest()->getParameter('username');
+    $apiKey  = $this->getRequest()->getParameter('apikey');
+    $profile = ProfilePeer::retrieveByApiKey($apiKey);
+    $this->forward404Unless(null !== $profile, 'Unauthorized api key');
+    return $profile->getSfGuardUser();
   }
 
   /**
