@@ -1,10 +1,12 @@
 <?php /** @var Jenkins $jenkins */ ?>
 <?php /** @var array $group_runs */ ?>
 <?php /** @var int $current_group_run_id */ ?>
+<?php /** @var boolean $has_flash */ ?>
 
 <div id="dashboard">
 
-  <?php if ($jenkins->isAvailable()): ?>
+
+  <?php if ($jenkins->isAvailable() && !$has_flash): ?>
     <li>
       <div class="alert alert-success"><?php echo link_to('Jenkins', $jenkins->getUrl(), array('title' => 'Open Jenkins', 'class' => 'jenkins')) ?> is running.</div>
     </li>
