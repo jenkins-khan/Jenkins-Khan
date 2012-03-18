@@ -69,7 +69,9 @@ CREATE TABLE `profile`
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`sf_guard_user_id` INTEGER NOT NULL,
 	`jenkins_url` VARCHAR(50),
+	`api_key` CHAR(32),
 	PRIMARY KEY (`id`),
+	UNIQUE INDEX `api` (`api_key`),
 	INDEX `profile_FI_1` (`sf_guard_user_id`),
 	CONSTRAINT `profile_FK_1`
 		FOREIGN KEY (`sf_guard_user_id`)

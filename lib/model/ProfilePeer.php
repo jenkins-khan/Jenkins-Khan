@@ -19,4 +19,11 @@
  */
 class ProfilePeer extends BaseProfilePeer {
 
+  public static function retrieveByApiKey($apiKey)
+  {
+    $criteria = new Criteria();
+    $criteria->add(self::API_KEY, $apiKey);
+    return self::doSelectOne($criteria);
+  }
+
 } // ProfilePeer

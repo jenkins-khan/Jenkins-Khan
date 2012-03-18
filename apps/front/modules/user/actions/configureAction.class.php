@@ -11,7 +11,8 @@ class configureAction extends sfAction
    */
   public function execute($request)
   {
-    $form = new ConfigureUserProfileForm($this->getUser()->getProfile());
+    $profile = $this->getUser()->getProfile();
+    $form    = new ConfigureUserProfileForm($profile);
 
     if (sfRequest::PUT === $request->getMethod())
     {
@@ -26,5 +27,8 @@ class configureAction extends sfAction
     }
     
     $this->setVar('form', $form);
+    $this->setVar('api_enabled', Configuration::get('api_enabled', false));
+    $this->setVar('api_key', $profile->getApiKey());
   }
+
 }
