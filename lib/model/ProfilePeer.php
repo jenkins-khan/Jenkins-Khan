@@ -17,8 +17,16 @@
  *
  * @package    propel.generator.lib.model
  */
-class ProfilePeer extends BaseProfilePeer {
+class ProfilePeer extends BaseProfilePeer 
+{
 
+  /**
+   * @static
+   *
+   * @param string $apiKey
+   *
+   * @return Profile
+   */
   public static function retrieveByApiKey($apiKey)
   {
     $criteria = new Criteria();

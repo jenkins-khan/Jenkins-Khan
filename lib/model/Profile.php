@@ -17,6 +17,7 @@
  *
  * @package    propel.generator.lib.model
  */
-class Profile extends BaseProfile {
+class Profile extends BaseProfile 
+{
 
 } // Profile
