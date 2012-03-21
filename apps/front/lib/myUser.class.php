@@ -4,11 +4,19 @@ class myUser extends sfGuardSecurityUser
 {
  
   /**
-   * @return mixed
+   * @return string
    */
   public function getJenkinsUrl()
   {
     return $this->getProfile()->getJenkinsUrl();
+  }
+  
+  /**
+   * @return int
+   */
+  public function getUserId()
+  {
+    return $this->getProfile()->getSfGuardUserId();
   }
   
 }

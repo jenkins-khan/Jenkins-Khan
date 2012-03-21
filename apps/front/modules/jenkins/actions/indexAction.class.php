@@ -12,9 +12,10 @@ class indexAction extends baseJenkinsAction
    */
   function execute($request)
   {
+    $userId     = $this->getUser()->getUserId();
+    
     if ($request->hasParameter('branch_name'))
     {
-      $userId     = $this->getUser()->getUsername();
       $groupRun   = JenkinsGroupRunPeer::retrieveByNaturalPk($userId, $request->getParameter('branch_name'));
       $currentGroupId = $groupRun->getId();
     }
@@ -25,7 +26,7 @@ class indexAction extends baseJenkinsAction
 
     $jenkins          = $this->getJenkins();
     $criteriaGroupRun = new Criteria();
-    $criteriaGroupRun->add(JenkinsGroupRunPeer::USER_ID, $this->getUser()->getUsername(), Criteria::EQUAL);
+    $criteriaGroupRun->add(JenkinsGroupRunPeer::SF_GUARD_USER_ID, $userId, Criteria::EQUAL);
     $criteriaGroupRun->addDescendingOrderByColumn(JenkinsGroupRunPeer::DATE);
     $criteriaGroupRun->addDescendingOrderByColumn(JenkinsGroupRunPeer::ID);
 

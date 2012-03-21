@@ -75,7 +75,6 @@ class addBuildAction extends baseJenkinsAction
         $run = new JenkinsRun();
         $run->setJenkinsGroupRun($jenkinsGroupRun);
         $run->setJobName($jobName);
-        $run->setGitBranch($jenkinsGroupRun->getGitBranch());
         $run->encodeParameters($jobParameters);
         $run->setLaunched($autoLaunch);
         $run->save();

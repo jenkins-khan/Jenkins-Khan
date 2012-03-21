@@ -397,4 +397,12 @@ class JenkinsRun extends BaseJenkinsRun
     return $this;
   }
 
+  /**
+   * @return string
+   */
+  public function getGitBranch()
+  {
+    return $this->getJenkinsGroupRun()->getGitBranch();
+  }
+
 } // JenkinsRun
