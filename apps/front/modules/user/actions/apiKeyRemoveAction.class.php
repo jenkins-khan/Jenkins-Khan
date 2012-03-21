@@ -8,11 +8,10 @@ class apiKeyRemoveAction extends sfAction
     $this->forward404Unless(Configuration::get('api_enabled', false), 'Api is disabled');
 
     $profile = $this->getUser()->getProfile();
-
     $profile->setApiKey(null);
     $profile->save();
 
-    $this->getUser()->setFlash('notice', 'Api Key removed');
+    $this->getUser()->setFlash('info', 'Your api key has been removed');
     $this->redirect('user/configure');
   }
 
