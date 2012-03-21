@@ -27,10 +27,12 @@ class JenkinsRunPeer extends BaseJenkinsRunPeer
    * @static
    *
    * @param Jenkins       $jenkins
-   * @param $username        $user
+   * @param int           $userId
    * @param Criteria|null $criteria
+   * 
+   * @return void
    */
-  public static function fillEmptyJobBuildNumber(Jenkins $jenkins, $username, Criteria $criteria = null)
+  public static function fillEmptyJobBuildNumber(Jenkins $jenkins, $userId, Criteria $criteria = null)
   {
     if (null === $criteria)
     {
@@ -40,7 +42,7 @@ class JenkinsRunPeer extends BaseJenkinsRunPeer
     $criteria->addJoin(JenkinsRunPeer::JENKINS_GROUP_RUN_ID, JenkinsGroupRunPeer::ID, Criteria::JOIN);
     $criteria->add(JenkinsRunPeer::JOB_BUILD_NUMBER, null, Criteria::ISNULL);
     $criteria->add(JenkinsRunPeer::LAUNCHED, 1, Criteria::EQUAL);
-    $criteria->add(JenkinsGroupRunPeer::USER_ID, $username, Criteria::EQUAL);
+    $criteria->add(JenkinsGroupRunPeer::SF_GUARD_USER_ID, $userId, Criteria::EQUAL);
 
     $emptyRunsByJobName = array();
     foreach (JenkinsRunPeer::doSelect($criteria) as $run)
@@ -97,7 +99,7 @@ class JenkinsRunPeer extends BaseJenkinsRunPeer
     }
 
     $criteria->addJoin(JenkinsRunPeer::JENKINS_GROUP_RUN_ID, JenkinsGroupRunPeer::ID, Criteria::JOIN);
-    $criteria->add(JenkinsGroupRunPeer::USER_ID, $user->getUsername(), Criteria::EQUAL);
+    $criteria->add(JenkinsGroupRunPeer::SF_GUARD_USER_ID, $user->getUserId(), Criteria::EQUAL);
     $criteria->add(JenkinsRunPeer::LAUNCHED, 0, Criteria::EQUAL);
 
     return self::doSelect($criteria);

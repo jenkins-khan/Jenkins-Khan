@@ -19,7 +19,7 @@ class createGroupRunAction extends baseJenkinsAction
     }
     
     $default = array(
-      'user_id' => $this->getUser()->getUsername()
+      'sf_guard_user_id' => $this->getUser()->getUserId()
     );
     if ($request->hasParameter('from_group_run_id'))
     {
@@ -31,7 +31,7 @@ class createGroupRunAction extends baseJenkinsAction
       }
     }
     
-    $form = new GroupRunForm($default, array('jenkins' => $this->getJenkins(), 'user_id' => $this->getUser()->getUsername()));
+    $form = new GroupRunForm($default, array('jenkins' => $this->getJenkins(), 'sf_guard_user_id' => $this->getUser()->getUserId()));
     
     if (sfRequest::POST === $request->getMethod())
     {
@@ -43,7 +43,7 @@ class createGroupRunAction extends baseJenkinsAction
         
         //création du group run
         $runGroup = new JenkinsGroupRun();
-        $runGroup->setUserId($this->getUser()->getUsername());
+        $runGroup->setSfGuardUserId($this->getUser()->getUserId());
         $runGroup->setDate(new DateTime());
         $runGroup->setGitBranch($form->getValue('git_branch'));
         $runGroup->setLabel($form->getValue('label'));
@@ -67,7 +67,6 @@ class createGroupRunAction extends baseJenkinsAction
           $run = new JenkinsRun();
           $run->setJenkinsGroupRun($runGroup);
           $run->setJobName($jobName);
-          $run->setGitBranch($runGroup->getGitBranch());
           $run->encodeParameters($parameters);
           $run->setLaunched($autoLaunch);
           $run->save();

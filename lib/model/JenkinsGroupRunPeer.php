@@ -30,7 +30,7 @@ class JenkinsGroupRunPeer extends BaseJenkinsGroupRunPeer {
   public static function retrieveByNaturalPk($userId, $gitBranch, PropelPDO $con = null)
   {
     $criteria = new Criteria();
-    $criteria->add(self::USER_ID, $userId);
+    $criteria->add(self::SF_GUARD_USER_ID, $userId);
     $criteria->add(self::GIT_BRANCH, $gitBranch);
     return self::doSelectOne($criteria, $con);
   }

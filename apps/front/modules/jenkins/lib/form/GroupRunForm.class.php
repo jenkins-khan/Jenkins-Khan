@@ -10,7 +10,7 @@ class GroupRunForm extends sfForm
    */
   public function __construct($defaults = array(), $options = array(), $CSRFSecret = null)
   {
-    foreach (array('jenkins', 'user_id') as $option)
+    foreach (array('jenkins', 'sf_guard_user_id') as $option)
     {
       if (!isset($options[$option]))
       {
@@ -36,12 +36,12 @@ class GroupRunForm extends sfForm
     $allJobs = $this->getJenkins()->getAllJobs();
     $jobsName = array_keys($allJobs);
 
-    $this->setWidget('user_id', new sfWidgetFormInputHidden());
+    $this->setWidget('sf_guard_user_id', new sfWidgetFormInputHidden());
     $this->setWidget('label', new sfWidgetFormInputText(array('label' => 'Build branch name')));
     $this->setWidget('git_branch', new sfWidgetFormInputText(array('label' => 'Git branch')));
     $this->setWidget('auto_launch', new sfWidgetFormInputCheckbox(array('label' => 'Launch automatically', 'default' => true )));
 
-    $this->setValidator('user_id', new sfValidatorString(array()));
+    $this->setValidator('sf_guard_user_id', new sfValidatorString(array()));
     $this->setValidator('label', new sfValidatorString(array('max_length' => 100)));
     $this->setValidator('git_branch', new sfValidatorString(array('max_length' => 40)));
     $this->setValidator('auto_launch', new sfValidatorString(array('required' => false)));
@@ -60,7 +60,7 @@ class GroupRunForm extends sfForm
       new sfValidatorPropelUnique(
         array(
           'model' => 'JenkinsGroupRun',
-          'column' => array('user_id', 'git_branch'),
+          'column' => array('sf_guard_user_id', 'git_branch'),
         ),
         array(
           'invalid' => 'You still have a build branch created for this git branch'

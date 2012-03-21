@@ -12,12 +12,16 @@ DROP TABLE IF EXISTS `jenkins_group_run`;
 CREATE TABLE `jenkins_group_run`
 (
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
+	`sf_guard_user_id` INTEGER(11) NOT NULL,
 	`date` DATE NOT NULL,
-	`user_id` CHAR(36) NOT NULL,
 	`label` CHAR(100) NOT NULL,
 	`git_branch` CHAR(40) NOT NULL,
 	PRIMARY KEY (`id`),
-	UNIQUE INDEX `natural_pk` (`user_id`, `git_branch`)
+	UNIQUE INDEX `natural_pk` (`sf_guard_user_id`, `git_branch`),
+	CONSTRAINT `jenkins_group_run_FK_1`
+		FOREIGN KEY (`sf_guard_user_id`)
+		REFERENCES `sf_guard_user` (`id`)
+		ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -32,7 +36,6 @@ CREATE TABLE `jenkins_run`
 	`jenkins_group_run_id` INTEGER(11) NOT NULL,
 	`job_name` CHAR(30) NOT NULL,
 	`job_build_number` INTEGER(11),
-	`git_branch` CHAR(40) NOT NULL,
 	`launched` INTEGER(1) DEFAULT 1 NOT NULL,
 	`parameters` TEXT,
 	PRIMARY KEY (`id`),
