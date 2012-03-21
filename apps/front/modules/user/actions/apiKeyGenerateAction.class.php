@@ -8,11 +8,10 @@ class apiKeyGenerateAction extends sfAction
     $this->forward404Unless(Configuration::get('api_enabled', false), 'Api is disabled');
 
     $profile = $this->getUser()->getProfile();
-
     $profile->setApiKey(md5(microtime()));
     $profile->save();
 
-    $this->getUser()->setFlash('notice', 'New Api Key Generated');
+    $this->getUser()->setFlash('info', 'Your api key has been generated');
     $this->redirect('user/configure');
   }
 

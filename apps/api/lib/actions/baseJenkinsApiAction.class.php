@@ -31,7 +31,6 @@ abstract class baseApiJenkinsAction extends sfAction
   /**
    * @return sfGuardUser
    *
-   * @throws sfException
    */
   protected function getGuardUser()
   {
