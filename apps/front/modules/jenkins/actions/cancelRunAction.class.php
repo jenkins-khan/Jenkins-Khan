@@ -56,6 +56,6 @@ class cancelRunAction extends baseJenkinsAction
       );
     }
 
-    $this->redirect(sprintf('jenkins/index?group_run_id=%s', $jenkinsGroupRunId));
+    $this->redirect($this->generateUrl('branch_view', $jenkinsRun->getJenkinsGroupRun()));
   }
 }
