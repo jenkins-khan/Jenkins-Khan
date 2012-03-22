@@ -30,7 +30,7 @@ class createGroupRunAction extends baseJenkinsAction
         $default = $groupRun->buildDefaultFormValue($this->getJenkins(), $default);
       }
     }
-    elseif ($request->hasParameter('branch'))
+    if ($request->hasParameter('branch'))
     {
       $branch = $request->getParameter('branch');
       $default['git_branch'] = $branch;
