@@ -50,8 +50,19 @@ class indexAction extends baseJenkinsAction
       );
     }
 
+    $hasFlash = false;
+    foreach (array('info', 'notice', 'warning', 'error') as $level)
+    {
+      if ($this->getUser()->hasFlash($level))
+      {
+        $hasFlash = true;
+        break;
+      }
+    }
+
     $this->setVar('group_runs', $dataGroupRuns);
     $this->setVar('current_group_run_id', $currentGroupId);
+    $this->setVar('has_flash', $hasFlash);
   }
 
 }
