@@ -30,6 +30,14 @@ class createGroupRunAction extends baseJenkinsAction
         $default = $groupRun->buildDefaultFormValue($this->getJenkins(), $default);
       }
     }
+    elseif ($request->hasParameter('branch'))
+    {
+      $branch = $request->getParameter('branch');
+      $default = array(
+        'git_branch' => $branch,
+        'label'      => $branch,
+      );
+    }
     
     $form = new GroupRunForm($default, array('jenkins' => $this->getJenkins(), 'sf_guard_user_id' => $this->getUser()->getUserId()));
     
