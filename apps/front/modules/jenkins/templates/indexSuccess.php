@@ -22,7 +22,7 @@
       <?php foreach ($group_runs as $id => $group_run): ?>
         <li>
           <?php $branchName = get_partial('buildStatus', array('status' => $group_run['result'], 'label' => $group_run['label'])); ?>
-          <?php echo link_to($branchName, 'branch_view', $group_run['object'], array('class' => $id == $current_group_run_id ? 'group-run active' : 'group-run')) ?>
+          <?php echo link_to($branchName, $group_run['url_view'], array('class' => $id == $current_group_run_id ? 'group-run active' : 'group-run')) ?>
           <?php echo link_to(' ',  'jenkins/deleteGroupRun?id='.$id, array('class' => 'delete-group-run', 'title' => 'Delete build branch')) ?>
           <?php echo link_to(' ',  'jenkins/createGroupRun?from_group_run_id='.$id, array('class' => 'duplicate-group-run', 'title' => 'Duplicate build branch')) ?>
         </li>

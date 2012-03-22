@@ -46,7 +46,7 @@ class indexAction extends baseJenkinsAction
         'git_branch' => $groupRun->getGitBranch(),
         'date'       => $groupRun->getDate('d/m/Y H:i:s'),
         'result'     => $groupRun->getResult($jenkins),
-        'object'     => $groupRun,
+        'url_view'   => $this->generateUrl('branch_view', $groupRun),
       );
     }
 

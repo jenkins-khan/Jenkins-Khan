@@ -12,7 +12,7 @@ class listGroupRunComponent extends sfComponent
     $groupRunId = $this->getVar('group_run_id');
     $jenkins    = $this->getVar('jenkins');
 
-    $currentGroup          = JenkinsGroupRunPeer::retrieveByPK($groupRunId);
+    $currentGroup = JenkinsGroupRunPeer::retrieveByPK($groupRunId);
 
     if (null === $currentGroup)
     {
