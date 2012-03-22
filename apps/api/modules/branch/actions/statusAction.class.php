@@ -13,7 +13,7 @@ class statusAction extends baseApiJenkinsAction
   {
     $branchName = $request->getParameter('branch_name');
 
-    $userId   = $this->getGuardUser()->getUsername();
+    $userId   = $this->getGuardUser()->getId();
     $groupRun = JenkinsGroupRunPeer::retrieveByNaturalPk($userId, $branchName);
 
     $status = null;
