@@ -94,7 +94,7 @@ class addBuildAction extends baseJenkinsAction
         }
         else
         {
-          $urlRedirect = sprintf('jenkins/index?group_run_id=%s', $jenkinsGroupRun->getId());
+          $urlRedirect = $this->generateUrl('branch_view', $jenkinsGroupRun);
         }
         $this->redirect($urlRedirect);
       }

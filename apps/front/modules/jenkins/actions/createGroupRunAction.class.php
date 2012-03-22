@@ -80,7 +80,7 @@ class createGroupRunAction extends baseJenkinsAction
         }
 
         $this->getUser()->setFlash('info', $autoLaunch ? "Jobs have been launched" : "Jobs have been registred in delayed list");
-        $this->redirect(sprintf('jenkins/index?group_run_id=%s', $runGroup->getId()));
+        $this->redirect($this->generateUrl('branch_view', $runGroup));
       }
     }
     
