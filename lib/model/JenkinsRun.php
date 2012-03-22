@@ -402,7 +402,17 @@ class JenkinsRun extends BaseJenkinsRun
    */
   public function getGitBranch()
   {
-    return $this->getJenkinsGroupRun()->getGitBranch();
+    //why not using the dedicated methods ?
+    
+    //if JenkinsRun::getJenkinsGroupRun is used 
+    //it will probably load the JenkinsGroupRun 
+    //and store the JenkinsRun has the only in the JenkinsGroupRun
+    
+    //and later, when the GroupRun is used, 
+    //the collection of run is initiliazed but uncomplete 
+    //and it'll display a GroupRun with this only only Ru
+    
+    return JenkinsGroupRunPeer::retrieveByPK($this->getJenkinsGroupRunId())->getGitBranch();
   }
 
 } // JenkinsRun
