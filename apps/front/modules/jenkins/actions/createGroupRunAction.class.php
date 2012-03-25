@@ -17,7 +17,7 @@ class createGroupRunAction extends baseJenkinsAction
     {
       $this->redirect('jenkins/index');
     }
-    
+
     $default = array(
       'sf_guard_user_id' => $this->getUser()->getUserId()
     );
@@ -30,9 +30,9 @@ class createGroupRunAction extends baseJenkinsAction
         $default = $groupRun->buildDefaultFormValue($this->getJenkins(), $default);
       }
     }
-    
+
     $form = new GroupRunForm($default, array('jenkins' => $this->getJenkins(), 'sf_guard_user_id' => $this->getUser()->getUserId()));
-    
+
     if (sfRequest::POST === $request->getMethod())
     {
       $form->bind($request->getParameter('group_run'));
@@ -40,7 +40,7 @@ class createGroupRunAction extends baseJenkinsAction
       if ($form->isValid())
       {
         $autoLaunch = 'on' === $form->getValue('auto_launch');
-        
+
         //création du group run
         $runGroup = new JenkinsGroupRun();
         $runGroup->setSfGuardUserId($this->getUser()->getUserId());
@@ -62,7 +62,7 @@ class createGroupRunAction extends baseJenkinsAction
           {
             $parameters = $jobInfo['parameters'];
           }
-         
+
           //créer les builds
           $run = new JenkinsRun();
           $run->setJenkinsGroupRun($runGroup);
@@ -83,12 +83,19 @@ class createGroupRunAction extends baseJenkinsAction
         $this->redirect($this->generateUrl('branch_view', $runGroup));
       }
     }
-    
+
+    $views = $this->getViews($this->getJenkins());
+    $defaultView = null;
+    if (count($views))
+    {
+      $defaultView = $views[0];
+    }
+    $defaultView = Configuration::get('default_active_view', $defaultView);
+
     $this->setVar('form', $form);
     $this->setVar('view_by_jobs', $this->buildViewByJobs($this->getJenkins()));
-    $this->setVar('views', $this->getViews($this->getJenkins()));
-    $this->setVar('default_active_view', 'default');
-    
+    $this->setVar('views', $views);
+    $this->setVar('default_active_view', $defaultView);
   }
 
   /**
@@ -110,7 +117,7 @@ class createGroupRunAction extends baseJenkinsAction
 
     return $jobs;
   }
-  
+
   /**
    * @param Jenkins $jenkins
    * @return array
@@ -122,7 +129,7 @@ class createGroupRunAction extends baseJenkinsAction
     {
       $views[] = $view['name'];
     }
-    
+
     return $views;
   }
 
