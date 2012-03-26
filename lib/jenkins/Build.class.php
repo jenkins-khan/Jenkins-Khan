@@ -100,11 +100,52 @@ class Jenkins_Build
   }
   
   /**
-   * @return null
+   * @return null|int
    */
   public function getProgress()
   {
-    return property_exists($this->build, 'progress') ? $this->build->progress : null;
+    $progress = null;
+    if (null !== ($executor = $this->getExecutor()))
+    {
+      $progress = $executor->getProgress();
+    }
+    
+    return $progress;
+  }
+  
+  /**
+   * @return float|null
+   */
+  public function getEstimatedDuration()
+  {
+    $duration = null;
+    if (null !== ($progress = $this->getProgress()))
+    {
+      $duration = ceil((time() - $this->getTimestamp()) / ($progress/100));
+    }
+    
+    return $duration;
+  }
+  
+  
+  /**
+   * Returns remaining execution time (seconds)
+   * 
+   * @return int|null
+   */
+  public function getRemainingExecutionTime()
+  {
+    $remaining = null;
+    if (null !== ($estimatedDuration = $this->getEstimatedDuration()))
+    {
+      //be carefull because time from JK server could be different 
+      //of time from Jenkins server
+      //but i didn't find a timestamp given by Jenkins api
+      
+      $remaining = $estimatedDuration - (time() - $this->getTimestamp()) ;
+    }
+    
+    return $remaining;
   }
   
   /**
