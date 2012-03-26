@@ -1,0 +1,8 @@
+[class*=" icon-"] {
+  background-image: url("../images/glyphicons-halflings.png");
+}
+
+.icon-white{
+  background-image:url("../images/glyphicons-halflings-white.png");
+}
+

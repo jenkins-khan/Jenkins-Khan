@@ -5,7 +5,7 @@
 <?php echo $form->renderFormTag(url_for('user/configure')) ?>
 
   <div class="form-header">Configure your profile</div>
-    
+
   <?php echo $form->renderHiddenFields(); ?>
 
   <div class="form-content">
@@ -13,19 +13,20 @@
       <?php echo $form['jenkins_url']->renderError() ?>
       <?php echo $form['jenkins_url']->renderLabel(); ?>
       <?php echo $form['jenkins_url']->render() ?>
+      <?php include_partial('help/link-modal', array('name' => 'user/configure/jenkins-url')) ?>
     </div>
   </div>
-  
+
   <div class="form-footer">
     <input type="submit" value="Save" class="btn btn-large btn-primary" />
   </div>
 
 </form>
-  
+
 <?php if ($api_enabled): ?>
   <form action="<?php echo url_for('user/apiKeyGenerate') ?>" method="POST" id="form_configure_api">
     <div class="form-header">Api Key</div>
-  
+
       <div class="form-content">
         <?php if(null === $api_key): ?>
           You haven't created an api key yet.
@@ -36,7 +37,7 @@
           </div>
         <?php endif; ?>
       </div>
-  
+
       <div class="form-footer">
         <?php if(null !== $api_key): ?>
           <a href="<?php echo url_for('user/apiKeyRemove') ?>" class="btn btn-large btn-primary">Remove</a>

@@ -15,6 +15,7 @@ default:
     - ../bootstrap/css/bootstrap.min.css
     #- ../less/bootstrap.less: {rel:  stylesheet/less }
     - bootstrap.css
+    - glyphicons.css
   
   javascripts:
     - jquery/jquery-1.7.1.min.js
