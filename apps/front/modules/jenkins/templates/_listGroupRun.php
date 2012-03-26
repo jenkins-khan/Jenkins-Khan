@@ -50,8 +50,11 @@
             </td>
             <td class="job-progress">
               <?php if (null !== $run['progress']): ?>
-                <div class="progress progress-info progress-striped">
-                  <div class="bar" style="width: <?php echo $run['progress'] ?>%;"></div>
+                <div 
+                  class="progress progress-info progress-striped active"
+                  title="<?php echo $run['progress'] ?>% (Estimated remaining time: <?php echo $run['remaining_time'] ?>)" >
+                  <div class="bar" style="width: <?php echo $run['progress'] ?>%;">
+                 </div>
                 </div>
               <?php endif; ?>
             </td>
