@@ -28,6 +28,7 @@ class listGroupRunComponent extends sfComponent
     {
       $isCancelable = false;
       $progress     = null;
+      $remaining    = null;
       $isRunning    = false;
       $urlBuild     = $run->getUrlBuild($jenkins);
       if (!$jenkins->isAvailable())
@@ -39,6 +40,7 @@ class listGroupRunComponent extends sfComponent
         /** @var Jenkins_Build $build */
         $isCancelable = $isRunning = $build->isRunning();
         $progress     = $build->getProgress();
+        $remaining    = $build->getRemainingExecutionTime();
       } 
       elseif ($run->isInJenkinsQueue($jenkins))
       {
@@ -60,6 +62,7 @@ class listGroupRunComponent extends sfComponent
         'parameters'          => $run->getLaunched() && $isRunning ? $run->getJenkinsBuildCleanedParameter($jenkins) : $run->decodeParameters(),
         'is_running'          => $isRunning,
         'progress'            => $progress,
+        'remaining_time'      => null === $remaining ? $remaining : $durationFormatter->formatte($remaining),
         'is_cancelable'       => $isCancelable,
         
         'url'                 => $urlBuild,
