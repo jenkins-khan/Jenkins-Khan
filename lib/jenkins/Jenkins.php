@@ -202,12 +202,9 @@ class Jenkins
 
     return new Jenkins_Queue($infos, $this);
   }
-  
-  
+
   /**
-   * @param $jobName
-   * @return Jenkins_Job
-   * @throws RuntimeException
+   * @return Jenkins_View[]
    */
   public function getViews()
   {
@@ -216,13 +213,28 @@ class Jenkins
     $views = array();
     foreach ($this->jenkins->views as $view)
     {
-      $views[] = array(
-        'name' => $view->name
-      );
+      $views[] = $this->getView($view->name);
     }
     
     return $views;
   }
+
+  /**
+   * @return Jenkins_View|null
+   */
+  public function getPrimaryView()
+  {
+    $this->initialize();
+    $primaryView = null;
+    
+    if (property_exists($this->jenkins, 'primaryView'))
+    {
+      $primaryView = $this->getView($this->jenkins->primaryView->name);
+    }
+    
+    return $primaryView;
+  }
+  
   
   /**
    * @param string $viewName

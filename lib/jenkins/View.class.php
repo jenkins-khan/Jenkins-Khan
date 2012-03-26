@@ -17,11 +17,20 @@ class Jenkins_View
    * @param array    $job
    * @param \Jenkins $jenkins
    */
-  public function __construct($view)
+  public function __construct($view, Jenkins $jenkins)
   {
     $this->view = $view;
+    $this->jenkins = $jenkins;
   }
 
+  /**
+   * @return string
+   */
+  public function getName()
+  {
+    return $this->view->name;
+  }
+  
   /**
    * @return array
    */

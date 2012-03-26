@@ -49,7 +49,6 @@ class createGroupRunAction extends baseJenkinsAction
         $runGroup->setLabel($form->getValue('label'));
         $runGroup->save();
 
-
         foreach ($form->getValue('builds') as $jobName => $jobInfo)
         {
           if (!$jobInfo['job_name'])
@@ -85,17 +84,12 @@ class createGroupRunAction extends baseJenkinsAction
     }
 
     $views = $this->getViews($this->getJenkins());
-    $defaultView = null;
-    if (count($views))
-    {
-      $defaultView = $views[0];
-    }
-    $defaultView = Configuration::get('default_active_view', $defaultView);
+    $defaultView = $this->getJenkins()->getPrimaryView();
 
     $this->setVar('form', $form);
     $this->setVar('view_by_jobs', $this->buildViewByJobs($this->getJenkins()));
     $this->setVar('views', $views);
-    $this->setVar('default_active_view', $defaultView);
+    $this->setVar('default_active_view', null === $defaultView ? null : $defaultView->getName());
   }
 
   /**
@@ -107,11 +101,10 @@ class createGroupRunAction extends baseJenkinsAction
     $jobs = array();
     foreach ($jenkins->getViews() as $view)
     {
-      $jenkinsView = $jenkins->getView($view['name']);
-
-      foreach ($jenkinsView->getJobs() as $job)
+      /** @var Jenkins_View $view */
+      foreach ($view->getJobs() as $job)
       {
-        $jobs[$job['name']][] = $view['name'];
+        $jobs[$job['name']][] = $view->getName();
       }
     }
 
@@ -127,7 +120,8 @@ class createGroupRunAction extends baseJenkinsAction
     $views = array();
     foreach ($jenkins->getViews() as $view)
     {
-      $views[] = $view['name'];
+      /** @var Jenkins_View $view */
+      $views[] = $view->getName();
     }
 
     return $views;
