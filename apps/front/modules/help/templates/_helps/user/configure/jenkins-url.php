@@ -1,3 +1,5 @@
+<h3 data-modal-title="add">Jenkins Url</h3>
+
 <p>
   URL of the Jenkins you want to use.<br />
   Something like
