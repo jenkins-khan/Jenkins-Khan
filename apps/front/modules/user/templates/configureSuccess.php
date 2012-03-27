@@ -13,7 +13,7 @@
       <?php echo $form['jenkins_url']->renderError() ?>
       <?php echo $form['jenkins_url']->renderLabel(); ?>
       <?php echo $form['jenkins_url']->render() ?>
-      <?php include_partial('help/link-modal', array('name' => 'user/configure/jenkins-url')) ?>
+      <?php include_partial('help/link-modal', array('name' => 'user/configure/jenkins-url', 'title' => 'Jenkins Url')) ?>
     </div>
   </div>
 
