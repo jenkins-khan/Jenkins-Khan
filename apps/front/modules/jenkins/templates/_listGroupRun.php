@@ -53,7 +53,7 @@
                 <div class="progress progress-info progress-striped active" >
                   <?php $linkApparence = '<div class="bar" style="width: ' . $run['progress'] . '%;"></div>'; ?>
                   <?php $title = $run['progress'] . '% (Estimated remaining time: ' . $run['remaining_time']; ?>
-                  <?php echo link_to($linkApparence, $run['url'] . '/console', array('target' => '_blank', 'class' => '', 'title' => $title)) ?>
+                  <?php echo link_to($linkApparence, $run['url_console_log'], array('target' => '_blank', 'title' => $title)) ?>
                 </div>
               <?php endif; ?>
             </td>
