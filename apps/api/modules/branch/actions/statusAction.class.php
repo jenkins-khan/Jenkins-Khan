@@ -12,14 +12,20 @@ class statusAction extends baseApiJenkinsAction
   public function execute($request)
   {
     $branchName = $request->getParameter('branch_name');
+    $userId     = $this->getGuardUser()->getId();
+    $jenkins    = $this->getJenkins();
 
-    $userId   = $this->getGuardUser()->getId();
+    if ($jenkins->isAvailable())
+    {
+      JenkinsRunPeer::fillEmptyJobBuildNumber($jenkins, $userId);
+    }
+
     $groupRun = JenkinsGroupRunPeer::retrieveByNaturalPk($userId, $branchName);
 
     $status = null;
     if (null !== $groupRun)
     {
-      $status = $groupRun->getResult($this->getJenkins());
+      $status = $groupRun->getResult($jenkins);
     }
 
     $return = array(
