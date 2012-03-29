@@ -1,5 +1,5 @@
 branch_status:
-  url: /branch/:branch_name/status
+  url: /branch/:git_branch_slug/status
   param: { module: branch, action: status }
   options:
     segment_separators: [/]

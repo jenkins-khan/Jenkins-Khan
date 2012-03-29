@@ -103,9 +103,10 @@ class addBuildAction extends baseJenkinsAction
     
     $this->setVar('form', $form);
     $this->setVar('group_run', array(
-      'label'      => $jenkinsGroupRun->getLabel(),
-      'git_branch' => $jenkinsGroupRun->getGitBranch(),
-      'result'     => $jenkinsGroupRun->getResult($this->getJenkins()),
+      'label'           => $jenkinsGroupRun->getLabel(),
+      'git_branch'      => $jenkinsGroupRun->getGitBranch(),
+      'git_branch_slug' => $jenkinsGroupRun->getGitBranchSlug(),
+      'result'          => $jenkinsGroupRun->getResult($this->getJenkins()),
     ));
   }
 }

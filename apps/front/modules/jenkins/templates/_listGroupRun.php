@@ -24,8 +24,8 @@
                 </a>
                 <ul class="dropdown-menu dropdown-right">
                   <?php if ($is_group_run_rebuildable): ?>
-                    <li><?php echo link_to('Relaunch all jobs', url_for('branch_rebuild', array('branch_name' => $current_group_run['git_branch'])), array('title' => 'Relaunch all jobs')) ?></li>
-                    <li><?php echo link_to('Add all jobs in delayed list', url_for('branch_rebuild_delayed', array('branch_name' => $current_group_run['git_branch'])), array('title' => 'Add all jobs in delayed list')) ?></li>
+                    <li><?php echo link_to('Relaunch all jobs', url_for('branch_rebuild', array('git_branch_slug' => $current_group_run['git_branch_slug'])), array('title' => 'Relaunch all jobs')) ?></li>
+                    <li><?php echo link_to('Add all jobs in delayed list', url_for('branch_rebuild_delayed', array('git_branch_slug' => $current_group_run['git_branch_slug'])), array('title' => 'Add all jobs in delayed list')) ?></li>
                    <?php endif ?>
                   <li><?php echo link_to('Add a job', $current_group_run['url_add_build'], array('title' => 'Add a job to this build branch')) ?></li>
                 </ul>

@@ -4,19 +4,16 @@ class indexAction extends baseJenkinsAction
 {
 
   /**
-   * Execute any application/business logic for this component.
-   *
    * @param sfRequest $request The current sfRequest object
-   *
    * @return mixed     A string containing the view name associated with this action
    */
   function execute($request)
   {
     $userId     = $this->getUser()->getUserId();
     
-    if ($request->hasParameter('branch_name'))
+    if ($request->hasParameter('git_branch_slug'))
     {
-      $groupRun   = JenkinsGroupRunPeer::retrieveByNaturalPk($userId, $request->getParameter('branch_name'));
+      $groupRun   = JenkinsGroupRunPeer::retrieveBySfGuardUserIdAndGitBranchSlug($userId, $request->getParameter('git_branch_slug'));
       $currentGroupId = $groupRun->getId();
     }
     else
@@ -42,11 +39,12 @@ class indexAction extends baseJenkinsAction
 
       /** @var JenkinsGroupRun $groupRun */
       $dataGroupRuns[$groupRun->getId()] = array(
-        'label'      => $groupRun->getLabel(),
-        'git_branch' => $groupRun->getGitBranch(),
-        'date'       => $groupRun->getDate('d/m/Y H:i:s'),
-        'result'     => $groupRun->getResult($jenkins),
-        'url_view'   => $this->generateUrl('branch_view', $groupRun),
+        'label'           => $groupRun->getLabel(),
+        'git_branch'      => $groupRun->getGitBranch(),
+        'git_branch_slug' => $groupRun->getGitBranchSlug(),
+        'date'            => $groupRun->getDate('d/m/Y H:i:s'),
+        'result'          => $groupRun->getResult($jenkins),
+        'url_view'        => $this->generateUrl('branch_view', $groupRun),
       );
     }
 

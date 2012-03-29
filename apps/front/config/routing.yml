@@ -20,20 +20,20 @@ sf_guard_password:
 
 
 branch_rebuild:
-  url: /branch/:branch_name/rebuild
+  url: /branch/:git_branch_slug/rebuild
   param: { module: jenkins, action: rebuildBranch }
 
 branch_rebuild_delayed:
-  url: /branch/:branch_name/rebuild/delayed
+  url: /branch/:git_branch_slug/rebuild/delayed
   param: { module: jenkins, action: rebuildBranch, delayed: 1 }
 
 branch_view:
-  url: /branch/:branch_name/view
+  url: /branch/:git_branch_slug/view
   class: sfPropelRoute
   options: { model: JenkinsGroupRun, type: object }
   param: { module: jenkins, action: index }
   requirements:
-    branch_name: .*
+    git_branch_slug: .*
     sf_method: [get]
 
 run_rebuild:
@@ -42,7 +42,7 @@ run_rebuild:
   options: { model: JenkinsRun, type: object }
   param: { module: jenkins, action: rebuildRun }
   requirements:
-    branch_name: \d+
+    id: \d+
     sf_method: [get]
 
 run_remove:
@@ -51,7 +51,7 @@ run_remove:
   options: { model: JenkinsRun, type: object }
   param: { module: jenkins, action: removeBuild }
   requirements:
-    branch_name: \d+
+    id: \d+
     sf_method: [get]
 
 
@@ -61,8 +61,8 @@ run_rebuild_delayed:
   options: { model: JenkinsRun, type: object }
   param: { module: jenkins, action: rebuildRun, delayed: 1 }
   requirements:
-      branch_name: \d+
-      sf_method: [get]
+    id: \d+
+    sf_method: [get]
 
 
 # generic rules

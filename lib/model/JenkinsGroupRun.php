@@ -122,9 +122,31 @@ class JenkinsGroupRun extends BaseJenkinsGroupRun
     return $this;
   }
 
-  public function getBranchName()
+  /**
+   * Get the slug, ensuring its uniqueness
+   *
+   * @param string $slug the slug to check
+   * @param string $separator the separator used by slug
+   * @param int $increment
+   *
+   * @return string the unique slug
+   */
+  protected function makeSlugUnique($slug, $separator = '-', $increment = 0)
   {
-    return $this->getGitBranch();
+    $slug2 = empty($increment) ? $slug : $slug . $separator . $increment;
+    $slugAlreadyExists = JenkinsGroupRunQuery::create()
+      ->filterBySlug($slug2)
+      ->filterBySfGuardUserId($this->getSfGuardUserId())
+      ->prune($this)
+      ->count();
+    if ($slugAlreadyExists)
+    {
+      return $this->makeSlugUnique($slug, $separator, ++$increment);
+    }
+    else
+    {
+      return $slug2;
+    }
   }
 
   
