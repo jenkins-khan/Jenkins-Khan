@@ -27,11 +27,12 @@ class JenkinsGroupRunPeer extends BaseJenkinsGroupRunPeer {
    *
    * @return JenkinsGroupRun
    */
-  public static function retrieveByNaturalPk($userId, $gitBranch, PropelPDO $con = null)
+  public static function retrieveBySfGuardUserIdAndGitBranchSlug($userId, $gitBranch, PropelPDO $con = null)
   {
     $criteria = new Criteria();
     $criteria->add(self::SF_GUARD_USER_ID, $userId);
-    $criteria->add(self::GIT_BRANCH, $gitBranch);
+    $criteria->add(self::GIT_BRANCH_SLUG, $gitBranch);
+
     return self::doSelectOne($criteria, $con);
   }
 

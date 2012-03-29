@@ -11,7 +11,7 @@ class statusAction extends baseApiJenkinsAction
    */
   public function execute($request)
   {
-    $branchName = $request->getParameter('branch_name');
+    $branchName = $request->getParameter('git_branch_slug');
     $userId     = $this->getGuardUser()->getId();
     $jenkins    = $this->getJenkins();
 
@@ -20,7 +20,7 @@ class statusAction extends baseApiJenkinsAction
       JenkinsRunPeer::fillEmptyJobBuildNumber($jenkins, $userId);
     }
 
-    $groupRun = JenkinsGroupRunPeer::retrieveByNaturalPk($userId, $branchName);
+    $groupRun = JenkinsGroupRunPeer::retrieveBySfGuardUserIdAndGitBranchSlug($userId, $branchName);
 
     $status = null;
     if (null !== $groupRun)

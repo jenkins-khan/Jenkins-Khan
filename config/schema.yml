@@ -5,8 +5,14 @@ propel:
     date: { type: DATE, required: true }
     label: { type: CHAR, size:100, required: true }
     git_branch: {type: CHAR, size: 40, required: true }
+    git_branch_slug: {type: CHAR, size: 40, required: true }
     _uniques: { natural_pk: [sf_guard_user_id, git_branch] }
-    
+    _propel_behaviors:
+      sluggable:
+        slug_column: 'git_branch_slug'
+        slug_pattern: '{gitBranch}'
+        replace_pattern: '/[^\w]+/u'
+
   jenkins_run:
     id: { type: INTEGER, primaryKey: true, required: true, autoIncrement: true }
     jenkins_group_run_id: { type: INTEGER, size: '11', required: true, foreignTable: jenkins_group_run, foreignReference: id, onDelete: restrict }
