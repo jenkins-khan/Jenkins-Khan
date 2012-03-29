@@ -50,10 +50,10 @@
             </td>
             <td class="job-progress">
               <?php if (null !== $run['progress']): ?>
-                <div class="progress progress-info progress-striped active" >
+                <?php $title = $run['progress'] . '% (Estimated remaining time: ' . $run['remaining_time']; ?>
+                <div class="progress progress-info progress-striped active" title="<?php echo $title ?>" >
                   <?php $linkApparence = '<div class="bar" style="width: ' . $run['progress'] . '%;"></div>'; ?>
-                  <?php $title = $run['progress'] . '% (Estimated remaining time: ' . $run['remaining_time']; ?>
-                  <?php echo link_to($linkApparence, $run['url_console_log'], array('target' => '_blank', 'title' => $title)) ?>
+                  <?php echo link_to($linkApparence, $run['url_console_log'], array('target' => '_blank')) ?>
                 </div>
               <?php endif; ?>
             </td>
