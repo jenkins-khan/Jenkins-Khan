@@ -45,8 +45,11 @@
               <?php include_partial('buildParameters', array('parameters' => $run['parameters'])) ?>
             </td>
             <td class="infos">
-              <?php if (null !== $run['start_time']): ?>Launched at <?php echo $run['start_time'] ?><?php endif; ?>
-              <?php if (null !== $run['duration']): ?><br />Duration : <?php echo $run['duration'] ?><?php endif; ?>
+              <?php $infos = array(); ?>
+              <?php if (null !== $run['start_time']): $infos[] = 'Launched at '. $run['start_time']; endif; ?>
+              <?php if (null !== $run['duration']): $infos[] = 'Duration: '. $run['duration']; endif; ?>
+              <?php if (null !== $run['scheduled_launch']): $infos[] = 'Scheduled at '. $run['scheduled_launch']; endif; ?>
+              <?php echo implode('<br />', $infos); ?>
             </td>
             <td class="job-progress">
               <?php if (null !== $run['progress']): ?>

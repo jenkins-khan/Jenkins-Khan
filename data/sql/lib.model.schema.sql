@@ -38,6 +38,7 @@ CREATE TABLE `jenkins_run`
 	`job_name` CHAR(30) NOT NULL,
 	`job_build_number` INTEGER(11),
 	`launched` INTEGER(1) DEFAULT 1 NOT NULL,
+	`launch_delayed` DATETIME,
 	`parameters` TEXT,
 	PRIMARY KEY (`id`),
 	INDEX `jenkins_run_FI_1` (`jenkins_group_run_id`),

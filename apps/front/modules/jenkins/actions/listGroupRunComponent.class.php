@@ -58,6 +58,7 @@ class listGroupRunComponent extends sfComponent
         'job_name'            => $run->getJobName(),
         'start_time'          => $run->getStartTime($jenkins),
         'duration'            => $durationFormatter->formatte($run->getDuration($jenkins)),
+        'scheduled_launch'    => $run->getLaunchDelayed(),
         'result'              => $run->getJenkinsResult($jenkins),
         'parameters'          => $run->getLaunched() && $isRunning ? $run->getJenkinsBuildCleanedParameter($jenkins) : $run->decodeParameters(),
         'is_running'          => $isRunning,

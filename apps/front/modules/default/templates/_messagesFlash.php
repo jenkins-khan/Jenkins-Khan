@@ -1,7 +1,8 @@
-<?php foreach (array('info', 'notice', 'warning', 'error') as $level): ?>
-<?php if ($sf_user->hasFlash($level)): ?>
-  <div class="alert alert-<?php echo $level; ?>">
-    <?php echo $sf_user->getFlash($level) ?>
-  </div>
-  <?php endif; ?>
+<?php /** @var $messages_by_level array */ ?>
+<?php foreach ($messages_by_level as $level => $messages): ?>
+  <?php foreach ($messages as $message): ?>
+    <div class="alert alert-<?php echo $level; ?>">
+      <?php echo $message ?>
+    </div>
+  <?php endforeach; ?>
 <?php endforeach; ?>

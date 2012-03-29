@@ -49,33 +49,23 @@ class JenkinsGroupRun extends BaseJenkinsGroupRun
    */
   private function getResultWeight($result)
   {
-    switch($result)
+    //from lower to higher weight
+    $weigths = array(
+      JenkinsRun::SUCCESS,
+      JenkinsRun::ABORTED,
+      JenkinsRun::SCHEDULED,
+      JenkinsRun::DELAYED,
+      JenkinsRun::UNSTABLE,
+      JenkinsRun::WAITING,
+      JenkinsRun::RUNNING,
+      JenkinsRun::FAILURE,
+      JenkinsRun::UNREACHABLE,
+    );
+    
+    $weight = 0;
+    if (false !== ($position = array_search($result, $weigths)))
     {
-      case JenkinsRun::UNREACHABLE:
-        $weight = 64;
-        break;
-      case JenkinsRun::FAILURE:
-        $weight = 32;
-        break;
-      case JenkinsRun::RUNNING:
-        $weight = 16;
-        break;
-      case JenkinsRun::WAITING:
-        $weight = 8;
-        break;
-      case JenkinsRun::UNSTABLE:
-        $weight = 4;
-        break;
-      case JenkinsRun::DELAYED:
-        $weight = 2;
-        break;
-      case JenkinsRun::ABORTED:
-        $weight = 1;
-        break;
-      default:
-      case JenkinsRun::SUCCESS:
-        $weight = 0;
-        break;
+      $weight = pow($position, 2);
     }
     return $weight;
   }

@@ -21,9 +21,17 @@
       <?php foreach ($form['runs'] as $id => $widget): ?>
         <?php /** @var sfWidgetFormInputCheckbox $widget */ ?>
         <li class="delayed-run">
-          <?php echo $widget->render() ?>
+          <?php echo $widget['launch_job']->render() ?>
           <?php include_partial('buildStatus', array('status' => $delayed_runs[$id]['group_run_result'], 'label' => $delayed_runs[$id]['group_run_label'])); ?>
-          <?php echo $widget->renderLabel() ?>
+          <?php echo $widget['launch_job']->renderLabel() ?>
+          <div class="timepicker-container input-append">
+            <?php echo $widget['scheduled_at']->renderLabel() ?>
+            <?php echo $widget['scheduled_at']->render() ?>
+            <span class="add-on" title="Clear starting time">
+              <span class="jk-icon-clock-delete"></span>
+            </span>
+          </div>
+          <?php echo $widget['scheduled_at']->renderError() ?>
           <?php include_partial('buildParameters', array('parameters' => $delayed_runs[$id]['parameters'])) ?>
         </li>
       <?php endforeach; ?>

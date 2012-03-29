@@ -20,10 +20,18 @@
           });
           
           $(options.delayedRunsSelector, $this).sortable({
-            opacity: 0.7,
+            opacity: 0.7
           });
 
-          //selection en masse
+          $(options.timePickerSelector, $this).datetimepicker({
+            dateFormat: 'yy-mm-dd',
+            minDate: new Date(),
+            hour: 18,
+            minute: 15,
+            defaultDate: new Date()
+          });
+          
+          //select all jobs
           $(options.addViewAllRunSelector).click(function(){
             $(options.delayedRunsSelector + ' :checkbox').each(function(){
               if (!$(this).attr('checked')) {
@@ -32,7 +40,7 @@
             });
           });
 
-          //déselection en masse
+          //unselect jobs
           $(options.removeViewAllRunSelector).click(function(){
             $(options.delayedRunsSelector + ' :checkbox').each(function(){
               if ($(this).attr('checked')) {
@@ -41,14 +49,24 @@
             });
           });
 
-          //click sur le li => propagation à la checkbox
+          //click on li > check the checkbox
           $(options.delayedRunsSelector).delegate(options.delayedRunSelector, 'click', function(event){
             var checkbox = $(':checkbox', this);
             //ca c'est moche ==> si deja la checkbox, on ne toggle pas => ca annule
             if ($(event.target).get(0) == checkbox.get(0)) {
               return;
             }
+            
+            if ($(event.target).parents('.input-append').size() > 0)  {
+              return;
+            }
+            
             $this.delayedRun('toggleCheckbox', checkbox);
+          });
+          
+          //clear "scheluded at"'s input
+          $($this).delegate(options.clearTimeSelector, 'click', function(event) {
+            $(this).parents('.input-append').find(':input').val('');
           });
           
         }   
@@ -86,7 +104,9 @@
     removeViewAllRunSelector:'#removeViewAllRun',
     addViewAllRunSelector:   '#addViewAllRun',
     delayedRunsSelector: '.delayed-runs',
-    delayedRunSelector: '.delayed-run'
+    delayedRunSelector: '.delayed-run',
+    timePickerSelector: '.timepicker',
+    clearTimeSelector: '.jk-icon-clock-delete'
   };
 
 })( jQuery );
