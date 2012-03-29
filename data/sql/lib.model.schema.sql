@@ -16,6 +16,7 @@ CREATE TABLE `jenkins_group_run`
 	`date` DATE NOT NULL,
 	`label` CHAR(100) NOT NULL,
 	`git_branch` CHAR(40) NOT NULL,
+	`git_branch_slug` CHAR(40) NOT NULL,
 	PRIMARY KEY (`id`),
 	UNIQUE INDEX `natural_pk` (`sf_guard_user_id`, `git_branch`),
 	CONSTRAINT `jenkins_group_run_FK_1`

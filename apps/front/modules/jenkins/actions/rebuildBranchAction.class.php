@@ -9,10 +9,10 @@ class rebuildBranchAction extends baseJenkinsAction
    */
   public function execute($request)
   {
-    $branchName = $request->getParameter('branch_name');
+    $branchName = $request->getParameter('git_branch_slug');
     $userId     = $this->getUser()->getUserId();
 
-    $groupRun   = JenkinsGroupRunPeer::retrieveByNaturalPk($userId, $branchName);
+    $groupRun   = JenkinsGroupRunPeer::retrieveBySfGuardUserIdAndGitBranchSlug($userId, $branchName);
     $this->forward404If(null === $groupRun, sprintf('Can\'t retrieve JenkinsGroupRun with branch name %s and user id %s', $branchName, $userId));
 
     $groupRun->rebuild($this->getJenkins(), $request->getParameter('delayed') == 1);
