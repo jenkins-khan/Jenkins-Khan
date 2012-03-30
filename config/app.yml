@@ -1,4 +1,4 @@
-all:
+default:
   sf_guard_plugin:
     profile_class:      profile
     profile_field_name: sf_guard_user_id

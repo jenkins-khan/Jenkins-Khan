@@ -43,6 +43,11 @@ switch ($status)
   case JenkinsRun::DELAYED:
     $class    = 'delayed';
     $message  = 'DELAYED';
+    break;  
+  
+  case JenkinsRun::SCHEDULED:
+    $class    = 'scheduled';
+    $message  = 'SCHEDULED';
     break;
 }
 
