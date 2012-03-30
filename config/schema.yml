@@ -30,6 +30,6 @@ propel:
     _attributes:
     id:               ~
     sf_guard_user_id: { type: integer, foreignTable: sf_guard_user, foreignReference: id, required: true, onDelete: cascade }
-    jenkins_url: { type: varchar, size: '50', default: null }
+    jenkins_url: { type: varchar, size: '256', default: null }
     api_key: { type: char, size: '32', required: false, default: null }
     _uniques: { api: [api_key] }
