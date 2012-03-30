@@ -119,7 +119,8 @@ class Jenkins_Build
   public function getEstimatedDuration()
   {
     $duration = null;
-    if (null !== ($progress = $this->getProgress()))
+    $progress = $this->getProgress();
+    if (null !== $progress && $progress !== 0)
     {
       $duration = ceil((time() - $this->getTimestamp()) / ($progress/100));
     }

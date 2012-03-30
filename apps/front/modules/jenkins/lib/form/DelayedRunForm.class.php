@@ -31,8 +31,27 @@ class DelayedRunForm extends sfForm
     $validators = array();
     foreach ($this->getRuns() as $run)
     {
-      $widgets[$run->getId()] = new sfWidgetFormInputCheckbox(array('label' => $run->getJobName()));
-      $validators[$run->getId()] = new sfValidatorString(array('required' => false));
+      $launchedDelayed = $run->getLaunchDelayed();
+      $attributesCheckbox = array();
+      if ($launchedDelayed !== null)
+      {
+        $attributesCheckbox['checked'] = 'checked';
+      }
+      $widgets[$run->getId()] = new sfWidgetFormSchema(array(
+        'launch_job' => new sfWidgetFormInputCheckbox(array('label' => $run->getJobName()), $attributesCheckbox),
+        'scheduled_at' => new sfWidgetFormInputText(
+          array('label' => 'Schedule at', 'default' => $launchedDelayed), 
+          array('class' => 'timepicker')
+        ),
+      ));
+      $validators[$run->getId()] = new sfValidatorSchema(array(
+        'launch_job' => new sfValidatorString(array('required' => false)),
+        'scheduled_at' => new sfValidatorDateTime(array(
+          'min' => time(), 
+          'required' => false,
+          'date_format_range_error' => 'Y-m-d H:i'
+        )),
+      ));
     }
     
     $this->setWidget('runs', new sfWidgetFormSchema($widgets));

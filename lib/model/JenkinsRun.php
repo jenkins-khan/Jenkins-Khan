@@ -61,6 +61,11 @@ class JenkinsRun extends BaseJenkinsRun
   const DELAYED = 'DELAYED';
 
   /**
+   * @var string
+   */
+  const SCHEDULED = 'SCHEDULED';
+
+  /**
    * @param Jenkins $jenkins
    * @param string  $defaultStatus
    *
@@ -73,7 +78,7 @@ class JenkinsRun extends BaseJenkinsRun
 
     if (!$this->getLaunched())
     {
-      return JenkinsRun::DELAYED;
+      return null === $this->getLaunchDelayed() ? JenkinsRun::DELAYED : JenkinsRun::SCHEDULED;
     }
 
     if ($jenkins->isAvailable())
@@ -99,7 +104,7 @@ class JenkinsRun extends BaseJenkinsRun
    *
    * @return null|string
    */
-  public function getStartTime(Jenkins $jenkins, $format = 'd/m/Y H:i:s')
+  public function getStartTime(Jenkins $jenkins, $format = 'Y-m-d H:i:s')
   {
     $build = $this->getJenkinsBuild($jenkins);
 
@@ -392,6 +397,7 @@ class JenkinsRun extends BaseJenkinsRun
 
     $this->launch($jenkins, $parameters);
     $this->setLaunched(true);
+    $this->setLaunchDelayed(null);
     $this->save();
 
     return $this;

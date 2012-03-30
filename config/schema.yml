@@ -19,6 +19,7 @@ propel:
     job_name: {type: CHAR, size: 30, required: true }
     job_build_number: {type: INTEGER, size: '11'}
     launched: {type: INTEGER, size: 1, required: true, default: 1}
+    launch_delayed: { type: TIMESTAMP, required: false }
     parameters: {type: LONGVARCHAR,  required: false}
   configuration:
     id:       ~
