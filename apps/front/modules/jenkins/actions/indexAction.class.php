@@ -14,6 +14,7 @@ class indexAction extends baseJenkinsAction
     if ($request->hasParameter('git_branch_slug'))
     {
       $groupRun   = JenkinsGroupRunPeer::retrieveBySfGuardUserIdAndGitBranchSlug($userId, $request->getParameter('git_branch_slug'));
+      $this->forward404If(null === $groupRun, sprintf('Unable to find build branch with branch name %s ', $request->getParameter('git_branch_slug')));
       $currentGroupId = $groupRun->getId();
     }
     else
