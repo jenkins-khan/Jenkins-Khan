@@ -3,3 +3,7 @@ branch_status:
   param: { module: branch, action: status }
   options:
     segment_separators: [/]
+
+delayed_all_launch:
+  url: /delayed/all/launch
+  params: { module: delayed, action: launch }
