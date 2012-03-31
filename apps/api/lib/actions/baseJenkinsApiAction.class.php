@@ -25,19 +25,7 @@ abstract class baseApiJenkinsAction extends sfAction
    */
   protected function getJenkinsUrl()
   {
-    return $this->getGuardUser()->getProfile()->getJenkinsUrl();
-  }
-
-  /**
-   * @return sfGuardUser
-   *
-   */
-  protected function getGuardUser()
-  {
-    $apiKey  = $this->getRequest()->getParameter('apikey');
-    $profile = ProfilePeer::retrieveByApiKey($apiKey);
-    $this->forward404Unless(null !== $profile, 'Unauthorized api key');
-    return $profile->getSfGuardUser();
+    return $this->getUser()->getProfile()->getJenkinsUrl();
   }
 
   /**

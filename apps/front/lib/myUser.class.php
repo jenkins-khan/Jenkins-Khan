@@ -1,22 +1,6 @@
 <?php
 
-class myUser extends sfGuardSecurityUser
+class myUser extends jenkinsKhanUser
 {
- 
-  /**
-   * @return string
-   */
-  public function getJenkinsUrl()
-  {
-    return $this->getProfile()->getJenkinsUrl();
-  }
-  
-  /**
-   * @return int
-   */
-  public function getUserId()
-  {
-    return $this->getProfile()->getSfGuardUserId();
-  }
-  
+
 }
