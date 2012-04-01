@@ -3,3 +3,11 @@ branch_status:
   param: { module: branch, action: status }
   options:
     segment_separators: [/]
+
+branch_rebuild:
+  url: /branch/:git_branch_slug/rebuild
+  param: { module: branch, action: rebuild }
+
+branch_rebuild_delayed:
+  url: /branch/:git_branch_slug/rebuild/delayed
+  param: { module: branch, action: rebuild, delayed: 1 }
