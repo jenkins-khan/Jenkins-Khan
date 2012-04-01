@@ -9,7 +9,7 @@
       <div class="alert-message error">There is no build branch</div>
     </li>
   <?php else: ?>
-    
+
       <li class="group_run_infos">
         <table>
           <tr>
@@ -28,13 +28,15 @@
                     <li><?php echo link_to('Add all jobs in delayed list', url_for('branch_rebuild_delayed', array('git_branch_slug' => $current_group_run['git_branch_slug'])), array('title' => 'Add all jobs in delayed list')) ?></li>
                    <?php endif ?>
                   <li><?php echo link_to('Add a job', $current_group_run['url_add_build'], array('title' => 'Add a job to this build branch')) ?></li>
+                  <li><?php echo link_to('Duplicate build branch', $current_group_run['url_duplicate']) ?></li>
+                  <li><?php echo link_to('Delete build branch', $current_group_run['url_delete']) ?></li>
                 </ul>
               </div>
             </td>
           </tr>
           </table>
       </li>
-    
+
       <?php foreach ($runs as $id => $run): ?>
       <li>
         <table class="run-infos">
@@ -89,13 +91,13 @@
         </table>
       </li>
       <?php endforeach; ?>
-      <?php if ($jenkins->isAvailable()): ?>  
+      <?php if ($jenkins->isAvailable()): ?>
         <li class="add-build">
           <?php echo link_to('Add a job to this build branch', $current_group_run['url_add_build'], array('class' => 'add-build', 'title' => 'Add a job to this build branch')); ?>
         </li>
       <?php else: ?>
         <li class="add-build"><a href="#" class="disabled">Add a job to this build branch</a></li>
       <?php endif; ?>
-  
+
   <?php endif; ?>
 </ul>
