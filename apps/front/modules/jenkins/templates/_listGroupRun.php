@@ -28,8 +28,8 @@
                     <li><?php echo link_to('Add all jobs in delayed list', url_for('branch_rebuild_delayed', array('git_branch_slug' => $current_group_run['git_branch_slug'])), array('title' => 'Add all jobs in delayed list')) ?></li>
                    <?php endif ?>
                   <li><?php echo link_to('Add a job', $current_group_run['url_add_build'], array('title' => 'Add a job to this build branch')) ?></li>
-                  <li><?php echo link_to('Duplicate build branch', 'jenkins/createGroupRun?from_group_run_id='.$current_group_run['id']) ?></li>
-                  <li><?php echo link_to('Delete build branch',  'jenkins/deleteGroupRun?id='.$current_group_run['id']) ?></li>
+                  <li><?php echo link_to('Duplicate build branch', $current_group_run['url_duplicate']) ?></li>
+                  <li><?php echo link_to('Delete build branch', $current_group_run['url_delete']) ?></li>
                 </ul>
               </div>
             </td>
