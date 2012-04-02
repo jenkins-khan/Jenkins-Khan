@@ -15,3 +15,8 @@
   Note that the branch will be cloned from your local computer:
   there is no need to push it to your remote.
 </p>
+  
+<p>
+  In this this field, you can use everything that is 
+  <a href="http://book.git-scm.com/4_git_treeishes.html" title="Git Treeishes" alt="Git Treeishes">treeish</a>.
+</p>
