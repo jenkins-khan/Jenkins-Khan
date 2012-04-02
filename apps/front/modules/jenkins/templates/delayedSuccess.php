@@ -30,8 +30,8 @@
             <span class="add-on" title="Clear starting time">
               <span class="jk-icon-clock-delete"></span>
             </span>
+            <?php echo $widget['scheduled_at']->renderError() ?>
           </div>
-          <?php echo $widget['scheduled_at']->renderError() ?>
           <?php include_partial('buildParameters', array('parameters' => $delayed_runs[$id]['parameters'])) ?>
         </li>
       <?php endforeach; ?>
