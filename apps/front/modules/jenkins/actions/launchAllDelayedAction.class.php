@@ -22,9 +22,13 @@ class launchAllDelayedAction extends baseJenkinsAction
     {
       $this->getUser()->setFlash('info', sprintf('[%d] delayed jobs have been launched', $numDelayedJobs));
     }
-    else
+    else if ($numDelayedJobs == 1)
     {
       $this->getUser()->setFlash('info', '[1] delayed job has been launched');
+    }
+    else
+    {
+      $this->getUser()->setFlash('info', 'There was no delayed job to launch');
     }
     $this->redirect('@homepage');
   }
