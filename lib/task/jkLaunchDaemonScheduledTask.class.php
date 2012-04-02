@@ -37,7 +37,8 @@ EOF;
         $query->filterByLaunchDelayed(array('max' => 'now'));
 
         $jenkinsFactory = new Jenkins_Factory();
-        foreach ($query->find() as $run)
+        $runs = $query->find();
+        foreach ($runs as $run)
         {
           /** @var JenkinsRun $run */
           $user = $run->getJenkinsGroupRun()->getsfGuardUser();
@@ -63,13 +64,12 @@ EOF;
       }
 
       sleep($options['polling-delay']);
-      exit(0);
+      if ((time() - $start_time) > $options['max-execution-time'])
+      {
+        exit(0);
+      }
     }
 
-    sleep($options['polling-delay']);
-    if ((time() - $start_time) > $options['max-execution-time'])
-    {
-      exit(0);
-    }
+   
   }
 }
