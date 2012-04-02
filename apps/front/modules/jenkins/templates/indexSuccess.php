@@ -1,6 +1,8 @@
 <?php /** @var Jenkins $jenkins */ ?>
-<?php /** @var array $group_runs */ ?>
-<?php /** @var int $current_group_run_id */ ?>
+<?php /** @var array   $group_runs */ ?>
+<?php /** @var int     $current_group_run_id */ ?>
+<?php /** @var string  $sort_type */ ?>
+<?php /** @var array   $sort_menu */ ?>
 
 <div id="dashboard">
 
@@ -12,6 +14,19 @@
   
   <div class="sidebar">
     <ul>
+      <li class="sidebar-actions">
+        <div class="btn-group">
+          <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
+            <?php echo (null === $sort_type) ? 'Sort By' : 'Sorted By ' . ucfirst($sort_type) ?>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-right">
+            <?php foreach ($sort_menu as $item => $label): ?>
+              <li><?php echo link_to($label, 'jenkins/index?sort=' . $item) ?></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+      </li>
       <li>
         <?php if ($jenkins->isAvailable()): ?>
           <?php echo link_to('Create a build branch', 'jenkins/createGroupRun', array('class' => 'add-run')); ?>
@@ -23,8 +38,8 @@
         <li>
           <?php $branchName = get_partial('buildStatus', array('status' => $group_run['result'], 'label' => $group_run['label'])); ?>
           <?php echo link_to($branchName, $group_run['url_view'], array('class' => $id == $current_group_run_id ? 'group-run active' : 'group-run')) ?>
-          <?php echo link_to(' ',  'jenkins/deleteGroupRun?id='.$id, array('class' => 'delete-group-run', 'title' => 'Delete build branch')) ?>
-          <?php echo link_to(' ',  'jenkins/createGroupRun?from_group_run_id='.$id, array('class' => 'duplicate-group-run', 'title' => 'Duplicate build branch')) ?>
+          <?php echo link_to(' ','jenkins/deleteGroupRun?id='.$id, array('class' => 'delete-group-run', 'title' => 'Delete build branch')) ?>
+          <?php echo link_to(' ','jenkins/createGroupRun?from_group_run_id='.$id, array('class' => 'duplicate-group-run', 'title' => 'Duplicate build branch')) ?>
         </li>
       <?php endforeach; ?>
     </ul>
