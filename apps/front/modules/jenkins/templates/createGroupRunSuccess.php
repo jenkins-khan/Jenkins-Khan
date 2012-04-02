@@ -13,12 +13,14 @@
       <?php echo $form['git_branch']->renderError() ?>
       <?php echo $form['git_branch']->renderLabel(); ?>
       <?php echo $form['git_branch']->render() ?>
+      <?php include_partial('help/link-modal', array('name' => 'jenkins/createGroupRun/git-branch')) ?>
     </div>
   
     <div class="field">
       <?php echo $form['label']->renderError() ?>
       <?php echo $form['label']->renderLabel(); ?>
       <?php echo $form['label']->render() ?>
+      <?php include_partial('help/link-modal', array('name' => 'jenkins/createGroupRun/build-branch')) ?>
     </div>  
   
     <div class="field">
