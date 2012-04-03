@@ -93,10 +93,6 @@ class indexAction extends baseJenkinsAction
         'label' => 'Status',
         'url'   => $this->generateUrl('branch_view', $currentGroupRun) . '/sort/result_' . $sortDirection,
       ),
-      'none'   => array(
-        'label' => 'None',
-        'url'   => $this->generateUrl('branch_view', $currentGroupRun),
-      ),
     );
     
     $this->setVar('group_runs', $dataGroupRuns);

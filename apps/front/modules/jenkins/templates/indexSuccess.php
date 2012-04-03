@@ -28,6 +28,7 @@
               <li><?php echo link_to($sorter['label'], $sorter['url']) ?></li>
             <?php endforeach; ?>
           </ul>
+          <a class="close" href="<?php echo $current_url; ?>" title="Cancel sorting">&times;</a>
           <div class="buttons-radio" data-toggle="buttons-radio">
             <button class="btn btn-primary <?php echo ($sort_direction == 'desc') ? 'active' : ''; ?>" value="desc">Desc</button>
             <button class="btn btn-primary <?php echo ($sort_direction != 'desc') ? 'active' : ''; ?>" value="asc">Asc</button>
