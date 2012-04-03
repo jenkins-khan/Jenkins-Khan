@@ -63,7 +63,7 @@ class GroupRunForm extends sfForm
           'column' => array('sf_guard_user_id', 'git_branch'),
         ),
         array(
-          'invalid' => 'You still have a build branch created for this git branch'
+          'invalid' => 'You already have an existing build branch for this git branch'
         )
       )
     );
