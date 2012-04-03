@@ -174,44 +174,53 @@ body {
   }
 
   .navbar {
-    .container {
-      width: 100%;
-      h1 {
-        margin-left: 20px;
-      }
-    
+    .container-fluid {
       .nav {
+        .btn-group {
+            margin-top: 1px;
+            height: 28px;
+
+            &.open {
+                .dropdown-menu {
+                    margin-top: 10px;
+                    &:after {
+                        left: auto;
+                        right: 6px;
+                    }
+                    &:before {
+                        left: auto;
+                        right: 5px;
+                    }
+                }
+                .dropdown-toggle {
+                    background-color: @blueDark;
+                }
+            }
+        }
         .btn-delayed {
           height: 100%;
-          margin-top: 0px;
-          padding: 0px;
+          margin-top: 0;
           text-align: left;
+          color: @white;
+          background-image: url(../images/fatcow/clock_go.png);
+          background-repeat: no-repeat;
+          background-position: 40px 4px;
+          width: 65px;
+          line-height: 25px;
 
           &.active {
-            > a {
-              background-color: rgba(0, 0, 0, 0.2);
-            }
+            background-color: rgba(0, 0, 0, 0.2);
           }
-          > a {
-            color: @white;
+          &:hover {
             background-image: url(../images/fatcow/clock_go.png);
-            background-repeat: no-repeat;
-            background-position: 40px center;
-            width: 65px;
-            &:hover {
-              background-image: url(../images/fatcow/clock_go.png);
-            }
           }
         }
 
         .btn-delayed-caret {
           height: 100%;
-          margin: 0px;
+          margin: 0;
           width: 20px;
-          padding: 0px; /** override parent padding **/
-          a {
-            padding: 15px 7px 14px; 
-          }
+          padding: 6px 0 2px; /** override parent padding **/
         }
       }
     }
