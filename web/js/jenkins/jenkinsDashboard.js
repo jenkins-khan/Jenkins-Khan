@@ -33,6 +33,11 @@
             }, 
             options.reloadDelay
           );
+          
+          $('.buttons-radio .btn').click(function(){
+            var sortParams = '/sort/' + options.sortType + '_' + this.value;
+            window.location = options.currentUrl + sortParams;
+          });
         }
       });
     },
@@ -52,8 +57,6 @@
       })
     } 
   };
-
-  
   
   /**
    * 
@@ -78,7 +81,9 @@
     removeBuild: 'a.remove-build',
     contentGroupSelector: '.content',
     urlReloadListGroupRun: null,
-    reloadDelay: 60000
+    reloadDelay: 60000,
+    currentUrl: null,
+    sortType: null
   };
 
 })( jQuery );
