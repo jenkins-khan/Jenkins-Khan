@@ -6,6 +6,8 @@ lib/model/map/*
 lib/filter/base/*
 lib/form/base/*
 
+data/sql/*
+
 plugins/*/lib/model/om
 plugins/*/lib/model/map
 plugins/*/lib/filter/base

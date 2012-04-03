@@ -12,6 +12,18 @@ class messagesFlashComponent extends sfComponent
    */
   function execute($request)
   {
-    // TODO: Implement execute() method.
+    $messagesByLevel = array();
+    foreach (array('info', 'notice', 'warning', 'error') as $level)
+    {
+      if (!$this->getUser()->hasFlash($level))
+      {
+        continue;
+      }
+      
+      $messages = $this->getUser()->getFlash($level);
+      $messagesByLevel[$level] = is_array($messages) ? $messages : array($messages);
+    }
+    
+    $this->setVar('messages_by_level', $messagesByLevel);
   }
 }

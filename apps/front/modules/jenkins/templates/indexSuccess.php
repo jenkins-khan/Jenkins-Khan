@@ -9,9 +9,11 @@
 <div id="dashboard">
 
   <?php if ($jenkins->isAvailable()): ?>
+  <ul>
     <li>
       <div class="alert alert-success"><?php echo link_to('Jenkins', $jenkins->getUrl(), array('title' => 'Open Jenkins', 'class' => 'jenkins')) ?> is running.</div>
     </li>
+  </ul>
   <?php endif; ?>
   <div class="sidebar">
     <ul>

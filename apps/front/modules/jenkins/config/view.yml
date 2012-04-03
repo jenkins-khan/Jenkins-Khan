@@ -14,5 +14,10 @@ createGroupRunSuccess:
     
 delayedSuccess:
   javascripts:
-    - jquery/jquery-ui-1.8.16.custom.min.js
+    - jquery/jquery-ui-1.8.18.custom.min.js
+    - jquery/jquery-ui-timepicker-addon.js
     - jenkins/delayedRun.js
+  stylesheets:
+    - jquery/jquery-ui-1.8.16.custom.css
+    - jquery/jquery-ui-1.8.16.ie.css
+    - jquery/jquery-ui-timepicker-addon.css

@@ -1,5 +1,5 @@
 <?php
- 
+
 class listGroupRunComponent extends sfComponent
 {
 
@@ -41,7 +41,7 @@ class listGroupRunComponent extends sfComponent
         $isCancelable = $isRunning = $build->isRunning();
         $progress     = $build->getProgress();
         $remaining    = $build->getRemainingExecutionTime();
-      } 
+      }
       elseif ($run->isInJenkinsQueue($jenkins))
       {
         $isCancelable = true;
@@ -51,20 +51,20 @@ class listGroupRunComponent extends sfComponent
       {
         $isGroupRunRebuildable = true;
       }
-      
-      
+
+
       /** @var JenkinsRun $run */
       $dataRuns[$run->getId()] = array(
         'job_name'            => $run->getJobName(),
         'start_time'          => $run->getStartTime($jenkins),
         'duration'            => $durationFormatter->formatte($run->getDuration($jenkins)),
+        'scheduled_launch'    => $run->getLaunchDelayed(),
         'result'              => $run->getJenkinsResult($jenkins),
         'parameters'          => $run->getLaunched() && $isRunning ? $run->getJenkinsBuildCleanedParameter($jenkins) : $run->decodeParameters(),
         'is_running'          => $isRunning,
         'progress'            => $progress,
         'remaining_time'      => null === $remaining ? $remaining : $durationFormatter->formatte($remaining),
         'is_cancelable'       => $isCancelable,
-        
         'url'                 => $urlBuild,
         'url_console_log'     => $urlBuild . '/console',
         'url_test_report'     => $urlBuild . '/testReport',
@@ -81,6 +81,8 @@ class listGroupRunComponent extends sfComponent
       'git_branch'      => null === $currentGroup ? null : $currentGroup->getGitBranch(),
       'git_branch_slug' => null === $currentGroup ? null : $currentGroup->getGitBranchSlug(),
       'url_add_build'   => null === $currentGroup ? null : 'jenkins/addBuild?group_run_id='.$currentGroup->getId(),
+      'url_duplicate'   => null === $currentGroup ? null : 'jenkins/createGroupRun?from_group_run_id=' . $currentGroup->getId(),
+      'url_delete'      => null === $currentGroup ? null : 'jenkins/deleteGroupRun?id=' . $currentGroup->getId(),
     ));
   }
 

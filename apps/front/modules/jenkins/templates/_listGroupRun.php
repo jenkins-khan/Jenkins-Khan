@@ -9,7 +9,7 @@
       <div class="alert-message error">There is no build branch</div>
     </li>
   <?php else: ?>
-    
+
       <li class="group_run_infos">
         <table>
           <tr>
@@ -28,13 +28,15 @@
                     <li><?php echo link_to('Add all jobs in delayed list', url_for('branch_rebuild_delayed', array('git_branch_slug' => $current_group_run['git_branch_slug'])), array('title' => 'Add all jobs in delayed list')) ?></li>
                    <?php endif ?>
                   <li><?php echo link_to('Add a job', $current_group_run['url_add_build'], array('title' => 'Add a job to this build branch')) ?></li>
+                  <li><?php echo link_to('Duplicate build branch', $current_group_run['url_duplicate']) ?></li>
+                  <li><?php echo link_to('Delete build branch', $current_group_run['url_delete']) ?></li>
                 </ul>
               </div>
             </td>
           </tr>
           </table>
       </li>
-    
+
       <?php foreach ($runs as $id => $run): ?>
       <li>
         <table class="run-infos">
@@ -45,12 +47,15 @@
               <?php include_partial('buildParameters', array('parameters' => $run['parameters'])) ?>
             </td>
             <td class="infos">
-              <?php if (null !== $run['start_time']): ?>Launched at <?php echo $run['start_time'] ?><?php endif; ?>
-              <?php if (null !== $run['duration']): ?><br />Duration : <?php echo $run['duration'] ?><?php endif; ?>
+              <?php $infos = array(); ?>
+              <?php if (null !== $run['start_time']): $infos[] = 'Launched at '. $run['start_time']; endif; ?>
+              <?php if (null !== $run['duration']): $infos[] = 'Duration: '. $run['duration']; endif; ?>
+              <?php if (null !== $run['scheduled_launch']): $infos[] = 'Scheduled at '. $run['scheduled_launch']; endif; ?>
+              <?php echo implode('<br />', $infos); ?>
             </td>
             <td class="job-progress">
               <?php if (null !== $run['progress']): ?>
-                <?php $title = $run['progress'] . '% (Estimated remaining time: ' . $run['remaining_time']; ?>
+                <?php $title = $run['progress'] . '% (Estimated remaining time: ' . $run['remaining_time'] . ')'; ?>
                 <div class="progress progress-info progress-striped active" title="<?php echo $title ?>" >
                   <?php $linkApparence = '<div class="bar" style="width: ' . $run['progress'] . '%;"></div>'; ?>
                   <?php echo link_to($linkApparence, $run['url_console_log'], array('target' => '_blank')) ?>
@@ -86,13 +91,13 @@
         </table>
       </li>
       <?php endforeach; ?>
-      <?php if ($jenkins->isAvailable()): ?>  
+      <?php if ($jenkins->isAvailable()): ?>
         <li class="add-build">
           <?php echo link_to('Add a job to this build branch', $current_group_run['url_add_build'], array('class' => 'add-build', 'title' => 'Add a job to this build branch')); ?>
         </li>
       <?php else: ?>
         <li class="add-build"><a href="#" class="disabled">Add a job to this build branch</a></li>
       <?php endif; ?>
-  
+
   <?php endif; ?>
 </ul>

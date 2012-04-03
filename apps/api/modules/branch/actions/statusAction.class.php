@@ -12,7 +12,7 @@ class statusAction extends baseApiJenkinsAction
   public function execute($request)
   {
     $branchName = $request->getParameter('git_branch_slug');
-    $userId     = $this->getGuardUser()->getId();
+    $userId     = $this->getUser()->getUserId();
     $jenkins    = $this->getJenkins();
 
     if ($jenkins->isAvailable())

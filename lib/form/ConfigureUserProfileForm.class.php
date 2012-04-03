@@ -11,7 +11,7 @@ class ConfigureUserProfileForm extends ProfileForm
 
     $this->setValidators(array(
       'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->getId()), 'empty_value' => $this->getObject()->getId(), 'required' => true)),
-      'jenkins_url'      => new sfValidatorString(array('max_length' => 50, 'required' => true)),
+      'jenkins_url'      => new sfValidatorString(array('max_length' => 256, 'required' => true)),
     ));
 
     $this->widgetSchema->setNameFormat('profile[%s]');

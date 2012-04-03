@@ -4,8 +4,8 @@ propel:
     sf_guard_user_id: { type: INTEGER, size: '11', required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: restrict }
     date: { type: DATE, required: true }
     label: { type: CHAR, size:100, required: true }
-    git_branch: {type: CHAR, size: 40, required: true }
-    git_branch_slug: {type: CHAR, size: 40, required: true }
+    git_branch: {type: CHAR, size: 100, required: true }
+    git_branch_slug: {type: CHAR, size: 100, required: true }
     _uniques: { natural_pk: [sf_guard_user_id, git_branch] }
     _propel_behaviors:
       sluggable:
@@ -19,6 +19,7 @@ propel:
     job_name: {type: CHAR, size: 30, required: true }
     job_build_number: {type: INTEGER, size: '11'}
     launched: {type: INTEGER, size: 1, required: true, default: 1}
+    launch_delayed: { type: TIMESTAMP, required: false }
     parameters: {type: LONGVARCHAR,  required: false}
   configuration:
     id:       ~
@@ -29,6 +30,6 @@ propel:
     _attributes:
     id:               ~
     sf_guard_user_id: { type: integer, foreignTable: sf_guard_user, foreignReference: id, required: true, onDelete: cascade }
-    jenkins_url: { type: varchar, size: '50', default: null }
+    jenkins_url: { type: varchar, size: '256', default: null }
     api_key: { type: char, size: '32', required: false, default: null }
     _uniques: { api: [api_key] }

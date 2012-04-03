@@ -29,7 +29,7 @@
 
       <div class="form-content">
         <?php if(null === $api_key): ?>
-          You haven't created an api key yet.
+          You haven't created an api key yet. <?php include_partial('help/link-modal', array('name' => 'user/configure/api-key-why')) ?>
         <?php else: ?>
           <div class="field">
             <label for="form_configure_api_api_key">Api Key</label>

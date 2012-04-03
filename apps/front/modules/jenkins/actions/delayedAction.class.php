@@ -17,21 +17,43 @@ class delayedAction extends baseJenkinsAction
     if (sfRequest::POST === $request->getMethod())
     {
       $form->bind($request->getParameter('delayed_run'));
-
       if ($form->isValid())
       {
-        foreach ($form->getValue('runs') as $id => $selected)
+        $messages = array();
+        foreach ($form->getValue('runs') as $id => $datas)
         {
-          if ('on' !== $selected)
+          $run = JenkinsRunPeer::retrieveByPK($id);
+          if ('on' !== $datas['launch_job'])
           {
+            $run->setLaunchDelayed(null);
+            $run->save();
             continue;
           }
 
-          $run = JenkinsRunPeer::retrieveByPK($id);
-          $run->launchDelayed($this->getJenkins());
-          $run->computeJobBuildNumber($this->getJenkins(), $this->getUser());
+          $launchAt = null;
+          if (strlen($datas['scheduled_at']) > 0)
+          {
+            $launchAt = strtotime($datas['scheduled_at']);
+          }
+          
+          if (null === $launchAt)
+          {
+            $run->launchDelayed($this->getJenkins());
+            $messages[] = sprintf('The job [%s] in build branch has been launched', $run->getJobName(), $run->getGitBranch());
+          }
+          else
+          {
+            $run->setLaunchDelayed($launchAt);
+            $run->save();
+            $messages[] = sprintf(
+              'The job [%s] in build %s branch will be launched at %s ', 
+              $run->getJobName(), 
+              $run->getGitBranch(), 
+              $run->getLaunchDelayed('Y-m-d H:i')
+            );
+          }
         }
-        
+        $this->getUser()->setFlash('info', $messages);
         $this->redirect('jenkins/index');
       }
     }
