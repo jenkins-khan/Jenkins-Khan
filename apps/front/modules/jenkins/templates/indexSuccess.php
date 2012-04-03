@@ -17,12 +17,12 @@
       <li class="sidebar-actions">
         <div class="btn-group">
           <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
-            <?php echo (null === $sort_type) ? 'Sort By' : 'Sorted By ' . ucfirst($sort_type) ?>
+            <?php echo (null === $sort_type) ? 'Sort By' : 'Sorted By ' . ucwords($sort_menu[$sort_type]['label']) ?>
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu dropdown-right">
-            <?php foreach ($sort_menu as $item => $label): ?>
-              <li><?php echo link_to($label, 'jenkins/index?sort=' . $item) ?></li>
+            <?php foreach ($sort_menu as $sorter): ?>
+              <li><?php echo link_to($sorter['label'], $sorter['url']) ?></li>
             <?php endforeach; ?>
           </ul>
         </div>

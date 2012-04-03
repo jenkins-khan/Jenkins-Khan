@@ -50,7 +50,7 @@ class indexAction extends baseJenkinsAction
         'git_branch_slug' => $groupRun->getGitBranchSlug(),
         'date'            => $groupRun->getDate('d/m/Y H:i:s'),
         'result'          => $groupRun->getResult($jenkins),
-        'url_view'        => $this->generateUrl('branch_view', $groupRun),
+        'url_view'        => $this->generateUrl('branch_view', $groupRun) . '/sort/' . $request->getParameter('sort'),
       );
     }
     
@@ -59,11 +59,25 @@ class indexAction extends baseJenkinsAction
       uasort($dataGroupRuns, array($this, 'sortGroupRunsByResult'));
     }
     
+    $currentGroupRun = JenkinsGroupRunPeer::retrieveByPK($currentGroupId);
+    
     $sortMenu = array(
-      'label'  => 'Label',
-      'date'   => 'Creation date',
-      'result' => 'Status',
-      'none'   => 'None',
+      'label'  => array(
+        'label' => 'Label',
+        'url'   => $this->generateUrl('branch_view', $currentGroupRun) . '/sort/label',
+      ),
+      'date'   => array(
+        'label' => 'Creation date',
+        'url'   => $this->generateUrl('branch_view', $currentGroupRun) . '/sort/date',
+      ),
+      'result' => array(
+        'label' => 'Status',
+        'url'   => $this->generateUrl('branch_view', $currentGroupRun) . '/sort/result',
+      ),
+      'none'   => array(
+        'label' => 'None',
+        'url'   => $this->generateUrl('branch_view', $currentGroupRun),
+      ),
     );
     
     $this->setVar('group_runs', $dataGroupRuns);
