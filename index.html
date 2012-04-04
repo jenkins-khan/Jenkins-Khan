@@ -18,7 +18,6 @@
           <a href="http://github.com/pmsipilot/Jenkins-Khan" class="brand">Jenkins Khan</a>
         </h1>
         <ul class="nav">
-          <li><a href="#screenshots">Screenshots</a></li>
           <li><a href="#introduction">Introduction</a></li>
           <li><a href="#usage">Usage</a></li>
           <li><a href="#advantages">Why?</a></li>
@@ -37,29 +36,30 @@
       alt="Fork me on GitHub"  class="fork-me"/>
   </a>
 
-  <div class="bloc header">
-    <h1>
-      <a href="http://github.com/pmsipilot/Jenkins-Khan">
-        <img src="images/genghis.png" alt="Jenkins Khan">
-        Jenkins Khan
-      </a>
-      <span class="small">
-        by <a href="http://www.pmsipilot.org">PMSIpilot</a>
-      </span>
-    </h1>
-    <div class="download">
-      <a href="http://github.com/pmsipilot/Jenkins-Khan/zipball/master"><img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/pmsipilot/Jenkins-Khan/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png">
-      </a>
+  
+  <div class="container">
+    <div class="bloc header">
+      <h1>
+        <a href="http://github.com/pmsipilot/Jenkins-Khan">
+          <img src="images/genghis.png" alt="Jenkins Khan">
+          Jenkins Khan
+        </a>
+        <span class="small">
+          by <a href="http://www.pmsipilot.org">PMSIpilot</a>
+        </span>
+      </h1>
+      <div class="download">
+        <a href="http://github.com/pmsipilot/Jenkins-Khan/zipball/master"><img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
+        <a href="http://github.com/pmsipilot/Jenkins-Khan/tarball/master">
+          <img border="0" width="90" src="http://github.com/images/modules/download/tar.png">
+        </a>
+      </div>
+  
+      <p>Jenkins Khan, manage feature branches with Jenkins. Seamlessly.</p>
+        
     </div>
 
-    <p>Jenkins Khan, manage feature branches with Jenkins. Seamlessly.</p>
-      
-  </div>
-  
-  <div class="bloc">
-    <h2 id="screenshots">Screenshots</h2>
+
     <div class="screenshots">
       <a href="images/dashboard.png" title="Jenkins Khan Dashboard" target="_blank">
         <img class="screenshot"  src="images/mini_dashboard.png" alt="Jenkins Khan Dashboard" /></a>
@@ -67,171 +67,171 @@
         <img class="screenshot" src="images/mini_create_build_branch.png" alt="Create a build branch" />
       </a>
     </div>
-  </div>
-  <div class="bloc">
-    <h2 id="introduction">Introduction</h2>
-
-    <h3>Jenkins Khan is a PHP tool that helps you manage a <a href="http://jenkins-ci.org/">Jenkins</a> integration server.</h3>
     
-    <p>
-      With Jenkins Khan you can easily launch different jobs on your working branches and check the result of each job
-      grouped by your branches.
-    </p>
-    
-    <h3>Why?</h3>
-    <p>
-      If you’ve ever tried to use Jenkins with feature branches, you know that’s not the right tool for this situation.
-      It's kind of a mess to check your jobs state on every branch. We need an overview.
-      Jenkins Khan is a tool over Jenkins to ease the testing of you feature branches.
-    </p>
-
-    <h3>How?</h3>
-    <p>
-      Jenkins Khan uses Jenkins' API to retrieve the configuration, jobs, jobs parameters, views, statuses, etc. 
-      You just have to register your Jenkins URL in Jenkins Khan and enjoy the fun.
-    </p>
-
-    <h3>Technology stack</h3>
-    <p>
-      <strong>Jenkins Khan is a standalone LAMP project.</strong><br/>
-      It is based on common web technologies:
-      <ul class="bubble">
-        <li><a href="http://www.symfony-project.org/">symfony 1.x</a></li>
-        <li><a href="http://jquery.com/">jQuery</a></li>
-        <li><a href="http://twitter.github.com/bootstrap/index.html">Twitter bootstrap</a></li>
-        <li><a href="http://lesscss.org/">LESS</a></li>
-      </ul>
-      You can easily install it on your own server.
-    </p>
-
-    <h3>Licence</h3>
-    <p>
-      <strong>Jenkins Khan is an open-source project.</strong><br />
-      It is published under <a href="http://en.wikipedia.org/wiki/MIT_License">MIT license</a>.
-    </p>
-  </div>
+    <div class="bloc">
+      <h2 id="introduction">Introduction</h2>
   
-  <div class="bloc">
-    <h2 id="usage">How do we use it?</h2>
-    
-    <p>
-      Here, at <a href="http://www.pmsipilot.com">PMSIpilot</a>, when we have to work on a feature, the workflow is this one:
-      <ul>
-        <li>Create a feature branch</li>
-        <li>Work on the feature</li>
-        <li>Execute locally relevants tests on the feature branch</li>
-        <li>Merge the feature branch into master</li>
-      </ul>
-      So, Jenkins Khan is here to help us follow the execution of the tests run branch by branch. 
-    </p>
-    
-    <p>
-      Because we have a lot of tests suites, we don't launch all of them on each feature branch.
-      So, we choose the most relevant jobs, launch them and start working on another feature while tests are running.
-    </p>
-    
-    <p>
-      Having a simple view displaying which jobs have been launched branch by branch, and the statuses of these feature branches, is important to us.
-    </p>
-  </div>
+      <h3>Jenkins Khan is a PHP tool that helps you manage a <a href="http://jenkins-ci.org/">Jenkins</a> integration server.</h3>
+      
+      <p>
+        With Jenkins Khan you can easily launch different jobs on your working branches and check the result of each job
+        grouped by your branches.
+      </p>
+      
+      <h3>Why?</h3>
+      <p>
+        If you’ve ever tried to use Jenkins with feature branches, you know that’s not the right tool for this situation.
+        It's kind of a mess to check your jobs state on every branch. We need an overview.
+        Jenkins Khan is a tool over Jenkins to ease the testing of you feature branches.
+      </p>
   
-  <div class="bloc">
-    <h2 id="advantages">Why use Jenkins Khan?</h2>
-    <table class="compare">
-      <thead>
-        <tr>
-          <th>Jenkins Khan</th>
-          <th>Jenkins CI</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <img src="images/jenkins_khan_board.png" alt="Jenkins Khan Board" class="screenshot"/> 
-          </td>
-          <td>
-            <img src="images/jenkins_board.png" alt="Jenkins CI Board" class="screenshot"/>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <ul>
-              <li>Branch view oriented</li>
-              <li>User friendly interface</li>
-              <li>Plugged on top of Jenkins</li>
-              <li>Schedulable jobs</li>
-            </ul>
-          </td>
-          <td>
-            <ul>
-              <li>Job view oriented</li>
-              <li>3 click from homepage to branch's job</li>
-              <li>Too much information</li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+      <h3>How?</h3>
+      <p>
+        Jenkins Khan uses Jenkins' API to retrieve the configuration, jobs, jobs parameters, views, statuses, etc. 
+        You just have to register your Jenkins URL in Jenkins Khan and enjoy the fun.
+      </p>
   
-  <div class="bloc">
-    <h2 id="features">Features</h2>
-    <ul>
-      <li>Display branch by branch the result of each Jenkins' build</li>
-      <li>
-        Fully based on Jenkins' API
-        <ul>
-          <li>No configuration (except your Jenkins' URL)</li>
-          <li>All views, jobs, configurations are immediatly available</li>
+      <h3>Technology stack</h3>
+      <p>
+        <strong>Jenkins Khan is a standalone LAMP project.</strong><br/>
+        It is based on common web technologies:
+        <ul class="bubble">
+          <li><a href="http://www.symfony-project.org/">symfony 1.x</a></li>
+          <li><a href="http://jquery.com/">jQuery</a></li>
+          <li><a href="http://twitter.github.com/bootstrap/index.html">Twitter bootstrap</a></li>
+          <li><a href="http://lesscss.org/">LESS</a></li>
         </ul>
-      </li>
-      <li>Relaunch builds</li>
-      <li>Relaunch every build on a feature branch</li>
-      <li>Register or schedule builds without launching them on Jenkins</li>
-      <li>User-friendly interface.</li>
-      <li>Provide its own API to retrieve status, relaunch jobs for a feature branch.</li>
-    </ul>
-  </div>
-  <div class="bloc">
-    <h2 id="requirements">Requirements</h2>
+        You can easily install it on your own server.
+      </p>
   
-    <ul class="bubble">
-      <li>PHP 5.2+</li>
-      <li>PHP Curl extension</li>
-      <li>MySQL 5+</li>
-      <li>Jenkins 1.4+</li>
-      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin">Jenkins Git Plugin</a></li>
-    </ul>
-  </div>
-  <div class="bloc">
-    <h2 id="documentation">Documentation</h2>
-  
-    <p>Documentation is hosted in the <a href="http://github.com/pmsipilot/Jenkins-Khan/wiki">project wiki</a> on Github:</p>
-    <ul class="puces">
-      <li><a href="https://github.com/pmsipilot/Jenkins-Khan/wiki/How-to-install-Jenkins-Khan">How to install Jenkins Khan</a> </li>
-      <li><a href="https://github.com/pmsipilot/Jenkins-Khan/wiki/API">Jenkins Khan's API reference</a> </li>
-    </ul>
-  </div>
-  <div class="bloc">
-    <h2 id="contributing">Contributing</h2>
-  
-    <p>Get the <a href="http://github.com/pmsipilot/Jenkins-Khan">source code</a> on GitHub and use <a
-      href="http://help.github.com/send-pull-requests/">pull requests</a> to improve it.</p>
-  </div>
-  <div class="bloc">
-    <h2 id="authors">Authors</h2>
-  
-    <p>Jenkins Khan is an 
-      <a href="http://tom.preston-werner.com/2011/11/22/open-source-everything.html">open-source</a>
-      <a href="http://zachholman.com/posts/why-github-hacks-on-side-projects/">side project</a> of 
-      <a href="http://www.pmsipilot.org">PMSIpilot</a>, developped by:
-    </p>
-    <ul class="bubble">
-      <li><a href="http://github.com/srogier/" title="Github profil">Sébastien Rogier</a></li>
-      <li><a href="http://github.com/agallou/" title="Github profil">Adrien Gallou</a></li>
-    </ul>
+      <h3>Licence</h3>
+      <p>
+        <strong>Jenkins Khan is an open-source project.</strong><br />
+        It is published under <a href="http://en.wikipedia.org/wiki/MIT_License">MIT license</a>.
+      </p>
+    </div>
+      
+    <div class="bloc">
+      <h2 id="usage">How do we use it?</h2>
+      
+      <p>
+        Here, at <a href="http://www.pmsipilot.com">PMSIpilot</a>, when we have to work on a feature, the workflow is this one:
+        <ul>
+          <li>Create a feature branch</li>
+          <li>Work on the feature</li>
+          <li>Execute locally relevants tests on the feature branch</li>
+          <li>Merge the feature branch into master</li>
+        </ul>
+        So, Jenkins Khan is here to help us follow the execution of the tests run branch by branch. 
+      </p>
+      
+      <p>
+        Because we have a lot of tests suites, we don't launch all of them on each feature branch.
+        So, we choose the most relevant jobs, launch them and start working on another feature while tests are running.
+      </p>
+      
+      <p>
+        Having a simple view displaying which jobs have been launched branch by branch, and the statuses of these feature branches, is important to us.
+      </p>
+    </div>
     
-    Thanks to the <a href="https://github.com/pmsipilot" title="Github profil">PMSIpilot team</a> for their suggestions and support.
+    <div class="bloc">
+      <h2 id="advantages">Why use Jenkins Khan?</h2>
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Jenkins Khan</th>
+            <th>Jenkins CI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <img src="images/jenkins_khan_board.png" alt="Jenkins Khan Board" class="screenshot"/> 
+            </td>
+            <td>
+              <img src="images/jenkins_board.png" alt="Jenkins CI Board" class="screenshot"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <ul>
+                <li>Branch view oriented</li>
+                <li>User friendly interface</li>
+                <li>Plugged on top of Jenkins</li>
+                <li>Schedulable jobs</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Job view oriented</li>
+                <li>3 click from homepage to branch's job</li>
+                <li>Too much information</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="bloc">
+      <h2 id="features">Features</h2>
+      <ul>
+        <li>Display branch by branch the result of each Jenkins' build</li>
+        <li>
+          Fully based on Jenkins' API
+          <ul>
+            <li>No configuration (except your Jenkins' URL)</li>
+            <li>All views, jobs, configurations are immediatly available</li>
+          </ul>
+        </li>
+        <li>Relaunch builds</li>
+        <li>Relaunch every build on a feature branch</li>
+        <li>Register or schedule builds without launching them on Jenkins</li>
+        <li>User-friendly interface.</li>
+        <li>Provide its own API to retrieve status, relaunch jobs for a feature branch.</li>
+      </ul>
+    </div>
+    <div class="bloc">
+      <h2 id="requirements">Requirements</h2>
+    
+      <ul class="bubble">
+        <li>PHP 5.2+</li>
+        <li>PHP Curl extension</li>
+        <li>MySQL 5+</li>
+        <li>Jenkins 1.4+</li>
+        <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin">Jenkins Git Plugin</a></li>
+      </ul>
+    </div>
+    <div class="bloc">
+      <h2 id="documentation">Documentation</h2>
+    
+      <p>Documentation is hosted in the <a href="http://github.com/pmsipilot/Jenkins-Khan/wiki">project wiki</a> on Github:</p>
+      <ul class="puces">
+        <li><a href="https://github.com/pmsipilot/Jenkins-Khan/wiki/How-to-install-Jenkins-Khan">How to install Jenkins Khan</a> </li>
+        <li><a href="https://github.com/pmsipilot/Jenkins-Khan/wiki/API">Jenkins Khan's API reference</a> </li>
+      </ul>
+    </div>
+    <div class="bloc">
+      <h2 id="contributing">Contributing</h2>
+    
+      <p>Get the <a href="http://github.com/pmsipilot/Jenkins-Khan">source code</a> on GitHub and use <a
+        href="http://help.github.com/send-pull-requests/">pull requests</a> to improve it.</p>
+    </div>
+    <div class="bloc">
+      <h2 id="authors">Authors</h2>
+    
+      <p>Jenkins Khan is an 
+        <a href="http://tom.preston-werner.com/2011/11/22/open-source-everything.html">open-source</a>
+        <a href="http://zachholman.com/posts/why-github-hacks-on-side-projects/">side project</a> of 
+        <a href="http://www.pmsipilot.org">PMSIpilot</a>, developped by:
+      </p>
+      <ul class="bubble">
+        <li><a href="http://github.com/pmsipilot/Jenkins-Khan/contributors" title="Github profil">See contributors</a></li>
+      </ul>
+      
+      Thanks to the <a href="https://github.com/pmsipilot" title="Github profil" target="_blank">PMSIpilot team</a> for their suggestions and support.
+    </div>
   </div>
 </body>
 </html>
