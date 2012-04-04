@@ -41,8 +41,7 @@
           $(options.groupRun, $this).popover({
             show: true,
             content: function(element){
-              return $('#' + $(this).attr('data-popover-content'), $this).html();
-            
+              return $('#' + $(this).attr(options.popoverAttributeName), $this).html();
             }
           });
         }
@@ -90,7 +89,8 @@
     urlReloadListGroupRun: null,
     reloadDelay: 60000,
     sortDirection: '.buttons-radio .btn',
-    groupRun: 'a.group-run'
+    groupRun: 'a.group-run',
+    popoverAttributeName: 'data-popover-content'
   };
 
 })( jQuery );
