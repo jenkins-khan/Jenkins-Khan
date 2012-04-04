@@ -35,8 +35,7 @@
           );
           
           $(options.sortDirection, $this).click(function(){
-            var sortParams = '/sort/' + options.sortType + '_' + this.value;
-            window.location = options.branchViewUrl + sortParams;
+            window.location = this.value;
           });
         }
       });
@@ -82,8 +81,6 @@
     contentGroupSelector: '.content',
     urlReloadListGroupRun: null,
     reloadDelay: 60000,
-    branchViewUrl: null,
-    sortType: null,
     sortDirection: '.buttons-radio .btn'
   };
 

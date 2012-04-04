@@ -98,6 +98,7 @@ class indexAction extends baseJenkinsAction
     $this->setVar('sort_direction', $sortDirection);
     $this->setVar('sort_menu', $sortMenu);
     $this->setVar('branch_view_url', $this->generateUrl('branch_view', $currentGroupRun));
+    $this->setVar('partial_url_for_sort_direction', sprintf('%s/sort/%s_', $this->generateUrl('branch_view', $currentGroupRun), $sortType));
   }
   
   /**

@@ -5,6 +5,7 @@
 <?php /** @var string  $sort_direction */ ?>
 <?php /** @var array   $sort_menu */ ?>
 <?php /** @var string  $branch_view_url */ ?>
+<?php /** @var string  $partial_url_for_sort_direction */ ?>
 
 <div id="dashboard">
 
@@ -30,8 +31,8 @@
           </ul>
           <a class="close" href="<?php echo $branch_view_url; ?>" title="Cancel sorting">&times;</a>
           <div class="buttons-radio" data-toggle="buttons-radio">
-            <button class="btn btn-primary <?php echo ($sort_direction == 'desc') ? 'active' : ''; ?>" value="desc">Desc</button>
-            <button class="btn btn-primary <?php echo ($sort_direction != 'desc') ? 'active' : ''; ?>" value="asc">Asc</button>
+            <button class="btn btn-primary <?php echo ($sort_direction == 'desc') ? 'active' : ''; ?>" value="<?php echo $partial_url_for_sort_direction; ?>desc">Desc</button>
+            <button class="btn btn-primary <?php echo ($sort_direction != 'desc') ? 'active' : ''; ?>" value="<?php echo $partial_url_for_sort_direction; ?>asc">Asc</button>
           </div>
         </div>
       </li>
@@ -60,9 +61,7 @@
 <script language="javascript" type="text/javascript">
   $(document).ready(function(){
     $('#dashboard').jenkinsDashboard({
-      urlReloadListGroupRun: '<?php echo url_for('jenkins/listGroupRun?group_run_id=' . $current_group_run_id); ?>',
-      branchViewUrl: "<?php echo $branch_view_url; ?>",
-      sortType: "<?php echo $sort_type; ?>"
+      urlReloadListGroupRun: '<?php echo url_for('jenkins/listGroupRun?group_run_id=' . $current_group_run_id); ?>'
     });
   });
 </script>
