@@ -2,7 +2,7 @@ propel:
   jenkins_group_run:
     id: { type: INTEGER, primaryKey: true, required: true, autoIncrement: true }
     sf_guard_user_id: { type: INTEGER, size: '11', required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: restrict }
-    date: { type: DATE, required: true }
+    date: { type: TIMESTAMP, required: true }
     label: { type: CHAR, size:100, required: true }
     git_branch: {type: CHAR, size: 100, required: true }
     git_branch_slug: {type: CHAR, size: 100, required: true }

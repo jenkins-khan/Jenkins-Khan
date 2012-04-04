@@ -67,7 +67,7 @@ class indexAction extends baseJenkinsAction
         'label'           => $groupRun->getLabel(),
         'git_branch'      => $groupRun->getGitBranch(),
         'git_branch_slug' => $groupRun->getGitBranchSlug(),
-        'date'            => $groupRun->getDate('d/m/Y H:i:s'),
+        'date'            => $groupRun->getDate('Y-m-d H:i:s'),
         'result'          => $groupRun->getResult($jenkins),
         'url_view'        => $this->generateUrl('branch_view', $groupRun) . '/sort/' . $sortType . '_' . $sortDirection,
       );
