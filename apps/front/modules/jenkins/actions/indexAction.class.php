@@ -9,8 +9,21 @@ class indexAction extends baseJenkinsAction
    */
   function execute($request)
   {
-    $userId     = $this->getUser()->getUserId();
+    $userId  = $this->getUser()->getUserId();
+    $jenkins = $this->getJenkins();
     
+    $sortParams    = explode('_', $request->getParameter('sort'));
+    $sortType      = 'none';
+    $sortDirection = '';
+    if (count($sortParams) == 1)
+    {
+      $sortType = (strlen($sortParams[0])) ? $sortParams[0] : 'none';
+    }
+    elseif (count($sortParams) == 2)
+    {
+      list($sortType, $sortDirection) = $sortParams;
+    }
+
     if ($request->hasParameter('git_branch_slug'))
     {
       $groupRun   = JenkinsGroupRunPeer::retrieveBySfGuardUserIdAndGitBranchSlug($userId, $request->getParameter('git_branch_slug'));
@@ -19,16 +32,23 @@ class indexAction extends baseJenkinsAction
     }
     else
     {
-      $currentGroupId   = $request->getParameter('group_run_id');
+      $currentGroupId = $request->getParameter('group_run_id');
     }
 
-    $jenkins          = $this->getJenkins();
-    $criteriaGroupRun = new Criteria();
-    $criteriaGroupRun->add(JenkinsGroupRunPeer::SF_GUARD_USER_ID, $userId, Criteria::EQUAL);
-    $criteriaGroupRun->addDescendingOrderByColumn(JenkinsGroupRunPeer::DATE);
-    $criteriaGroupRun->addDescendingOrderByColumn(JenkinsGroupRunPeer::ID);
-
-    $groupRuns     = JenkinsGroupRunPeer::doSelect($criteriaGroupRun);
+    $order = ($sortDirection == 'desc') ? Criteria::DESC : Criteria::ASC;
+    
+    $query = new JenkinsGroupRunQuery();
+    $query->findBySfGuardUserId($userId);
+    if ($sortType == 'date')
+    {
+      $query->orderByDate($order);
+    }
+    elseif ($sortType == 'label')
+    {
+      $query->orderByLabel($order);
+    }
+    
+    $groupRuns = $query->find();
 
     $dataGroupRuns = array();
     foreach ($groupRuns as $groupRun)
@@ -37,7 +57,7 @@ class indexAction extends baseJenkinsAction
       {
         $currentGroupId = $groupRun->getId();
       }
-
+      
       /** @var JenkinsGroupRun $groupRun */
       $dataGroupRuns[$groupRun->getId()] = array(
         'label'           => $groupRun->getLabel(),
@@ -45,12 +65,62 @@ class indexAction extends baseJenkinsAction
         'git_branch_slug' => $groupRun->getGitBranchSlug(),
         'date'            => $groupRun->getDate('d/m/Y H:i:s'),
         'result'          => $groupRun->getResult($jenkins),
-        'url_view'        => $this->generateUrl('branch_view', $groupRun),
+        'url_view'        => $this->generateUrl('branch_view', $groupRun) . '/sort/' . $sortType . '_' . $sortDirection,
       );
     }
-
+    
+    if ($sortType == 'result')
+    {
+      $method = ($sortDirection == 'asc') ? 'sortGroupRunsByResultAsc' : 'sortGroupRunsByResultDesc';
+      uasort($dataGroupRuns, array($this, $method));
+    }
+    
+    $currentGroupRun = JenkinsGroupRunPeer::retrieveByPK($currentGroupId);
+    
+    $sortMenu = array(
+      'label'  => array(
+        'label' => 'Name',
+        'url'   => $this->generateUrl('branch_view', $currentGroupRun) . '/sort/label_' . $sortDirection,
+      ),
+      'date'   => array(
+        'label' => 'Creation date',
+        'url'   => $this->generateUrl('branch_view', $currentGroupRun) . '/sort/date_' . $sortDirection,
+      ),
+      'result' => array(
+        'label' => 'Status',
+        'url'   => $this->generateUrl('branch_view', $currentGroupRun) . '/sort/result_' . $sortDirection,
+      ),
+    );
+    
     $this->setVar('group_runs', $dataGroupRuns);
     $this->setVar('current_group_run_id', $currentGroupId);
+    $this->setVar('sort_type', $sortType);
+    $this->setVar('sort_direction', $sortDirection);
+    $this->setVar('sort_menu', $sortMenu);
+    $this->setVar('branch_view_url', $this->generateUrl('branch_view', $currentGroupRun));
+    $this->setVar('partial_url_for_sort_direction', sprintf('%s/sort/%s_', $this->generateUrl('branch_view', $currentGroupRun), $sortType));
+  }
+  
+  /**
+   * @param $a
+   * @param $b
+   * 
+   * @return int
+   */
+  protected function sortGroupRunsByResultAsc($a, $b)
+  {
+    return strcmp($a['result'], $b['result']);
+  }
+  
+  /**
+   * @param $a
+   * @param $b
+   * 
+   * @return int
+   */
+  protected function sortGroupRunsByResultDesc($a, $b)
+  {
+    return strcmp($b['result'], $a['result']);
   }
 
 }

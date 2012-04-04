@@ -28,7 +28,7 @@ branch_rebuild_delayed:
   param: { module: jenkins, action: rebuildBranch, delayed: 1 }
 
 branch_view:
-  url: /branch/:git_branch_slug/view
+  url: /branch/:git_branch_slug/view/*
   class: sfPropelRoute
   options: { model: JenkinsGroupRun, type: object }
   param: { module: jenkins, action: index }
