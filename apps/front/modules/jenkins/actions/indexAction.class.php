@@ -39,17 +39,17 @@ class indexAction extends baseJenkinsAction
     
     $query = new JenkinsGroupRunQuery();
     $query->findBySfGuardUserId($userId);
-    if ($sortType == 'date')
+    switch ($sortType)
     {
-      $query->orderByDate($order);
-    }
-    elseif ($sortType == 'label')
-    {
-      $query->orderByLabel($order);
-    }
-    elseif ($sortType == 'none')
-    {
-      $query->orderByDate(Criteria::DESC);
+      case 'date' :
+        $query->orderByDate($order);
+        break;
+      case 'label' :
+        $query->orderByLabel($order);
+        break;
+      default :
+        $query->orderByDate(Criteria::DESC);
+        break;
     }
     
     $groupRuns = $query->find();
