@@ -18,6 +18,7 @@
   <?php endif; ?>
   <div class="sidebar">
     <ul>
+      <?php if (null !== $sort_menu): ?>
       <li class="sidebar-actions">
         <div class="btn-group">
           <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
@@ -36,6 +37,7 @@
           </div>
         </div>
       </li>
+      <?php endif ?>
       <li>
         <?php if ($jenkins->isAvailable()): ?>
           <?php echo link_to('Create a build branch', 'jenkins/createGroupRun', array('class' => 'add-run')); ?>
