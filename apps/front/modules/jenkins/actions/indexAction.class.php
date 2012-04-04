@@ -34,26 +34,23 @@ class indexAction extends baseJenkinsAction
     {
       $currentGroupId = $request->getParameter('group_run_id');
     }
+
+    $order = ($sortDirection == 'desc') ? Criteria::DESC : Criteria::ASC;
     
-    $criteriaGroupRun = new Criteria();
-    $criteriaGroupRun->add(JenkinsGroupRunPeer::SF_GUARD_USER_ID, $userId, Criteria::EQUAL);
-    
-    $column = '';
+    $query = new JenkinsGroupRunQuery();
+    $query->findBySfGuardUserId($userId);
     if ($sortType == 'date')
     {
-      $column = JenkinsGroupRunPeer::DATE;
+      $query->orderByDate($order);
     }
     elseif ($sortType == 'label')
     {
-      $column = JenkinsGroupRunPeer::LABEL;
+      $query->orderByLabel($order);
     }
-    if (strlen($column))
-    {
-      ($sortDirection == 'asc') ? $criteriaGroupRun->addAscendingOrderByColumn($column) : $criteriaGroupRun->addDescendingOrderByColumn($column);
-    }
+    
+    $groupRuns = $query->find();
 
     $dataGroupRuns = array();
-    $groupRuns     = JenkinsGroupRunPeer::doSelect($criteriaGroupRun);
     foreach ($groupRuns as $groupRun)
     {
       if (null === $currentGroupId)
@@ -100,7 +97,7 @@ class indexAction extends baseJenkinsAction
     $this->setVar('sort_type', $sortType);
     $this->setVar('sort_direction', $sortDirection);
     $this->setVar('sort_menu', $sortMenu);
-    $this->setVar('current_url', $this->generateUrl('branch_view', $currentGroupRun));
+    $this->setVar('branch_view_url', $this->generateUrl('branch_view', $currentGroupRun));
   }
   
   /**

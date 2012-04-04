@@ -4,7 +4,7 @@
 <?php /** @var string  $sort_type */ ?>
 <?php /** @var string  $sort_direction */ ?>
 <?php /** @var array   $sort_menu */ ?>
-<?php /** @var string  $current_url */ ?>
+<?php /** @var string  $branch_view_url */ ?>
 
 <div id="dashboard">
 
@@ -28,7 +28,7 @@
               <li><?php echo link_to($sorter['label'], $sorter['url']) ?></li>
             <?php endforeach; ?>
           </ul>
-          <a class="close" href="<?php echo $current_url; ?>" title="Cancel sorting">&times;</a>
+          <a class="close" href="<?php echo $branch_view_url; ?>" title="Cancel sorting">&times;</a>
           <div class="buttons-radio" data-toggle="buttons-radio">
             <button class="btn btn-primary <?php echo ($sort_direction == 'desc') ? 'active' : ''; ?>" value="desc">Desc</button>
             <button class="btn btn-primary <?php echo ($sort_direction != 'desc') ? 'active' : ''; ?>" value="asc">Asc</button>
@@ -61,7 +61,7 @@
   $(document).ready(function(){
     $('#dashboard').jenkinsDashboard({
       urlReloadListGroupRun: '<?php echo url_for('jenkins/listGroupRun?group_run_id=' . $current_group_run_id); ?>',
-      currentUrl: "<?php echo $current_url; ?>",
+      branchViewUrl: "<?php echo $branch_view_url; ?>",
       sortType: "<?php echo $sort_type; ?>"
     });
   });

@@ -34,9 +34,9 @@
             options.reloadDelay
           );
           
-          $('.buttons-radio .btn').click(function(){
+          $(options.sortDirection, $this).click(function(){
             var sortParams = '/sort/' + options.sortType + '_' + this.value;
-            window.location = options.currentUrl + sortParams;
+            window.location = options.branchViewUrl + sortParams;
           });
         }
       });
@@ -82,8 +82,9 @@
     contentGroupSelector: '.content',
     urlReloadListGroupRun: null,
     reloadDelay: 60000,
-    currentUrl: null,
-    sortType: null
+    branchViewUrl: null,
+    sortType: null,
+    sortDirection: '.buttons-radio .btn'
   };
 
 })( jQuery );
