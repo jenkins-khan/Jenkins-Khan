@@ -47,6 +47,10 @@ class indexAction extends baseJenkinsAction
     {
       $query->orderByLabel($order);
     }
+    elseif ($sortType == 'none')
+    {
+      $query->orderByDate(Criteria::DESC);
+    }
     
     $groupRuns = $query->find();
 
