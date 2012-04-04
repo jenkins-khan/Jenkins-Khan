@@ -76,29 +76,35 @@ class indexAction extends baseJenkinsAction
     }
     
     $currentGroupRun = JenkinsGroupRunPeer::retrieveByPK($currentGroupId);
-    
-    $sortMenu = array(
-      'label'  => array(
-        'label' => 'Name',
-        'url'   => $this->generateUrl('branch_view', $currentGroupRun) . '/sort/label_' . $sortDirection,
-      ),
-      'date'   => array(
-        'label' => 'Creation date',
-        'url'   => $this->generateUrl('branch_view', $currentGroupRun) . '/sort/date_' . $sortDirection,
-      ),
-      'result' => array(
-        'label' => 'Status',
-        'url'   => $this->generateUrl('branch_view', $currentGroupRun) . '/sort/result_' . $sortDirection,
-      ),
-    );
-    
+
+    $sortMenu = $partial_url_for_sort_direction = $branch_view_url = null;
+    if (null !== $currentGroupRun)
+    {
+      $sortMenu = array(
+        'label'  => array(
+          'label' => 'Name',
+          'url'   => $this->generateUrl('branch_view', $currentGroupRun) . '/sort/label_' . $sortDirection,
+        ),
+        'date'   => array(
+          'label' => 'Creation date',
+          'url'   => $this->generateUrl('branch_view', $currentGroupRun) . '/sort/date_' . $sortDirection,
+        ),
+        'result' => array(
+          'label' => 'Status',
+          'url'   => $this->generateUrl('branch_view', $currentGroupRun) . '/sort/result_' . $sortDirection,
+        ),
+      );
+      $branch_view_url = $this->generateUrl('branch_view', $currentGroupRun);
+      $partial_url_for_sort_direction = sprintf('%s/sort/%s_', $this->generateUrl('branch_view', $currentGroupRun), $sortType);
+    }
+
     $this->setVar('group_runs', $dataGroupRuns);
     $this->setVar('current_group_run_id', $currentGroupId);
     $this->setVar('sort_type', $sortType);
     $this->setVar('sort_direction', $sortDirection);
     $this->setVar('sort_menu', $sortMenu);
-    $this->setVar('branch_view_url', $this->generateUrl('branch_view', $currentGroupRun));
-    $this->setVar('partial_url_for_sort_direction', sprintf('%s/sort/%s_', $this->generateUrl('branch_view', $currentGroupRun), $sortType));
+    $this->setVar('branch_view_url', $branch_view_url);
+    $this->setVar('partial_url_for_sort_direction', $partial_url_for_sort_direction);
   }
   
   /**
