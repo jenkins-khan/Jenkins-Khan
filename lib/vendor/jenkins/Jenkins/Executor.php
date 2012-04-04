@@ -3,6 +3,9 @@
 class Jenkins_Executor
 {
 
+  /**
+   * @var stdClass
+   */
   private $executor;
 
   /**
@@ -16,7 +19,7 @@ class Jenkins_Executor
   protected $computer;
 
   /**
-   * @param array    $executor
+   * @param stdClass $executor
    * @param string   $computer
    * @param \Jenkins $jenkins
    */

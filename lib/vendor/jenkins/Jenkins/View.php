@@ -3,7 +3,7 @@
 class Jenkins_View
 {
   /**
-   * @var array
+   * @var stdClass
    */
   private $view;
 
@@ -14,8 +14,8 @@ class Jenkins_View
 
 
   /**
-   * @param array    $job
-   * @param \Jenkins $jenkins
+   * @param stdClass $view
+   * @param Jenkins  $jenkins
    */
   public function __construct($view, Jenkins $jenkins)
   {
@@ -32,7 +32,7 @@ class Jenkins_View
   }
   
   /**
-   * @return array
+   * @return Jenkins_Job[]
    */
   public function getJobs()
   {
@@ -40,9 +40,7 @@ class Jenkins_View
     
     foreach ($this->view->jobs as $job)
     {
-      $jobs[] = array(
-        'name' => $job->name
-      );
+      $jobs[] = $this->jenkins->getJob($job->name);
     }
     
     return $jobs;

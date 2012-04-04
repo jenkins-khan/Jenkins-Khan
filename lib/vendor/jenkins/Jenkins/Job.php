@@ -2,13 +2,9 @@
 
 class Jenkins_Job
 {
-  /**
-   * @var string
-   */
-  const BRANCH_PARAMETER_NAME = 'BRANCH';
   
   /**
-   * @var array
+   * @var stdClass
    */
   private $job;
 
@@ -18,7 +14,7 @@ class Jenkins_Job
   protected $jenkins;
 
   /**
-   * @param array    $job
+   * @param stdClass $job
    * @param \Jenkins $jenkins
    */
   public function __construct($job, Jenkins $jenkins)
@@ -29,17 +25,22 @@ class Jenkins_Job
   }
 
   /**
-   * @return array
+   * @return Jenkins_Build[]
    */
   public function getBuilds()
   {
-    return $this->job->builds;
+    $builds = array();
+    foreach ($this->job->builds as $build)
+    {
+      $builds[] = $this->getJenkinsBuild($build->number);
+    }
+    
+    return $builds;
   }
 
 
   /**
-   * @param $job
-   * @param $buildId
+   * @param int $buildId
    *
    * @return Jenkins_Build
    * @throws RuntimeException

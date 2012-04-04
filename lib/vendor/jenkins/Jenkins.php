@@ -132,6 +132,7 @@ class Jenkins
 
   /**
    * @param array $extraParameters
+   * @return bool
    * @throws RuntimeException
    */
   public function launchJob($jobName, $parameters)
