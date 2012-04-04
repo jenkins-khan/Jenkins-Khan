@@ -37,6 +37,14 @@
           $(options.sortDirection, $this).click(function(){
             window.location = this.value;
           });
+          
+          $(options.groupRun, $this).popover({
+            show: true,
+            content: function(element){
+              return $('#' + $(this).attr('data-popover-content'), $this).html();
+            
+            }
+          });
         }
       });
     },
@@ -81,7 +89,8 @@
     contentGroupSelector: '.content',
     urlReloadListGroupRun: null,
     reloadDelay: 60000,
-    sortDirection: '.buttons-radio .btn'
+    sortDirection: '.buttons-radio .btn',
+    groupRun: 'a.group-run'
   };
 
 })( jQuery );
