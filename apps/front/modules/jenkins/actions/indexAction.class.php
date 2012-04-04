@@ -21,7 +21,7 @@ class indexAction extends baseJenkinsAction
     }
     elseif (count($sortParams) == 2)
     {
-      list($sortType, $sortDirection) = explode('_', $request->getParameter('sort'));
+      list($sortType, $sortDirection) = $sortParams;
     }
 
     if ($request->hasParameter('git_branch_slug'))
