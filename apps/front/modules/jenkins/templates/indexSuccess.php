@@ -6,6 +6,7 @@
 <?php /** @var array   $sort_menu */ ?>
 <?php /** @var string  $branch_view_url */ ?>
 <?php /** @var string  $partial_url_for_sort_direction */ ?>
+<?php /** @var Profile $profile */ ?>
 
 <div id="dashboard">
 
@@ -56,14 +57,18 @@
               'status' => $group_run['result']
             )
           ); ?>
-          <?php $link_options = array(
-            'class'                => $id == $current_group_run_id ? 'group-run active' : 'group-run',
+          <?php $popover_options = array(
             'title'                => $group_run['git_branch'] . ' branch',
             'data-popover-content' => 'popover_' . $group_run['git_branch'],
           ); ?>
-          <?php echo link_to($branchName, $group_run['url_view'], $link_options) ?>
-          <?php echo link_to(' ','jenkins/deleteGroupRun?id='.$id, array('class' => 'delete-group-run', 'title' => 'Delete build branch')) ?>
-          <?php echo link_to(' ','jenkins/createGroupRun?from_group_run_id='.$id, array('class' => 'duplicate-group-run', 'title' => 'Duplicate build branch')) ?>
+          <?php $link_options = array(
+            'class'                => $id == $current_group_run_id ? 'group-run active' : 'group-run',
+            'title'                => '',
+            'data-popover-content' => '',
+          ); ?>
+          <?php echo link_to($branchName, $group_run['url_view'], array_merge($link_options, ($profile->getPopoverEnabled()) ? $popover_options : array())) ?>
+          <?php echo link_to(' ', 'jenkins/deleteGroupRun?id='.$id, array('class' => 'delete-group-run', 'title' => 'Delete build branch')) ?>
+          <?php echo link_to(' ', 'jenkins/createGroupRun?from_group_run_id='.$id, array('class' => 'duplicate-group-run', 'title' => 'Duplicate build branch')) ?>
         </li>
       <?php endforeach; ?>
     </ul>
@@ -76,7 +81,8 @@
 <script language="javascript" type="text/javascript">
   $(document).ready(function(){
     $('#dashboard').jenkinsDashboard({
-      urlReloadListGroupRun: '<?php echo url_for('jenkins/listGroupRun?group_run_id=' . $current_group_run_id); ?>'
+      urlReloadListGroupRun: '<?php echo url_for('jenkins/listGroupRun?group_run_id=' . $current_group_run_id); ?>',
+      popoverEnabled: <?php echo ($profile->getPopoverEnabled()) ? 1 : 0; ?>
     });
   });
 </script>

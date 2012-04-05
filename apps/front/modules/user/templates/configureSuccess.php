@@ -15,6 +15,11 @@
       <?php echo $form['jenkins_url']->render() ?>
       <?php include_partial('help/link-modal', array('name' => 'user/configure/jenkins-url')) ?>
     </div>
+    <div class="field">
+      <?php echo $form['popover_enabled']->renderError() ?>
+      <?php echo $form['popover_enabled']->renderLabel(); ?>
+      <?php echo $form['popover_enabled']->render() ?>
+    </div>
   </div>
 
   <div class="form-footer">
