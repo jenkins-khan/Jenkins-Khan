@@ -80,7 +80,7 @@ class GroupRunForm extends sfForm
     $extraParametersValidators = array();
     foreach ($this->getJenkins()->getJob($jobName)->getParametersDefinition() as $name => $parameter)
     {
-      if (in_array($name, array(Jenkins_Job::BRANCH_PARAMETER_NAME)))
+      if (in_array($name, array(JenkinsRunPeer::JENKINS_BRANCH_PARAMETER_NAME)))
       {
         continue;
       }

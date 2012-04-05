@@ -4,7 +4,8 @@ class Jenkins_Factory
 {
 
   /**
-   * @param myUser $user
+   * @param string $url
+   * 
    * @return Jenkins
    */
   public function build($url)

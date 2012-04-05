@@ -1,7 +1,10 @@
 <?php
 
 require_once dirname(__FILE__).'/../lib/vendor/symfony/lib/autoload/sfCoreAutoload.class.php';
+require_once dirname(__FILE__).'/../lib/vendor/jenkins/Autoload.php';
 sfCoreAutoload::register();
+
+Jenkins_Autoloader::register();
 
 class ProjectConfiguration extends sfProjectConfiguration
 {
@@ -12,6 +15,7 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfLESSPlugin');
     
     sfWidgetFormSchema::setDefaultFormFormatterName('div');
+
   }
   
   
