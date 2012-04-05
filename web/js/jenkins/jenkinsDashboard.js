@@ -39,7 +39,6 @@
           });
           
           $(options.groupRun, $this).popover({
-            show: true,
             content: function(element){
               return $('#' + $(this).attr(options.popoverAttributeName), $this).html();
             }
