@@ -38,11 +38,14 @@
             window.location = this.value;
           });
           
-          $(options.groupRun, $this).popover({
-            content: function(element){
-              return $('#' + $(this).attr(options.popoverAttributeName), $this).html();
-            }
-          });
+          if (options.popoverEnabled)
+          {
+            $(options.groupRun, $this).popover({
+              content: function(element){
+                return $('#' + $(this).attr(options.popoverAttributeName), $this).html();
+              }
+            });
+          }
         }
       });
     },
@@ -89,7 +92,8 @@
     reloadDelay: 60000,
     sortDirection: '.buttons-radio .btn',
     groupRun: 'a.group-run',
-    popoverAttributeName: 'data-popover-content'
+    popoverAttributeName: 'data-popover-content',
+    popoverEnabled: true
   };
 
 })( jQuery );
