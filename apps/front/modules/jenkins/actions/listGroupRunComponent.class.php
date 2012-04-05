@@ -69,7 +69,7 @@ class listGroupRunComponent extends sfComponent
         'url_console_log'     => $urlBuild . '/console',
         'url_test_report'     => $urlBuild . '/testReport',
         'url_remove'          => $this->generateUrl('run_remove', $run),
-        'url_rebuild'         => !$isRunning ? $this->generateUrl('run_rebuild', $run) : false,
+        'url_rebuild'         => $this->generateUrl('run_rebuild', $run),
         'url_rebuild_delayed' => !$isRunning && $run->isRebuildable() ? $this->generateUrl('run_rebuild_delayed', $run) : false,
       );
     }
