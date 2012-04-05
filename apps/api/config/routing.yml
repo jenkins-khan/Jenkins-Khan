@@ -3,3 +3,7 @@ branch_status:
   param: { module: branch, action: status }
   options:
     segment_separators: [/]
+
+branch_delete:
+  url: /branch/:git_branch_slug/delete
+  param: { module: branch, action: delete }
