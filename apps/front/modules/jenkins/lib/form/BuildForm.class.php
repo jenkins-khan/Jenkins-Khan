@@ -49,7 +49,7 @@ class BuildForm extends sfForm
     {
       $jobName = $jobInfos['name'];
       $parameters = $this->getJenkins()->getJob($jobName)->getParametersDefinition();
-      unset($parameters[Jenkins_Job::BRANCH_PARAMETER_NAME]);
+      unset($parameters[JenkinsRunPeer::JENKINS_BRANCH_PARAMETER_NAME]);
 
       if (count($parameters))
       {

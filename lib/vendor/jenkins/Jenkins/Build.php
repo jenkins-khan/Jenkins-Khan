@@ -33,7 +33,7 @@ class Jenkins_Build
   const ABORTED = 'ABORTED';
   
   /**
-   * @var array 
+   * @var stdClass 
    */
   private $build;
   
@@ -41,10 +41,11 @@ class Jenkins_Build
    * @var Jenkins
    */
   private $jenkins;
-  
-  
+
+
   /**
-   * @param array $build
+   * @param stdClass   $build
+   * @param Jenkins $jenkins
    */
   public function __construct($build, Jenkins $jenkins)
   {

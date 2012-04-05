@@ -3,7 +3,7 @@
 class Jenkins_JobQueue
 {
   /**
-   * @var array
+   * @var stdClass
    */
   private $jobQueue;
 
@@ -12,9 +12,10 @@ class Jenkins_JobQueue
    * @var Jenkins
    */
   protected $jenkins;
-  
+
   /**
-   * @param $jobQueue
+   * @param stdClass $jobQueue
+   * @param Jenkins  $jenkins
    */
   public function __construct($jobQueue, Jenkins $jenkins)
   {
