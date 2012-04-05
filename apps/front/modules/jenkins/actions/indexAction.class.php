@@ -109,7 +109,7 @@ class indexAction extends baseJenkinsAction
     $this->setVar('sort_menu', $sortMenu);
     $this->setVar('branch_view_url', $branch_view_url);
     $this->setVar('partial_url_for_sort_direction', $partial_url_for_sort_direction);
-    $this->setVar('profile', $this->getUser()->getProfile());
+    $this->setVar('enabled_popover', $this->getUser()->getProfile()->getPopoverEnabled());
   }
   
   /**

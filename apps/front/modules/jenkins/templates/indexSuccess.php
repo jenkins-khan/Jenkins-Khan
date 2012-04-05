@@ -6,7 +6,7 @@
 <?php /** @var array   $sort_menu */ ?>
 <?php /** @var string  $branch_view_url */ ?>
 <?php /** @var string  $partial_url_for_sort_direction */ ?>
-<?php /** @var Profile $profile */ ?>
+<?php /** @var boolean $enabled_popover */ ?>
 
 <div id="dashboard">
 
@@ -66,7 +66,7 @@
             'title'                => '',
             'data-popover-content' => '',
           ); ?>
-          <?php echo link_to($branchName, $group_run['url_view'], array_merge($link_options, ($profile->getPopoverEnabled()) ? $popover_options : array())) ?>
+          <?php echo link_to($branchName, $group_run['url_view'], array_merge($link_options, ($enabled_popover) ? $popover_options : array())) ?>
           <?php echo link_to(' ', 'jenkins/deleteGroupRun?id='.$id, array('class' => 'delete-group-run', 'title' => 'Delete build branch')) ?>
           <?php echo link_to(' ', 'jenkins/createGroupRun?from_group_run_id='.$id, array('class' => 'duplicate-group-run', 'title' => 'Duplicate build branch')) ?>
         </li>
@@ -82,7 +82,7 @@
   $(document).ready(function(){
     $('#dashboard').jenkinsDashboard({
       urlReloadListGroupRun: '<?php echo url_for('jenkins/listGroupRun?group_run_id=' . $current_group_run_id); ?>',
-      popoverEnabled: <?php echo ($profile->getPopoverEnabled()) ? 1 : 0; ?>
+      popoverEnabled: <?php echo ($enabled_popover) ? 1 : 0; ?>
     });
   });
 </script>
