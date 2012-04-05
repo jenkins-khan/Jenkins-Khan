@@ -69,7 +69,10 @@
             </td>
             <td class="bouton">
               <?php if ($run['url_rebuild']): ?>
-                <?php echo link_to('Relaunch', $run['url_rebuild'], array('class' => 'run-again', 'title' => (!$run['url_rebuild_delayed'] ? "Launch build immediatly" : 'Relaunch build'))) ?>
+                <?php echo link_to('Relaunch', $run['url_rebuild'], array(
+                  'class' => 'run-again', 
+                  'title' => $run['is_running'] ? "Cancel current build and relaunch" : (!$run['url_rebuild_delayed'] ? "Launch build immediatly" : "Relaunch build")
+                )); ?>
               <?php endif; ?>
             </td>
             <td class="actions">

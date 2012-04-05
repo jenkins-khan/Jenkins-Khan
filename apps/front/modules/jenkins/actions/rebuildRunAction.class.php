@@ -23,16 +23,25 @@ class rebuildRunAction extends baseJenkinsAction
     }
     else
     {
-      $run->rebuild($this->getJenkins(), $request->getParameter('delayed') == 1);
-      $run->computeJobBuildNumber($this->getJenkins(), $this->getUser());
       if ($request->getParameter('delayed') == 1)
       {
         $this->getUser()->setFlash('info', sprintf('The build [%s] has been added to the delayed list', $run->getJobName()));
       }
       else
       {
-        $this->getUser()->setFlash('info', sprintf('The build [%s] has been relaunched', $run->getJobName()));
+        $build = $run->getJenkinsBuild($this->getJenkins());
+        if ($build->isRunning() && ($executor = $build->getExecutor()))
+        {
+          $executor->stop();
+          $this->getUser()->setFlash('info', sprintf('The build [%s] was running, has been cancelled, and relaunched', $run->getJobName()));
+        }
+        else
+        {
+          $this->getUser()->setFlash('info', sprintf('The build [%s] has been relaunched', $run->getJobName()));
+        }
       }
+      $run->rebuild($this->getJenkins(), $request->getParameter('delayed') == 1);
+      $run->computeJobBuildNumber($this->getJenkins(), $this->getUser());
     }
     
     $this->redirect($this->generateUrl('branch_view', $run->getJenkinsGroupRun()));
