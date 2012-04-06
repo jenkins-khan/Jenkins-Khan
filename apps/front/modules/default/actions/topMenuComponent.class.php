@@ -12,6 +12,9 @@ class topMenuComponent extends sfComponent
    */
   function execute($request)
   {
+    $jenkinsFactory = new Jenkins_Factory();
+    $jenkins = $jenkinsFactory->build($this->getUser()->getJenkinsUrl());
+    
     $nbJobDelayed = count(JenkinsRunPeer::getDelayed($this->getUser()));
 
     $menus = array(
@@ -44,5 +47,6 @@ class topMenuComponent extends sfComponent
     $this->setVar('menus', $menus);
     $this->setVar('activeLink', $activeLink);
     $this->setVar('user', $this->getUser());
+    $this->setVar('available_jenkins_url', $jenkins->isAvailable() ? $jenkins->getUrl() : null);
   }
 }
