@@ -7,3 +7,11 @@ branch_status:
 branch_delete:
   url: /branch/:git_branch_slug/delete
   param: { module: branch, action: delete }
+
+branch_rebuild:
+  url: /branch/:git_branch_slug/rebuild
+  param: { module: branch, action: rebuild }
+
+branch_rebuild_delayed:
+  url: /branch/:git_branch_slug/rebuild/delayed
+  param: { module: branch, action: rebuild, delayed: 1 }
