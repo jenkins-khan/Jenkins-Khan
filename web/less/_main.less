@@ -42,7 +42,7 @@ body {
     
     &.jenkins {
       .dashed(@black);
-      background-image: url(../images/jenkins.png);
+      background-image: url(../images/jenkins/16x16/jenkins.png);
       background-repeat: no-repeat;
       background-position: left center;
       padding-left: 20px;
@@ -238,13 +238,25 @@ body {
     }
     
     a {
-      &.settings {
-        background-image: url(../images/fatcow/32x32/setting_tools.png);
+      &.icon {
         background-repeat: no-repeat;
         background-position: 15px center;
-        text-indent: -10000px; 
-        width: 40px; 
+        text-indent: -10000px;
+        width: 32px;
+        
+        &.settings {
+          background-image: url(../images/fatcow/32x32/setting_tools.png);
+
+        }
+        &.jenkinsbig {
+          background-image: url(../images/jenkins/32x32/headshot.png);
+          text-decoration: none;
+          &.stopped {
+            background-image: url(../images/jenkins/32x32/headshot_stopped.png);
+          }
+        }
       }
+      
     }
     
   }
