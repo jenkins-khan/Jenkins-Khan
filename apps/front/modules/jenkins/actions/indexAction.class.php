@@ -63,12 +63,14 @@ class indexAction extends baseJenkinsAction
       }
       
       /** @var JenkinsGroupRun $groupRun */
+      $result = $groupRun->getResult($jenkins);
       $dataGroupRuns[$groupRun->getId()] = array(
         'label'           => $groupRun->getLabel(),
         'git_branch'      => $groupRun->getGitBranch(),
         'git_branch_slug' => $groupRun->getGitBranchSlug(),
         'date'            => $groupRun->getDate('Y-m-d H:i:s'),
-        'result'          => $groupRun->getResult($jenkins),
+        'result'          => $result,
+        'result_weight'   => $groupRun->getResultWeight($result),
         'url_view'        => $this->generateUrl('branch_view', $groupRun) . '/sort/' . $sortType . '_' . $sortDirection,
       );
     }
@@ -120,7 +122,7 @@ class indexAction extends baseJenkinsAction
    */
   protected function sortGroupRunsByResultAsc($a, $b)
   {
-    return strcmp($a['result'], $b['result']);
+    return strcmp($a['result_weight'], $b['result_weight']);
   }
   
   /**
@@ -131,7 +133,7 @@ class indexAction extends baseJenkinsAction
    */
   protected function sortGroupRunsByResultDesc($a, $b)
   {
-    return strcmp($b['result'], $a['result']);
+    return strcmp($b['result_weight'], $a['result_weight']);
   }
 
 }
