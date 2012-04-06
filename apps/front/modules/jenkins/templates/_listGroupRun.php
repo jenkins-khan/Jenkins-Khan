@@ -18,7 +18,7 @@
             </td>
             <td>
               <div class="btn-group">
-                <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
+                <a class="btn dropdown-toggle btn-jenkins-khan" data-toggle="dropdown" href="#">
                   <?php echo $current_group_run['git_branch'] ?>
                   <span class="caret"></span>
                 </a>
@@ -77,7 +77,7 @@
             </td>
             <td class="actions">
               <div class="btn-group">
-                <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                <a class="btn dropdown-toggle btn-jenkins-khan" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                 <ul class="dropdown-menu dropdown-right">
                   <?php if ($run['url_rebuild_delayed']): ?>
                     <li><?php echo link_to('Delay', $run['url_rebuild_delayed'], array('title' => 'Relaunch build (delayed)')) ?></li>
