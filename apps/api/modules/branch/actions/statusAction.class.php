@@ -1,6 +1,6 @@
 <?php
 
-class statusAction extends baseApiJenkinsAction
+class statusAction extends baseBranchApiJenkinsAction
 {
 
   /**
@@ -11,16 +11,15 @@ class statusAction extends baseApiJenkinsAction
    */
   protected function getContent($request)
   {
-    $branchName = $request->getParameter('git_branch_slug');
-    $userId     = $this->getUser()->getUserId();
-    $jenkins    = $this->getJenkins();
+    $userId  = $this->getUser()->getUserId();
+    $jenkins = $this->getJenkins();
 
     if ($jenkins->isAvailable())
     {
       JenkinsRunPeer::fillEmptyJobBuildNumber($jenkins, $userId);
     }
 
-    $groupRun = JenkinsGroupRunPeer::retrieveBySfGuardUserIdAndGitBranchSlug($userId, $branchName);
+    $groupRun = $this->retrieveJenkinsGroupRun($request);
 
     $content  = array(
       'status' => null,
