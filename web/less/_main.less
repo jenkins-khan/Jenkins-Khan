@@ -1,15 +1,9 @@
 
-.box-shadow (@x: 0, @y: 0, @blur: 15px, @color: #000) {
-  box-shadow: @arguments;
-  -moz-box-shadow: @arguments;
-  -webkit-box-shadow: @arguments;
-}
-
 body {
   background-color: @backgroundColor;
   margin: 0 50px 0 50px;
   font-size: @basefont;
-  font-family: 'Verdana';
+  font-family: @fontFamily;
   color: @textColor;
   
   padding-top: 80px;
@@ -42,7 +36,7 @@ body {
     
     &.jenkins {
       .dashed(@black);
-      background-image: url(../images/jenkins.png);
+      background-image: url(../images/jenkins/16x16/jenkins.png);
       background-repeat: no-repeat;
       background-position: left center;
       padding-left: 20px;
@@ -114,11 +108,19 @@ body {
   }
 
   .dropdown-menu {
+    
+    background-color: @baseColorLighter;
+    
+    li:hover a {
+      background-color: @baseColorLight;
+      color: @textColor;
+    }
+    
     .jenkins, 
     .jenkins:hover {
       border:none;
     }
-    
+
     &.dropdown-right {
       left: auto; /** reset parent's left property */
       float: right;
@@ -174,56 +176,81 @@ body {
   }
 
   .navbar {
-    .container {
-      width: 100%;
-      h1 {
-        margin-left: 20px;
-      }
-    
+    .container-fluid {
       .nav {
+        .btn-group {
+            margin-top: 1px;
+            height: 28px;
+
+            &.open {
+                .dropdown-menu {
+                    margin-top: 10px;
+                    &:after {
+                        left: auto;
+                        right: 6px;
+                    }
+                    &:before {
+                        left: auto;
+                        right: 5px;
+                    }
+                }
+                .dropdown-toggle {
+                    background-color: @blueDark;
+                }
+            }
+        }
         .btn-delayed {
           height: 100%;
-          margin-top: 0px;
-          padding: 0px;
+          margin-top: 0;
           text-align: left;
+          color: @white;
+          background-image: url(../images/fatcow/32x32/clock_go.png);
+          background-repeat: no-repeat;
+          background-position: 40px 4px;
+          width: 65px;
+          line-height: 25px;
 
           &.active {
-            > a {
-              background-color: rgba(0, 0, 0, 0.2);
-            }
+            background-color: rgba(0, 0, 0, 0.2);
           }
-          > a {
-            color: @white;
-            background-image: url(../images/fatcow/clock_go.png);
-            background-repeat: no-repeat;
-            background-position: 40px center;
-            width: 65px;
-            &:hover {
-              background-image: url(../images/fatcow/clock_go.png);
-            }
+          &:hover {
+            background-image: url(../images/fatcow/32x32/clock_go.png);
           }
         }
 
         .btn-delayed-caret {
           height: 100%;
-          margin-top: 0px;
-          width: 6px;
-          padding: 4px 7px;
-          a {
-            padding: 11px 0px 10px;
+          margin: 0;
+          width: 20px;
+          padding: 6px 0 2px; /** override parent padding **/
+          
+          .caret {
+            margin-top: 50%;
           }
         }
       }
     }
     
     a {
-      &.settings {
-        background-image: url(../images/fatcow/setting_tools.png);
+      &.icon {
         background-repeat: no-repeat;
         background-position: 15px center;
-        text-indent: -10000px; 
-        width: 40px; 
+        text-indent: -10000px;
+        width: 32px;
+        
+        &.settings {
+          background-image: url(../images/fatcow/32x32/setting_tools.png);
+
+        }
+        &.jenkinsbig {
+          background-image: url(../images/jenkins/32x32/headshot.png);
+          text-decoration: none;
+          &.stopped {
+            background-image: url(../images/jenkins/32x32/headshot_stopped.png);
+          }
+        }
       }
+      
     }
     
   }

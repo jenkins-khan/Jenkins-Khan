@@ -19,12 +19,7 @@ class deleteGroupRunAction extends baseJenkinsAction
       sprintf('Can\'t create JenkinsGroupRun with id %s', $request->getParameter('id'))
     );
     
-    $criteria = new Criteria();
-    $criteria->add(JenkinsRunPeer::JENKINS_GROUP_RUN_ID, $jenkinsGroupRun->getId());
-    
-    JenkinsRunPeer::doDelete($criteria);
-    
-    //suppression du group run
+    //suppression du group run (et, en cascade, des runs)
     $jenkinsGroupRun->delete(null);
     
     $this->getUser()->setFlash('info', sprintf('Build branch [%s] has been deleted', $jenkinsGroupRun->getLabel()));

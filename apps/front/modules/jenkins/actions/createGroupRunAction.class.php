@@ -109,9 +109,10 @@ class createGroupRunAction extends baseJenkinsAction
     foreach ($jenkins->getViews() as $view)
     {
       /** @var Jenkins_View $view */
+      /** @var Jenkins_Job $job */
       foreach ($view->getJobs() as $job)
       {
-        $jobs[$job['name']][] = $view->getName();
+        $jobs[$job->getName()][] = $view->getName();
       }
     }
 

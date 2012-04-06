@@ -43,7 +43,7 @@ class GroupRunForm extends sfForm
 
     $this->setValidator('sf_guard_user_id', new sfValidatorString(array()));
     $this->setValidator('label', new sfValidatorString(array('max_length' => 100)));
-    $this->setValidator('git_branch', new sfValidatorString(array('max_length' => 40)));
+    $this->setValidator('git_branch', new sfValidatorString(array('max_length' => 100)));
     $this->setValidator('auto_launch', new sfValidatorString(array('required' => false)));
 
     $widgets    = array();
@@ -63,7 +63,7 @@ class GroupRunForm extends sfForm
           'column' => array('sf_guard_user_id', 'git_branch'),
         ),
         array(
-          'invalid' => 'You still have a build branch created for this git branch'
+          'invalid' => 'You already have an existing build branch for this git branch'
         )
       )
     );
@@ -80,7 +80,7 @@ class GroupRunForm extends sfForm
     $extraParametersValidators = array();
     foreach ($this->getJenkins()->getJob($jobName)->getParametersDefinition() as $name => $parameter)
     {
-      if (in_array($name, array(Jenkins_Job::BRANCH_PARAMETER_NAME)))
+      if (in_array($name, array(JenkinsRunPeer::JENKINS_BRANCH_PARAMETER_NAME)))
       {
         continue;
       }

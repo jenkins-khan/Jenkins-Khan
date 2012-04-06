@@ -1,7 +1,8 @@
 body {
   .sidebar {
     float: left;
-    width: @sidebarWidth;
+    width: 25%;
+    max-width: @sidebarMaxWidth;
     
     ul {
       li {
@@ -18,6 +19,32 @@ body {
             display: block;
           }
         }
+        &.sidebar-actions {
+         
+          padding-right: 2px;
+          margin-bottom: 2px;
+          
+          .sort-types:after {
+            clear: right;
+          }
+
+          .sort-cancel {
+            padding: 4px;
+          }
+
+          .buttons-radio {
+            float: right;
+            button {
+              padding: 5px 10px;
+            }
+          }
+          
+        }
+        
+        div.popover-content {
+          display: none;
+        }
+        
         a {
           &.group-run,
           &.add-run {
@@ -43,14 +70,14 @@ body {
           }
           
           &.add-run {
-            background-image: url(../images/fatcow/add.png);
+            background-image: url(../images/fatcow/32x32/add.png);
             background-repeat: no-repeat;
             background-position: 10px center;
             height: 32px;
             text-indent: 42px;
             
             &.disabled {
-              background-image: url(../images/fatcow/add_disabled.png);
+              background-image: url(../images/fatcow/32x32/add_disabled.png);
             }
           }
           
@@ -64,22 +91,24 @@ body {
             float: right;
           }
           &.delete-group-run {
-            background-image: url(../images/fatcow/delete.png);
+            background-image: url(../images/fatcow/16x16/delete.png);
             margin-top: -22px;
           } 
           &.duplicate-group-run {
-            background-image: url(../images/fatcow/page_copy.png);
+            background-image: url(../images/fatcow/16x16/page_copy.png);
             margin-top: -44px;
           }
         }   
+        
       }
+      
     }
   }
   
   .content {
     float: left;
     background-color: @baseColor;
-    width: @contentWidth;
+    width: 75%;
     min-height: @contentMinHeight;
     .rightborder-radius( 5px );
     
@@ -87,17 +116,17 @@ body {
       padding: 20px;
       clear: left;
       > li {
-        width: @contentWidth - (40px * 2);
         background-color: @baseColorLight;
         margin-bottom: 10px;
         padding: 15px 20px;
         .border-radius(5px);
         
         .run-infos {
+          width: 100%;
           td {
-            width: 100px;
+            
             &.status {
-              
+              width: 100px;
               .label {
                 //float: none;
               }
@@ -141,7 +170,7 @@ body {
                   background-image: url(../images/update.png);
                 }
                 &.cancel {
-                  background-image: url(../images/fatcow/cancel.png);
+                  background-image: url(../images/fatcow/32x32/cancel.png);
                 }
               }
             }
@@ -158,9 +187,11 @@ body {
           }
         }
         &.group_run_infos {
-          background-color: @baseColorLighter;
           position: relative;
           height: 30px;
+
+          .box-shadow(1px 2px 2px);
+          
           table {
             position: absolute;
             right:19px;
@@ -172,14 +203,14 @@ body {
           width: @contentWidth - 40px;
           height: 50px;
           a {
-            background-image: url(../images/fatcow/add.png);
+            background-image: url(../images/fatcow/32x32/add.png);
             background-repeat: no-repeat;
             background-position: 10px center;
             display: block;
             padding: 15px 20px;
             text-indent: 34px;
             &.disabled {
-              background-image: url(../images/fatcow/add_disabled.png);
+              background-image: url(../images/fatcow/32x32/add_disabled.png);
             }
           }
           
@@ -187,4 +218,11 @@ body {
       }
     }
   }
+  
+  h3 {
+    &.popover-title {
+      margin-bottom: 0;
+    }
+  }
+  
 }

@@ -21,6 +21,11 @@ class JenkinsRunPeer extends BaseJenkinsRunPeer
 {
 
   /**
+   * @var string
+   */
+  const JENKINS_BRANCH_PARAMETER_NAME = 'BRANCH';
+  
+  /**
    * Verify and fill number revision from jenkins server
    * for JenkinsRun which doesn't have revision number
    *
@@ -58,18 +63,18 @@ class JenkinsRunPeer extends BaseJenkinsRunPeer
     
     foreach ($emptyRunsByJobName as $jobName => $runs)
     {
+      /** @var Jenkins_Job $jenkinsJob  */
       $jenkinsJob = $jenkins->getJob($jobName);
       
       foreach ($runs as $run)
       {
         /** @var JenkinsRun $run  */
+        /** @var Jenkins_Build $build  */
         foreach ($jenkinsJob->getBuilds() as $build)
         {
-          $jenkinsBuild = $jenkinsJob->getJenkinsBuild($build->number);
-          
-          if ($run->isRelatedToJenkinsBuild($jenkinsBuild))
+          if ($run->isRelatedToJenkinsBuild($build))
           {
-            $run->setJobBuildNumber($jenkinsBuild->getNumber());
+            $run->setJobBuildNumber($build->getNumber());
             $run->save();
             break;
           }
