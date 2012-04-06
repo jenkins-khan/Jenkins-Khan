@@ -1,7 +1,10 @@
 body {
+  
   form#delayedForm {
+    
     .delayed-runs {
       margin: 20px 0 0 20px;
+      
       li.delayed-run {
         background-color: #ffffff;
         border: 1px solid black;
@@ -11,35 +14,52 @@ body {
         min-height: 18px;
         
         list-style-type: decimal;
-                
         
         input {
           float: left;
         }
+        
+        label {
+          margin-left: 10px;
+          width: 100px;
+        }
+        
+        .last-duration {
+          float: left;
+          font-family: @fontFamily;
+          font-style: italic;
+          width: 140px;
+        }
       
         .timepicker-container {
           float: left;
+          
           input {
+            margin-top: -5px;
             width: 140px;
           }
-          label {
-            padding-right: 10px;
-            padding-top: 3px;
-            width: auto;
+          
+          .add-on {
+            margin-top: -5px;
           }
+          
         }
         
         .build-parameters {
           clear: left;
+          
           li {
             list-style-type: none;
           }
+          
         }
         
         &:hover  {
           cursor: move;
         }
+        
       }
+      
     }
   
   }

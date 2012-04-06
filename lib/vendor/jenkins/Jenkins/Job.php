@@ -134,5 +134,20 @@ class Jenkins_Job
 
     return $this;
   }
+  
+  /**
+   * @param Jenkins $jenkins
+   * 
+   * @return Jenkins_Build
+   */
+  public function getLastSuccessfulBuild()
+  {
+    if (null === $this->job->lastSuccessfulBuild)
+    {
+      return null;
+    }
+    
+    return $this->getJenkins()->getBuild($this->getName(), $this->job->lastSuccessfulBuild->number);
+  }
 
 }

@@ -11,6 +11,7 @@ class delayedAction extends baseJenkinsAction
   function execute($request)
   {
     $runs = JenkinsRunPeer::getDelayed($this->getUser());
+//    var_dump($runs);
     $form = new DelayedRunForm(array(), array('runs' => $runs));
     $jenkins = $this->getJenkins();
 
@@ -58,18 +59,25 @@ class delayedAction extends baseJenkinsAction
       }
     }
     
-    $delayedRuns = array();
+    $delayedRuns       = array();
+    $durationFormatter = new durationFormatter();
     foreach ($runs as $run)
     {
-      $groupRun = $run->getJenkinsGroupRun();
+      $groupRun   = $run->getJenkinsGroupRun();
       $parameters = $run->getParameters();
+      $build      = $run->getJenkinsJob($jenkins)->getLastSuccessfulBuild($jenkins);
+      $lastDuration   = 0;
+      if (null !== $build)
+      {
+        $lastDuration   = $build->getDuration();
+      }
       
       $delayedRuns[$run->getId()] = array(
-        'group_run_label' => $groupRun->getLabel(),
+        'group_run_label'  => $groupRun->getLabel(),
         'group_run_result' => $groupRun->getResult($jenkins),
-        'parameters' =>  null === $parameters ? $parameters : json_decode($run->getParameters(), true),
+        'last_duration'    => $durationFormatter->formatte($lastDuration),
+        'parameters'       => null === $parameters ? $parameters : json_decode($run->getParameters(), true),
       );
-      
     }
     
     $this->setVar('form', $form);
