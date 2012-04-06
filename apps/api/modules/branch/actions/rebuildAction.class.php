@@ -1,6 +1,6 @@
 <?php
 
-class rebuildAction extends baseApiJenkinsAction
+class rebuildAction extends baseBranchApiJenkinsAction
 {
 
   /**
@@ -11,15 +11,7 @@ class rebuildAction extends baseApiJenkinsAction
    */
   public function getContent($request)
   {
-    $branchName = $request->getParameter('git_branch_slug');
-    $userId     = $this->getUser()->getUserId();
-
-    $groupRun   = JenkinsGroupRunPeer::retrieveBySfGuardUserIdAndGitBranchSlug($userId, $branchName);
-
-    if (null === $groupRun)
-    {
-      throw new RuntimeException(sprintf('Can\'t retrieve JenkinsGroupRun with branch name %s and user id %s', $branchName, $userId));
-    }
+    $groupRun = $this->retrieveJenkinsGroupRun($request);
 
     $groupRun->rebuild($this->getJenkins(), $request->getParameter('delayed') == 1);
     JenkinsRunPeer::fillEmptyJobBuildNumber($this->getJenkins(), $this->getUser()->getUserId());
