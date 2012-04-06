@@ -33,6 +33,19 @@
             }, 
             options.reloadDelay
           );
+          
+          $(options.sortDirection, $this).click(function(){
+            window.location = this.value;
+          });
+          
+          if (options.popoverEnabled)
+          {
+            $(options.groupRun, $this).popover({
+              content: function(element){
+                return $('#' + $(this).attr(options.popoverAttributeName), $this).html();
+              }
+            });
+          }
         }
       });
     },
@@ -52,8 +65,6 @@
       })
     } 
   };
-
-  
   
   /**
    * 
@@ -78,7 +89,11 @@
     removeBuild: 'a.remove-build',
     contentGroupSelector: '.content',
     urlReloadListGroupRun: null,
-    reloadDelay: 60000
+    reloadDelay: 60000,
+    sortDirection: '.buttons-radio .btn',
+    groupRun: 'a.group-run',
+    popoverAttributeName: 'data-popover-content',
+    popoverEnabled: true
   };
 
 })( jQuery );

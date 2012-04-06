@@ -31,7 +31,7 @@ abstract class baseJenkinsAction extends sfAction
     }
     else
     {
-      $this->getUser()->setFlash('error', 'Jenkins is not started');
+      $this->getUser()->setFlash('error', 'Jenkins is not started, or your configuration is incorrect.');
     }
 
     $this->setVar('jenkins', $jenkins);

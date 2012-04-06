@@ -152,7 +152,7 @@ class JenkinsRun extends BaseJenkinsRun
     if (null !== $build)
     {
       $parameters = $build->getInputParameters();
-      unset($parameters[Jenkins_Job::BRANCH_PARAMETER_NAME]);
+      unset($parameters[JenkinsRunPeer::JENKINS_BRANCH_PARAMETER_NAME]);
     }
 
     return $parameters;
@@ -204,6 +204,16 @@ class JenkinsRun extends BaseJenkinsRun
     }
 
     return $build;
+  }
+  
+  /**
+   * @param Jenkins $jenkins
+   * 
+   * @return Jenkins_Job
+   */
+  public function getJenkinsJob(Jenkins $jenkins)
+  { 
+    return $jenkins->getJob($this->getJobName());
   }
 
   public function computeJobBuildNumber(Jenkins $jenkins, myUser $user)
@@ -294,7 +304,7 @@ class JenkinsRun extends BaseJenkinsRun
   private function checkRelationWithParameters(array $parameters)
   {
     //verifier la branche et les paramètres
-    if ($parameters[Jenkins_Job::BRANCH_PARAMETER_NAME] != $this->getGitBranch())
+    if ($parameters[JenkinsRunPeer::JENKINS_BRANCH_PARAMETER_NAME] != $this->getGitBranch())
     {
       return false;
     }
@@ -332,7 +342,7 @@ class JenkinsRun extends BaseJenkinsRun
     $jenkins->launchJob($this->getJobName(), array_merge(
       $parameters,
       array(
-        Jenkins_Job::BRANCH_PARAMETER_NAME => $this->getGitBranch()
+        JenkinsRunPeer::JENKINS_BRANCH_PARAMETER_NAME => $this->getGitBranch()
       )
     ));
   }
@@ -387,7 +397,7 @@ class JenkinsRun extends BaseJenkinsRun
   public function launchDelayed(Jenkins $jenkins)
   {
     $parameters  = array(
-      Jenkins_Job::BRANCH_PARAMETER_NAME => $this->getGitBranch()
+      JenkinsRunPeer::JENKINS_BRANCH_PARAMETER_NAME => $this->getGitBranch()
     );
     $runParameters = $this->decodeParameters();
     if (is_array($runParameters))

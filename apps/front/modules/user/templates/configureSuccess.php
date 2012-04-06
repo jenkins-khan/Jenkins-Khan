@@ -15,6 +15,11 @@
       <?php echo $form['jenkins_url']->render() ?>
       <?php include_partial('help/link-modal', array('name' => 'user/configure/jenkins-url')) ?>
     </div>
+    <div class="field">
+      <?php echo $form['popover_enabled']->renderError() ?>
+      <?php echo $form['popover_enabled']->renderLabel(); ?>
+      <?php echo $form['popover_enabled']->render() ?>
+    </div>
   </div>
 
   <div class="form-footer">
@@ -29,7 +34,7 @@
 
       <div class="form-content">
         <?php if(null === $api_key): ?>
-          You haven't created an api key yet.
+          You haven't created an api key yet. <?php include_partial('help/link-modal', array('name' => 'user/configure/api-key-why')) ?>
         <?php else: ?>
           <div class="field">
             <label for="form_configure_api_api_key">Api Key</label>

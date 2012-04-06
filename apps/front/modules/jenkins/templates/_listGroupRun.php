@@ -9,7 +9,7 @@
       <div class="alert-message error">There is no build branch</div>
     </li>
   <?php else: ?>
-    
+
       <li class="group_run_infos">
         <table>
           <tr>
@@ -18,7 +18,7 @@
             </td>
             <td>
               <div class="btn-group">
-                <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
+                <a class="btn dropdown-toggle btn-jenkins-khan" data-toggle="dropdown" href="#">
                   <?php echo $current_group_run['git_branch'] ?>
                   <span class="caret"></span>
                 </a>
@@ -28,13 +28,15 @@
                     <li><?php echo link_to('Add all jobs in delayed list', url_for('branch_rebuild_delayed', array('git_branch_slug' => $current_group_run['git_branch_slug'])), array('title' => 'Add all jobs in delayed list')) ?></li>
                    <?php endif ?>
                   <li><?php echo link_to('Add a job', $current_group_run['url_add_build'], array('title' => 'Add a job to this build branch')) ?></li>
+                  <li><?php echo link_to('Duplicate build branch', $current_group_run['url_duplicate']) ?></li>
+                  <li><?php echo link_to('Delete build branch', $current_group_run['url_delete']) ?></li>
                 </ul>
               </div>
             </td>
           </tr>
           </table>
       </li>
-    
+
       <?php foreach ($runs as $id => $run): ?>
       <li>
         <table class="run-infos">
@@ -67,12 +69,15 @@
             </td>
             <td class="bouton">
               <?php if ($run['url_rebuild']): ?>
-                <?php echo link_to('Relaunch', $run['url_rebuild'], array('class' => 'run-again', 'title' => 'Relaunch build')) ?>
+                <?php echo link_to('Relaunch', $run['url_rebuild'], array(
+                  'class' => 'run-again', 
+                  'title' => $run['is_running'] ? "Cancel current build and relaunch" : (!$run['url_rebuild_delayed'] ? "Launch build immediatly" : "Relaunch build")
+                )); ?>
               <?php endif; ?>
             </td>
             <td class="actions">
               <div class="btn-group">
-                <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                <a class="btn dropdown-toggle btn-jenkins-khan" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                 <ul class="dropdown-menu dropdown-right">
                   <?php if ($run['url_rebuild_delayed']): ?>
                     <li><?php echo link_to('Delay', $run['url_rebuild_delayed'], array('title' => 'Relaunch build (delayed)')) ?></li>
@@ -89,13 +94,13 @@
         </table>
       </li>
       <?php endforeach; ?>
-      <?php if ($jenkins->isAvailable()): ?>  
+      <?php if ($jenkins->isAvailable()): ?>
         <li class="add-build">
           <?php echo link_to('Add a job to this build branch', $current_group_run['url_add_build'], array('class' => 'add-build', 'title' => 'Add a job to this build branch')); ?>
         </li>
       <?php else: ?>
         <li class="add-build"><a href="#" class="disabled">Add a job to this build branch</a></li>
       <?php endif; ?>
-  
+
   <?php endif; ?>
 </ul>
