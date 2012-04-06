@@ -22,8 +22,9 @@
       <?php if (null !== $sort_menu): ?>
       <li class="sidebar-actions">
         <div class="btn-group">
-          <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
-            <?php echo ($sort_type == 'none' || null === $sort_type) ? 'Sort By' : 'Sorted By ' . ucwords($sort_menu[$sort_type]['label']) ?>
+          <a class="btn btn-jenkins-khan sort-cancel" href="<?php echo $branch_view_url; ?>" title="Clear sorting">&times;</a>
+          <a class="btn btn-jenkins-khan dropdown-toggle" data-toggle="dropdown" href="#">
+            <?php echo ($sort_type == 'none' || null === $sort_type) ? 'Sort by' : 'Sorted by ' . ucwords($sort_menu[$sort_type]['label']) ?>
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu dropdown-left">
@@ -31,10 +32,23 @@
               <li><?php echo link_to($sorter['label'], $sorter['url']) ?></li>
             <?php endforeach; ?>
           </ul>
-          <a class="close" href="<?php echo $branch_view_url; ?>" title="Cancel sorting">&times;</a>
+          
+
           <div class="buttons-radio" data-toggle="buttons-radio">
-            <button class="btn btn-primary <?php echo ($sort_direction == 'desc') ? 'active' : ''; ?>" value="<?php echo $partial_url_for_sort_direction; ?>desc">Desc</button>
-            <button class="btn btn-primary <?php echo ($sort_direction != 'desc') ? 'active' : ''; ?>" value="<?php echo $partial_url_for_sort_direction; ?>asc">Asc</button>
+            <button 
+              class="btn btn-jenkins-khan sort<?php ('desc' == $sort_direction) && print ' active'; ?>" 
+              value="<?php echo $partial_url_for_sort_direction; ?>desc"
+              title="Sort descending"
+              >
+              <span class="jk-icon-sort-descending">Desc</span>
+            </button>
+            <button 
+              class="btn btn-jenkins-khan sort<?php ('desc' != $sort_direction) && print ' active'; ?>" 
+              value="<?php echo $partial_url_for_sort_direction; ?>asc"
+              title="Sort ascending"
+              >
+              <span class="jk-icon-sort-ascending">Asc</span>  
+            </button>
           </div>
         </div>
       </li>

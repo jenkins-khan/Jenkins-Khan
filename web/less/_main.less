@@ -114,11 +114,19 @@ body {
   }
 
   .dropdown-menu {
+    
+    background-color: @baseColorLighter;
+    
+    li:hover a {
+      background-color: @baseColorLight;
+      color: @textColor;
+    }
+    
     .jenkins, 
     .jenkins:hover {
       border:none;
     }
-    
+
     &.dropdown-right {
       left: auto; /** reset parent's left property */
       float: right;
@@ -202,7 +210,7 @@ body {
           margin-top: 0;
           text-align: left;
           color: @white;
-          background-image: url(../images/fatcow/clock_go.png);
+          background-image: url(../images/fatcow/32x32/clock_go.png);
           background-repeat: no-repeat;
           background-position: 40px 4px;
           width: 65px;
@@ -212,7 +220,7 @@ body {
             background-color: rgba(0, 0, 0, 0.2);
           }
           &:hover {
-            background-image: url(../images/fatcow/clock_go.png);
+            background-image: url(../images/fatcow/32x32/clock_go.png);
           }
         }
 
@@ -221,13 +229,17 @@ body {
           margin: 0;
           width: 20px;
           padding: 6px 0 2px; /** override parent padding **/
+          
+          .caret {
+            margin-top: 50%;
+          }
         }
       }
     }
     
     a {
       &.settings {
-        background-image: url(../images/fatcow/setting_tools.png);
+        background-image: url(../images/fatcow/32x32/setting_tools.png);
         background-repeat: no-repeat;
         background-position: 15px center;
         text-indent: -10000px; 
