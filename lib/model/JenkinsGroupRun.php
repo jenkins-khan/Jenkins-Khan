@@ -47,7 +47,7 @@ class JenkinsGroupRun extends BaseJenkinsGroupRun
    * @param $result
    * @return int
    */
-  private function getResultWeight($result)
+  public function getResultWeight($result)
   {
     //from lower to higher weight
     $weigths = array(
