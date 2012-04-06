@@ -30,7 +30,7 @@ class rebuildRunAction extends baseJenkinsAction
       else
       {
         $build = $run->getJenkinsBuild($this->getJenkins());
-        if ($build->isRunning() && ($executor = $build->getExecutor()))
+        if (null !== $build && $build->isRunning() && ($executor = $build->getExecutor()))
         {
           $executor->stop();
           $this->getUser()->setFlash('info', sprintf('The build [%s] was running, has been cancelled, and relaunched', $run->getJobName()));
