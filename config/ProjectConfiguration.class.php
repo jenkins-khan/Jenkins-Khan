@@ -1,7 +1,7 @@
 <?php
 
 require_once dirname(__FILE__).'/../lib/vendor/symfony/lib/autoload/sfCoreAutoload.class.php';
-require_once dirname(__FILE__).'/../lib/vendor/jenkins/Autoload.php';
+require_once dirname(__FILE__).'/../lib/vendor/jenkins-php-api/Autoload.php';
 sfCoreAutoload::register();
 
 Jenkins_Autoloader::register();

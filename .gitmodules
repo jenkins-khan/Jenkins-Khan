@@ -1,0 +1,3 @@
+[submodule "lib/vendor/jenkins-php-api"]
+	path = lib/vendor/jenkins-php-api
+	url = git@github.com:pmsipilot/jenkins-php-api.git
