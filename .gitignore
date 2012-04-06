@@ -1,5 +1,5 @@
 .idea
-web/css/*
+web/css/bootstrap.css
 
 lib/model/om/*
 lib/model/map/*
