@@ -11,7 +11,6 @@ class delayedAction extends baseJenkinsAction
   function execute($request)
   {
     $runs = JenkinsRunPeer::getDelayed($this->getUser());
-//    var_dump($runs);
     $form = new DelayedRunForm(array(), array('runs' => $runs));
     $jenkins = $this->getJenkins();
 
