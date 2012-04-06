@@ -205,6 +205,16 @@ class JenkinsRun extends BaseJenkinsRun
 
     return $build;
   }
+  
+  /**
+   * @param Jenkins $jenkins
+   * 
+   * @return Jenkins_Job
+   */
+  public function getJenkinsJob(Jenkins $jenkins)
+  { 
+    return $jenkins->getJob($this->getJobName());
+  }
 
   public function computeJobBuildNumber(Jenkins $jenkins, myUser $user)
   {

@@ -24,6 +24,11 @@
           <?php echo $widget['launch_job']->render() ?>
           <?php include_partial('buildStatus', array('status' => $delayed_runs[$id]['group_run_result'], 'label' => $delayed_runs[$id]['group_run_label'])); ?>
           <?php echo $widget['launch_job']->renderLabel() ?>
+          <p class="last-duration">
+            <?php if (strlen($delayed_runs[$id]['last_duration'])): ?>
+            Last duration: <?php echo $delayed_runs[$id]['last_duration'] ?>
+            <?php endif; ?>
+          </p>
           <div class="timepicker-container input-append">
             <?php echo $widget['scheduled_at']->renderLabel() ?>
             <?php echo $widget['scheduled_at']->render() ?>
