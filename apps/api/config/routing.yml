@@ -18,4 +18,4 @@ branch_rebuild_delayed:
 
 delayed_all_launch:
   url: /delayed/all/launch
-  params: { module: delayed, action: launch }
+  params: { module: delayed, action: launchAll }

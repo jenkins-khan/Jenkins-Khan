@@ -1,6 +1,6 @@
 <?php
 
-class launchAction extends baseApiJenkinsAction
+class launchAllAction extends baseApiJenkinsAction
 {
 
   /**
