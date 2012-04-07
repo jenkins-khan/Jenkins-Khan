@@ -4,6 +4,23 @@ class statusAction extends baseApiJenkinsAction
 {
 
   /**
+   * 
+   */
+  public function preExecute()
+  {
+    parent::preExecute();
+    $userId  = $this->getUser()->getUserId();
+    $jenkins = $this->getJenkins();
+
+    if ($jenkins->isAvailable())
+    {
+      JenkinsRunPeer::fillEmptyJobBuildNumber($jenkins, $userId);
+    }
+
+  }
+
+
+  /**
    *
    * @param sfRequest $request
    *
