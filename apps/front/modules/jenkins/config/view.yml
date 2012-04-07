@@ -1,6 +1,8 @@
 indexSuccess:
   javascripts:
     - jenkins/jenkinsDashboard.js
+    - keymaster.min.js
+    - jenkins/shortcuts.js
 
 addBuildSuccess:
   javascripts:
