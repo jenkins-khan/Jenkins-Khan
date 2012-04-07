@@ -10,7 +10,7 @@ abstract class baseApiJenkinsAction extends sfAction
   protected $jenkins;
   
   /**
-   * @var apiModelFactory
+   * @var modelFactory
    */
   protected $modelFactory;
 
@@ -31,7 +31,7 @@ abstract class baseApiJenkinsAction extends sfAction
     $jenkinsFactory = new Jenkins_Factory();
     $jenkins        = $jenkinsFactory->build($this->getJenkinsUrl());
     $this->setJenkins($jenkins);
-    $this->setModelFactory(new apiModelFactory());
+    $this->setModelFactory(new modelFactory());
   }
 
   /**
@@ -91,7 +91,7 @@ abstract class baseApiJenkinsAction extends sfAction
 
   /**
    *
-   * @return \apiModelFactory
+   * @return \modelFactory
    */
   public function getModelFactory()
   {
@@ -99,9 +99,11 @@ abstract class baseApiJenkinsAction extends sfAction
   }
 
   /**
-   * @param \apiModelFactory $modelFactory
+   * @param \modelFactory $modelFactory
+   * 
+   * @return \baseApiJenkinsAction
    */
-  public function setModelFactory(\apiModelFactory $modelFactory)
+  public function setModelFactory(modelFactory $modelFactory)
   {
     $this->modelFactory = $modelFactory;
 
