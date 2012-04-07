@@ -37,9 +37,7 @@ abstract class baseApiJenkinsAction extends sfAction
    */
   public function execute($request)
   {
-    $branchName = $request->getParameter('git_branch_slug');
-    $userId     = $this->getUser()->getUserId();
-    $return     = array(
+    $return = array(
       'status'  => 0,
       'message' => 'OK',
       'content' => array(),

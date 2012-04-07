@@ -16,7 +16,6 @@ class launchAction extends baseApiJenkinsAction
     foreach ($runs as $run)
     {
       $run->launchDelayed($this->getJenkins());
-      $run->computeJobBuildNumber($this->getJenkins(), $this->getUser());
     }
 
     return array(
