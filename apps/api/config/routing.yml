@@ -15,3 +15,7 @@ branch_rebuild:
 branch_rebuild_delayed:
   url: /branch/:git_branch_slug/rebuild/delayed
   param: { module: branch, action: rebuild, delayed: 1 }
+
+delayed_all_launch:
+  url: /delayed/all/launch
+  params: { module: delayed, action: launch }
