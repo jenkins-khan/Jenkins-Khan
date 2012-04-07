@@ -8,11 +8,14 @@ abstract class baseApiJenkinsAction extends sfAction
    * @var Jenkins
    */
   protected $jenkins;
+  
+  /**
+   * @var apiModelFactory
+   */
+  protected $modelFactory;
 
 
   /**
-   * getContent
-   *
    * @param sfWebRequest $request
    *
    * @return void
@@ -28,6 +31,7 @@ abstract class baseApiJenkinsAction extends sfAction
     $jenkinsFactory = new Jenkins_Factory();
     $jenkins        = $jenkinsFactory->build($this->getJenkinsUrl());
     $this->setJenkins($jenkins);
+    $this->setModelFactory(new apiModelFactory());
   }
 
   /**
@@ -81,6 +85,25 @@ abstract class baseApiJenkinsAction extends sfAction
   public function setJenkins(Jenkins $jenkins)
   {
     $this->jenkins = $jenkins;
+
+    return $this;
+  }
+
+  /**
+   *
+   * @return \apiModelFactory
+   */
+  public function getModelFactory()
+  {
+    return $this->modelFactory;
+  }
+
+  /**
+   * @param \apiModelFactory $modelFactory
+   */
+  public function setModelFactory(\apiModelFactory $modelFactory)
+  {
+    $this->modelFactory = $modelFactory;
 
     return $this;
   }

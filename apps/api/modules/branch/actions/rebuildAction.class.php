@@ -1,6 +1,6 @@
 <?php
 
-class rebuildAction extends baseBranchApiJenkinsAction
+class rebuildAction extends baseApiJenkinsAction
 {
 
   /**
@@ -11,10 +11,9 @@ class rebuildAction extends baseBranchApiJenkinsAction
    */
   public function getContent($request)
   {
-    $groupRun = $this->retrieveJenkinsGroupRun($request);
-
+    $groupRun = $this->getModelFactory()->getJenkinsGroupRun($request, $this->getUser());
     $groupRun->rebuild($this->getJenkins(), $request->getParameter('delayed') == 1);
-    JenkinsRunPeer::fillEmptyJobBuildNumber($this->getJenkins(), $this->getUser()->getUserId());
+
     $message = $request->getParameter('delayed') == 1 ? 'added to delay list' : 'relaunched';
 
     return array(

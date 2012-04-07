@@ -11,7 +11,7 @@ class launchAllAction extends baseApiJenkinsAction
    */
   public function getContent($request)
   {
-    $runs = JenkinsRunPeer::getDelayed($this->getUser());
+    $runs = $this->getModelFactory()->getDelayedRuns($this->getUser());
 
     foreach ($runs as $run)
     {

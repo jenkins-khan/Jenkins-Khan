@@ -1,6 +1,6 @@
 <?php
 
-class statusAction extends baseBranchApiJenkinsAction
+class statusAction extends baseApiJenkinsAction
 {
 
   /**
@@ -11,15 +11,7 @@ class statusAction extends baseBranchApiJenkinsAction
    */
   protected function getContent($request)
   {
-    $userId  = $this->getUser()->getUserId();
-    $jenkins = $this->getJenkins();
-
-    if ($jenkins->isAvailable())
-    {
-      JenkinsRunPeer::fillEmptyJobBuildNumber($jenkins, $userId);
-    }
-
-    $groupRun = $this->retrieveJenkinsGroupRun($request);
+    $groupRun = $this->getModelFactory()->getJenkinsGroupRun($request, $this->getUser());
 
     $content  = array(
       'status' => null,
@@ -27,7 +19,7 @@ class statusAction extends baseBranchApiJenkinsAction
 
     if (null !== $groupRun)
     {
-      $content['status'] = $groupRun->getResult($jenkins);
+      $content['status'] = $groupRun->getResult($this->getJenkins());
     }
 
     return $content;

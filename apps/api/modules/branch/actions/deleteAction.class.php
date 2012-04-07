@@ -1,6 +1,6 @@
 <?php
 
-class deleteAction extends baseBranchApiJenkinsAction
+class deleteAction extends baseApiJenkinsAction
 {
 
   /**
@@ -11,8 +11,7 @@ class deleteAction extends baseBranchApiJenkinsAction
    */
   protected function getContent($request)
   {
-
-    $groupRun = $this->retrieveJenkinsGroupRun($request);
+    $groupRun = $this->getModelFactory()->getJenkinsGroupRun($request, $this->getUser());
 
     // Suppression du groupe de runs, et, en cascade, des runs
     $groupRun->delete();
