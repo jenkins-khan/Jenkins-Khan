@@ -25,22 +25,22 @@
               <li><?php echo link_to($sorter['label'], $sorter['url']) ?></li>
             <?php endforeach; ?>
           </ul>
-          
+
 
           <div class="buttons-radio" data-toggle="buttons-radio">
-            <button 
-              class="btn btn-jenkins-khan sort<?php ('desc' == $sort_direction) && print ' active'; ?>" 
+            <button
+              class="btn btn-jenkins-khan sort<?php ('desc' == $sort_direction) && print ' active'; ?>"
               value="<?php echo $partial_url_for_sort_direction; ?>desc"
               title="Sort descending"
               >
               <span class="jk-icon-sort-descending">Desc</span>
             </button>
-            <button 
-              class="btn btn-jenkins-khan sort<?php ('desc' != $sort_direction) && print ' active'; ?>" 
+            <button
+              class="btn btn-jenkins-khan sort<?php ('desc' != $sort_direction) && print ' active'; ?>"
               value="<?php echo $partial_url_for_sort_direction; ?>asc"
               title="Sort ascending"
               >
-              <span class="jk-icon-sort-ascending">Asc</span>  
+              <span class="jk-icon-sort-ascending">Asc</span>
             </button>
           </div>
         </div>
@@ -80,7 +80,7 @@
       <?php endforeach; ?>
     </ul>
   </div>
-  
+
   <div class="content">
     <?php include_component('jenkins', 'listGroupRun', array('group_run_id' => $current_group_run_id, 'jenkins' => $jenkins)); ?>
   </div>
@@ -93,3 +93,5 @@
     });
   });
 </script>
+
+<?php include_partial('help/modal', array('name' => 'shortcuts', 'id' => 'shortcuts-help')) ?>
