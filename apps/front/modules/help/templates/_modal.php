@@ -1,7 +1,9 @@
-<?php /** @var string $name */ ?>
-<?php /** @var string $title */ ?>
+<?php /** @var string      $name */ ?>
+<?php /** @var string      $title */ ?>
+<?php /** @var string|null $id */ ?>
 
-<div class="modal hide" id="<?php echo md5($name) ?>">
+
+<div class="modal hide" id="<?php echo isset($id) ? $id : md5($name) ?>">
 
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
