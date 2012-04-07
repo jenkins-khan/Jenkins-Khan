@@ -4,34 +4,42 @@ class statusAction extends baseApiJenkinsAction
 {
 
   /**
-   *
-   * @param sfRequest $request
-   *
-   * @return string
+   * 
    */
-  public function execute($request)
+  public function preExecute()
   {
-    $branchName = $request->getParameter('git_branch_slug');
-    $userId     = $this->getUser()->getUserId();
-    $jenkins    = $this->getJenkins();
+    parent::preExecute();
+    $userId  = $this->getUser()->getUserId();
+    $jenkins = $this->getJenkins();
 
     if ($jenkins->isAvailable())
     {
       JenkinsRunPeer::fillEmptyJobBuildNumber($jenkins, $userId);
     }
 
-    $groupRun = JenkinsGroupRunPeer::retrieveBySfGuardUserIdAndGitBranchSlug($userId, $branchName);
+  }
 
-    $status = null;
+
+  /**
+   *
+   * @param sfRequest $request
+   *
+   * @return array
+   */
+  protected function getContent($request)
+  {
+    $groupRun = $this->getModelFactory()->getJenkinsGroupRun($request, $this->getUser());
+
+    $content  = array(
+      'status' => null,
+    );
+
     if (null !== $groupRun)
     {
-      $status = $groupRun->getResult($jenkins);
+      $content['status'] = $groupRun->getResult($this->getJenkins());
     }
 
-    $return = array(
-      'status'=> $status,
-    );
-    return $this->renderText(json_encode($return));
+    return $content;
   }
 
 }
