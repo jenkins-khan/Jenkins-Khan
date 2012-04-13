@@ -1,7 +1,6 @@
 <?php /** @var array $runs */ ?>
 <?php /** @var array $current_group_run */ ?>
 <?php /** @var Jenkins $jenkins */ ?>
-<?php /** @var bool $is_group_run_rebuildable */ ?>
 
 <ul>
   <?php if (null === $current_group_run['id']): ?>
@@ -9,33 +8,23 @@
       <div class="alert-message error">There is no build branch</div>
     </li>
   <?php else: ?>
-
-      <li class="group_run_infos">
-        <table>
-          <tr>
-            <td>
-              Build git branch
-            </td>
-            <td>
-              <div class="btn-group">
-                <a class="btn dropdown-toggle btn-jenkins-khan" data-toggle="dropdown" href="#">
-                  <?php echo $current_group_run['git_branch'] ?>
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu dropdown-right">
-                  <?php if ($is_group_run_rebuildable): ?>
-                    <li><?php echo link_to('Relaunch all jobs', url_for('branch_rebuild', array('git_branch_slug' => $current_group_run['git_branch_slug'])), array('title' => 'Relaunch all jobs')) ?></li>
-                    <li><?php echo link_to('Add all jobs in delayed list', url_for('branch_rebuild_delayed', array('git_branch_slug' => $current_group_run['git_branch_slug'])), array('title' => 'Add all jobs in delayed list')) ?></li>
-                   <?php endif ?>
-                  <li><?php echo link_to('Add a job', $current_group_run['url_add_build'], array('title' => 'Add a job to this build branch')) ?></li>
-                  <li><?php echo link_to('Duplicate build branch', $current_group_run['url_duplicate']) ?></li>
-                  <li><?php echo link_to('Delete build branch', $current_group_run['url_delete']) ?></li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          </table>
-      </li>
+    <li class="group_run_infos">
+      <table>
+        <tr>
+          <td>
+            Build git branch
+          </td>
+          <td>
+            <?php include_partial('default/btnGroup', array(
+              'label' => $current_group_run['git_branch'],
+              'align_right' => true,
+              'links' => $current_group_run['dropdown_links'],
+              'class' => 'btn-jenkins-khan',
+            ));?>
+          </td>
+        </tr>
+        </table>
+    </li>
 
       <?php foreach ($runs as $id => $run): ?>
       <li>
@@ -71,30 +60,22 @@
               <?php if ($run['url_rebuild']): ?>
                 <?php echo link_to('Relaunch', $run['url_rebuild'], array(
                   'class' => 'run-again', 
-                  'title' => $run['is_running'] ? "Cancel current build and relaunch" : (!$run['url_rebuild_delayed'] ? "Launch build immediatly" : "Relaunch build")
+                  'title' => $run['title_url_rebuild'],
                 )); ?>
               <?php endif; ?>
             </td>
             <td class="actions">
-              <div class="btn-group">
-                <a class="btn dropdown-toggle btn-jenkins-khan" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                <ul class="dropdown-menu dropdown-right">
-                  <?php if ($run['url_rebuild_delayed']): ?>
-                    <li><?php echo link_to('Delay', $run['url_rebuild_delayed'], array('title' => 'Relaunch build (delayed)')) ?></li>
-                  <?php endif; ?>
-                  <li>
-                    <?php echo link_to('Remove build', $run['url_remove'], array('title' => 'Remove build from build branch', 'class' => 'remove-build')) ?>
-                  </li>
-                  <li><?php echo link_to('Go to console log', $run['url_console_log'], array('title' => 'View Jenkins console log', 'class' => 'jenkins', 'target' => '_blank')) ?></li>
-                  <li><?php echo link_to('Go to test report', $run['url_test_report'], array('class' => 'jenkins','target' => '_blank')) ?></li>
-                </ul>
-              </div>
+              <?php include_partial('default/btnGroup', array(
+                'links' => $run['dropdown_links'],
+                'align_right' => true,
+                'class' => 'btn-jenkins-khan',
+              ));?>
             </td>
           </tr>
         </table>
       </li>
       <?php endforeach; ?>
-      <?php if ($jenkins->isAvailable()): ?>
+      <?php if (isset($current_group_run['url_add_build'])): ?>
         <li class="add-build">
           <?php echo link_to('Add a job to this build branch', $current_group_run['url_add_build'], array('class' => 'add-build', 'title' => 'Add a job to this build branch')); ?>
         </li>
