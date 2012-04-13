@@ -56,7 +56,7 @@ class listGroupRunComponent extends sfComponent
         'result'              => $run->getJenkinsResult($jenkins),
         'parameters'          => $run->getLaunched() && $isRunning ? $run->getJenkinsBuildCleanedParameter($jenkins) : $run->decodeParameters(),
         'is_running'          => $isRunning,
-        'progress'            => $progress,
+        'progress'            => -1 === $progress ? null : $progress,
         'remaining_time'      => null === $remaining ? $remaining : $durationFormatter->formatte($remaining),
         'is_cancelable'       => $isCancelable,
         'url'                 => $urlBuild,
