@@ -21,11 +21,21 @@ sf_guard_password:
 
 branch_rebuild:
   url: /branch/:git_branch_slug/rebuild
+  class: sfPropelRoute
+  options: { model: JenkinsRun, type: object }
   param: { module: jenkins, action: rebuildBranch }
+  requirements:
+    id: \d+
+    sf_method: [get]
 
 branch_rebuild_delayed:
   url: /branch/:git_branch_slug/rebuild/delayed
+  class: sfPropelRoute
+  options: { model: JenkinsRun, type: object }
   param: { module: jenkins, action: rebuildBranch, delayed: 1 }
+  requirements:
+    id: \d+
+    sf_method: [get]
 
 branch_view:
   url: /branch/:git_branch_slug/view/*
