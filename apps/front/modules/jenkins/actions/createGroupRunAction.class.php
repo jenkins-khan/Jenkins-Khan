@@ -56,6 +56,7 @@ class createGroupRunAction extends baseJenkinsAction
         $runGroup->setLabel($form->getValue('label'));
         $runGroup->save();
 
+        $nbJobs = 0;
         foreach ($form->getValue('builds') as $jobName => $jobInfo)
         {
           if (!$jobInfo['job_name'])
@@ -77,6 +78,7 @@ class createGroupRunAction extends baseJenkinsAction
           $run->setLaunched($autoLaunch);
           $run->save();
 
+          $nbJobs++;
           if ($autoLaunch)
           {
             //launcher les builds
@@ -85,7 +87,15 @@ class createGroupRunAction extends baseJenkinsAction
           }
         }
 
-        $this->getUser()->setFlash('info', $autoLaunch ? "Jobs have been launched" : "Jobs have been registred in delayed list");
+        if (0 === $nbJobs)
+        {
+          $this->getUser()->setFlash('info', sprintf('Build branch [%s] has been created', $runGroup->getLabel()));
+        }
+        else 
+        {
+          $label = 1 === $nbJobs ? 'Job has ' : 'Jobs have ';
+          $this->getUser()->setFlash('info', $label . ($autoLaunch ? "been launched" : "been registred in delayed list"));
+        }
         $this->redirect($this->generateUrl('branch_view', $runGroup));
       }
     }
