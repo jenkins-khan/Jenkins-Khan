@@ -92,7 +92,7 @@ class listGroupRunComponent extends sfComponent
     $links    = array();
     $urlBuild = $run->getUrlBuild($jenkins);
 
-    if ($isRunning && $run->isRebuildable())
+    if ($isRunning || $run->isRebuildable())
     {
       $links[] = array(
         'label' => 'Delay',
