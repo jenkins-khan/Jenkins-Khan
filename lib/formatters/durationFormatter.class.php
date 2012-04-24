@@ -64,7 +64,7 @@ class durationFormatter
       }
     }
 
-    return implode(' ', $str);
+    return implode("&nbsp;", $str);
   }
 }
 

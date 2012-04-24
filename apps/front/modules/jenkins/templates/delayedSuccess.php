@@ -1,5 +1,6 @@
-<?php /** @var DelayedRunForm $form */ ?>
-<?php /** @var array          $delayed_runs */ ?>
+<?php /** @var DelayedRunForm    $form */ ?>
+<?php /** @var array             $delayed_runs */ ?>
+<?php /** @var durationFormatter $duration_formatter */ ?>
 
 <?php echo $form->renderFormTag(url_for('jenkins/delayed'), array('id' => 'delayedForm')) ?>
   <div class="form-header">
@@ -26,7 +27,7 @@
           <?php echo $widget['launch_job']->renderLabel() ?>
           <p class="last-duration">
             <?php if (strlen($delayed_runs[$id]['last_duration'])): ?>
-            Last duration: <?php echo $delayed_runs[$id]['last_duration'] ?>
+            Last duration: <?php echo $duration_formatter->formatte($delayed_runs[$id]['last_duration'], ESC_RAW) ?>
             <?php endif; ?>
           </p>
           <div class="timepicker-container input-append">
