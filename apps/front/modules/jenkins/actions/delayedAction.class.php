@@ -74,12 +74,13 @@ class delayedAction extends baseJenkinsAction
       $delayedRuns[$run->getId()] = array(
         'group_run_label'  => $groupRun->getLabel(),
         'group_run_result' => $groupRun->getResult($jenkins),
-        'last_duration'    => $durationFormatter->formatte($lastDuration),
+        'last_duration'    => $lastDuration,
         'parameters'       => null === $parameters ? $parameters : json_decode($run->getParameters(), true),
       );
     }
     
     $this->setVar('form', $form);
     $this->setVar('delayed_runs', $delayedRuns);
+    $this->setVar('duration_formatter', $durationFormatter);
   }
 }
