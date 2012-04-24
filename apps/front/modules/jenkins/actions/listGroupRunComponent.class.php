@@ -19,7 +19,6 @@ class listGroupRunComponent extends sfComponent
       return sfView::NONE;
     }
 
-    $durationFormatter     = new durationFormatter();
     $runs                  = $currentGroup->getJenkinsRuns();
     $dataRuns              = array();
     $isJenkinsAvailable    = $jenkins->isAvailable();
@@ -51,13 +50,13 @@ class listGroupRunComponent extends sfComponent
       $dataRuns[$run->getId()] = array(
         'job_name'            => $run->getJobName(),
         'start_time'          => $run->getStartTime($jenkins),
-        'duration'            => $durationFormatter->formatte($run->getDuration($jenkins)),
+        'duration'            => $run->getDuration($jenkins),
         'scheduled_launch'    => $run->getLaunchDelayed(),
         'result'              => $run->getJenkinsResult($jenkins),
         'parameters'          => $run->getLaunched() && $isRunning ? $run->getJenkinsBuildCleanedParameter($jenkins) : $run->decodeParameters(),
         'is_running'          => $isRunning,
         'progress'            => -1 === $progress ? null : $progress,
-        'remaining_time'      => null === $remaining ? $remaining : $durationFormatter->formatte($remaining),
+        'remaining_time'      => $remaining,
         'is_cancelable'       => $isCancelable,
         'url'                 => $urlBuild,
         'url_console_log'     => $urlBuild . '/console',
@@ -76,6 +75,7 @@ class listGroupRunComponent extends sfComponent
     
     $this->setVar('runs', $dataRuns);
     $this->setVar('current_group_run', $currentGroupInfos);
+    $this->setVar('duration_formatter', new durationFormatter());
   }
 
 
