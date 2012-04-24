@@ -1,6 +1,7 @@
 <?php /** @var array $runs */ ?>
 <?php /** @var array $current_group_run */ ?>
 <?php /** @var Jenkins $jenkins */ ?>
+<?php /** @var durationFormatter $duration_formatter */ ?>
 
 <ul>
   <?php if (null === $current_group_run['id']): ?>
@@ -38,13 +39,13 @@
             <td class="infos">
               <?php $infos = array(); ?>
               <?php if (null !== $run['start_time']): $infos[] = 'Launched at '. $run['start_time']; endif; ?>
-              <?php if (null !== $run['duration']): $infos[] = 'Duration: '. $run['duration']; endif; ?>
+              <?php if (null !== $run['duration']): $infos[] = 'Duration: '. $duration_formatter->formatte($run['duration'], ESC_RAW); endif; ?>
               <?php if (null !== $run['scheduled_launch']): $infos[] = 'Scheduled at '. $run['scheduled_launch']; endif; ?>
               <?php echo implode('<br />', $infos); ?>
             </td>
             <td class="job-progress">
               <?php if (null !== $run['progress']): ?>
-                <?php $title = $run['progress'] . '% (Estimated remaining time: ' . $run['remaining_time'] . ')'; ?>
+                <?php $title = $run['progress'] . '% (Estimated remaining time: ' . $duration_formatter->formatte($run['remaining_time'], ESC_RAW) . ')'; ?>
                 <div class="progress progress-info progress-striped active" title="<?php echo $title ?>" >
                   <?php $linkApparence = '<div class="bar" style="width: ' . $run['progress'] . '%;"></div>'; ?>
                   <?php echo link_to($linkApparence, $run['url_console_log'], array('target' => '_blank')) ?>
