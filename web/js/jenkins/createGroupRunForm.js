@@ -10,11 +10,11 @@
       
       return this.each(function(){
         var $this = $(this);
-        var data = $this.data('pmsipilot.createGroupRunForm');
+        var data = $this.data('jenkins-khan.createGroupRunForm');
         
         if (!data) {
           //enregistrement des options
-          $(this).data('pmsipilot.createGroupRunForm', {
+          $(this).data('jenkins-khan.createGroupRunForm', {
             target : $this,
             options: options
           });
@@ -87,7 +87,7 @@
      *  @return void
      */
     removeViewAllJob: function() {
-      var options = $(this).data('pmsipilot.createGroupRunForm').options;
+      var options = $(this).data('jenkins-khan.createGroupRunForm').options;
 
       $(options.jobsSelector + ' :visible:checkbox', this).removeAttr('checked');
     },
@@ -97,7 +97,7 @@
      *  @return void
      */
     addViewAllJob: function() {
-      var options = $(this).data('pmsipilot.createGroupRunForm').options;
+      var options = $(this).data('jenkins-khan.createGroupRunForm').options;
 
       $(options.jobsSelector + ' :visible:checkbox', this).attr('checked','checked');
     },
@@ -106,7 +106,7 @@
      * @return string
      */
     currentView: function() {
-      var options = $(this).data('pmsipilot.createGroupRunForm').options;
+      var options = $(this).data('jenkins-khan.createGroupRunForm').options;
       return $(options.viewTabSelector + '.' + options.tabLiActiveClass, this).attr(options.viewAttributeName);
     },
 
@@ -115,7 +115,7 @@
      * @param view
      */
     displayJobsForView: function(view) {
-      var options = $(this).data('pmsipilot.createGroupRunForm').options;
+      var options = $(this).data('jenkins-khan.createGroupRunForm').options;
       $(options.jobsSelector, this).hide();
       $(options.jobsSelector + '.' + view, this).css('display', 'block');
     }
@@ -132,7 +132,7 @@
     } else if ( typeof method === 'object' || ! method ) {
       return methods.init.apply( this, arguments );
     } else {
-      $.error( 'Unknown ' +  method + ' in pmsipilot.createGroupRunForm' );
+      $.error( 'Unknown ' +  method + ' in jenkins-khan.createGroupRunForm' );
     }
   };
 

@@ -10,11 +10,11 @@
       
       return this.each(function(){
         var $this = $(this);
-        var data = $this.data('pmsipilot.addBuildForm');
+        var data = $this.data('jenkins-khan.addBuildForm');
         
         if (!data) {
           //enregistrement des options
-          $(this).data('pmsipilot.addBuildForm', {
+          $(this).data('jenkins-khan.addBuildForm', {
             target : $this,
             options: options
           });
@@ -29,7 +29,7 @@
     },
     
     showJobParameters: function(jobName) {
-      var options = $(this).data('pmsipilot.addBuildForm').options;
+      var options = $(this).data('jenkins-khan.addBuildForm').options;
       
       $(options.parametersSelector, this).hide();
       $(options.parametersSelector + '.' + jobName, this).show();
@@ -47,7 +47,7 @@
     } else if ( typeof method === 'object' || ! method ) {
       return methods.init.apply( this, arguments );
     } else {
-      $.error( 'Unknown ' +  method + ' in pmsipilot.addBuildForm' );
+      $.error( 'Unknown ' +  method + ' in jenkins-khan.addBuildForm' );
     }
   };
 
