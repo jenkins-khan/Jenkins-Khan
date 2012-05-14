@@ -25,5 +25,6 @@ default:
   components:
     messages_flash: [default, messagesFlash]
     menu: [default, topMenu]
+    footer: [default, footer]
 
 
