@@ -10,11 +10,11 @@
       
       return this.each(function(){
         var $this = $(this);
-        var data = $this.data('pmsipilot.delayedRun');
+        var data = $this.data('jenkins-khan.delayedRun');
         
         if (!data) {
           //enregistrement des options
-          $(this).data('pmsipilot.delayedRun', {
+          $(this).data('jenkins-khan.delayedRun', {
             target : $this,
             options: options
           });
@@ -93,7 +93,7 @@
     } else if ( typeof method === 'object' || ! method ) {
       return methods.init.apply( this, arguments );
     } else {
-      $.error( 'Unknown ' +  method + ' in pmsipilot.delayedRun' );
+      $.error( 'Unknown ' +  method + ' in jenkins-khan.delayedRun' );
     }
   };
 

@@ -10,11 +10,11 @@
       
       return this.each(function(){
         var $this = $(this);
-        var data = $this.data('pmsipilot.jenkinsDashboard');
+        var data = $this.data('jenkins-khan.jenkinsDashboard');
         
         if (!data) {
           //enregistrement des options
-          $(this).data('pmsipilot.jenkinsDashboard', {
+          $(this).data('jenkins-khan.jenkinsDashboard', {
             target : $this,
             options: options
           });
@@ -77,7 +77,7 @@
     } else if ( typeof method === 'object' || ! method ) {
       return methods.init.apply( this, arguments );
     } else {
-      $.error( 'Unknown ' +  method + ' in pmsipilot.jenkinsDashboard' );
+      $.error( 'Unknown ' +  method + ' in jenkins-khan.jenkinsDashboard' );
     }
   };
 
