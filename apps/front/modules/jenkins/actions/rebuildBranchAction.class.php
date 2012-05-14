@@ -15,10 +15,16 @@ class rebuildBranchAction extends baseJenkinsAction
     $groupRun   = JenkinsGroupRunPeer::retrieveBySfGuardUserIdAndGitBranchSlug($userId, $branchName);
     $this->forward404If(null === $groupRun, sprintf('Can\'t retrieve JenkinsGroupRun with branch name %s and user id %s', $branchName, $userId));
 
-    $groupRun->rebuild($this->getJenkins(), $request->getParameter('delayed') == 1);
+    $delayed = $request->getParameter('delayed') == 1;
+    $groupRun->rebuild($this->getJenkins(), $delayed);
     JenkinsRunPeer::fillEmptyJobBuildNumber($this->getJenkins(), $this->getUser()->getUserId());
 
-    $this->getUser()->setFlash('info', sprintf('The build [%s] has been relaunched', $groupRun->getLabel()));
+    $message = $delayed ?
+      sprintf('The jobs of build [%s] have been added to the delayed list', $groupRun->getLabel()) :
+      sprintf('The build [%s] has been relaunched', $groupRun->getLabel()) 
+    ;
+    
+    $this->getUser()->setFlash('info', $message);
 
     $this->redirect($this->generateUrl('branch_view', $groupRun));
   }
