@@ -9,9 +9,16 @@
   <?php include_javascripts() ?>
 </head>
 <body>
-<?php include_component_slot('menu') ?>
-<?php include_component_slot('messages_flash') ?>
 
-<?php echo $sf_content ?>
+<div class="wrapper">
+  <?php include_component_slot('menu') ?>
+  <div class="container">
+    <?php include_component_slot('messages_flash') ?>
+    <?php echo $sf_content ?>
+  </div>
+  <div class="push"><!--//--></div>
+</div>
+
+<?php include_component_slot('footer') ?>
 </body>
 </html>
