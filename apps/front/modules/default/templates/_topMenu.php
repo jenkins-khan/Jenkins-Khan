@@ -7,7 +7,7 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
-      <h1><a class="brand" href="#">Jenkins Khan</a></h1>
+      <h1><a class="brand" href="#">ಠ益ಠ Jenkins Khan</a></h1>
       <?php if ($user->isAuthenticated()): ?>
         <ul class="nav">
           <?php foreach ($menus as $name => $menu): ?>
