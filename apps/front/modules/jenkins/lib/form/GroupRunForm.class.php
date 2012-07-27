@@ -33,9 +33,16 @@ class GroupRunForm extends sfForm
   {
     $this->widgetSchema->setNameFormat('group_run[%s]');
 
-    $allJobs = $this->getJenkins()->getAllJobs();
-    $jobsName = array_keys($allJobs);
-
+    $jobs = $this->getJenkins()->getJobs();
+    usort($jobs, function(Jenkins_Job $a, Jenkins_Job $b) {
+      $weight = count($b->getParametersDefinition()) - count($a->getParametersDefinition());
+      if (0 === $weight)
+      {
+        $weight = ($a->getName() > $b->getName()) ? 1 : -1;
+      }
+      return $weight;
+    });
+    
     $this->setWidget('sf_guard_user_id', new sfWidgetFormInputHidden());
     $this->setWidget('label', new sfWidgetFormInputText(array('label' => 'Build branch name')));
     $this->setWidget('git_branch', new sfWidgetFormInputText(array('label' => 'Git branch')));
@@ -48,8 +55,9 @@ class GroupRunForm extends sfForm
 
     $widgets    = array();
     $validators = array();
-    foreach ($jobsName as $jobName)
+    foreach ($jobs as $job)
     {
+      $jobName = $job->getName();
       list($widgets[$jobName], $validators[$jobName]) = $this->createBuildWidgetValidator($jobName);
     }
 
