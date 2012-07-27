@@ -40,37 +40,36 @@ body {
           margin: 2px 10px;
         }
         .jobs {
-          font-size: @basefont * 0.75;
-          margin: 2px 10px;
+          margin: 2px 5px;
           background-color: @baseColorLighter;
           border: 1px solid @baseColor;
-          padding: 6px 20px;
-          width: 25%;
-          float: left;
+          font-size: @basefont * 0.75;
           .border-radius(5px);
-          label, input {
-            line-height: 14px;
-            font-size: @basefont * 0.75;
-          }
-          input, select {
-            height: 20px;
-            padding: 0px 4px ;
-            option {
+          .job {
+            margin: 6px 20px;
+            label, input {
+              line-height: 14px;
+              font-size: @basefont * 0.75;
+            }
+            input, select {
+              height: 20px;
               padding: 0px 4px ;
+              option {
+                padding: 0px 4px ;
+              }
+            }
+          
+            .parameters {
+              padding-left: 20px;
+              
+              label {
+                width: 30%;
+              }
+              select, input {
+                width: 60%;
+              }
             }
           }
-        
-          .parameters {
-            @paddingParameters: 20px;
-            padding-left: @paddingParameters;
-            
-            label {
-              width: @groupRunLabel - @paddingParameters;
-            }
-            select {
-              width: auto;
-            }
-          } 
         }
       }
     }
