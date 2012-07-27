@@ -46,24 +46,31 @@
         <a href="#" id="addViewAllJob" class="btn">Select all jobs</a>
         <a href="#" id="removeViewAllJob" class="btn">Unselect all jobs</a>
       </div>
+
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="row-fluid">
+            <?php foreach ($form['builds'] as $jobName => $widget): ?>
+              <div class="jobs span4 <?php isset($view_by_jobs[$jobName]) && print implode(' ', sfOutputEscaper::unescape($view_by_jobs[$jobName]));?>">
+                <div class="job">
+                  <?php echo $widget['job_name']->renderError() ?>
+                  <?php echo $widget['job_name']->renderLabel(); ?>
+                  <?php echo $widget['job_name']->render() ?>
       
-      <?php foreach ($form['builds'] as $jobName => $widget): ?>
-        <div class="jobs <?php isset($view_by_jobs[$jobName]) && print implode(' ', sfOutputEscaper::unescape($view_by_jobs[$jobName]));?>">
-          <?php echo $widget['job_name']->renderError() ?>
-          <?php echo $widget['job_name']->renderLabel(); ?>
-          <?php echo $widget['job_name']->render() ?>
-          
-          <div class="parameters">
-            <?php if (isset($widget['parameters'])): ?>
-              <ul>
-                <?php echo $widget['parameters']->renderError() ?>
-                <?php echo $widget['parameters']->render() ?>
-              </ul>
-            <?php endif; ?>
+                  <div class="parameters">
+                    <?php if (isset($widget['parameters'])): ?>
+                    <ul>
+                      <?php echo $widget['parameters']->renderError() ?>
+                      <?php echo $widget['parameters']->render() ?>
+                    </ul>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              </div>
+            <?php endforeach; ?>
           </div>
-          
         </div>
-      <?php endforeach; ?>
+      </div>
     </div>
   </div>
   <div class="form-footer">
