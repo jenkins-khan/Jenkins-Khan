@@ -40,3 +40,8 @@ all:
     param:
       cache_key_use_vary_headers: true
       cache_key_use_host_name:    true
+      
+  storage:
+    class: sfSessionStorage
+    param:
+      session_name: jenkins_khan
