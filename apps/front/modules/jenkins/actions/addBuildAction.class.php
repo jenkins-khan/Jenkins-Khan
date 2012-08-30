@@ -107,6 +107,7 @@ class addBuildAction extends baseJenkinsAction
       'git_branch'      => $jenkinsGroupRun->getGitBranch(),
       'git_branch_slug' => $jenkinsGroupRun->getGitBranchSlug(),
       'result'          => $jenkinsGroupRun->getResult($this->getJenkins()),
+      'url'             => $this->generateUrl('branch_view', $jenkinsGroupRun),
     ));
   }
 }
