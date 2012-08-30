@@ -73,6 +73,7 @@ class delayedAction extends baseJenkinsAction
       
       $delayedRuns[$run->getId()] = array(
         'group_run_label'  => $groupRun->getLabel(),
+        'group_run_url'    => $this->generateUrl('branch_view', $groupRun),
         'group_run_result' => $groupRun->getResult($jenkins),
         'last_duration'    => $lastDuration,
         'parameters'       => null === $parameters ? $parameters : json_decode($run->getParameters(), true),
