@@ -1,4 +1,9 @@
 <?php
+/**
+ * @var string $status
+ * @var string $label
+ * @var string $url
+ */
 
 $class    = null;
 $message  = null;
@@ -57,4 +62,9 @@ if (isset($label))
 }
 
 ?>
-<span class="label jenkins-status <?php echo $class ?>"><?php echo $message ?></span>
+
+<?php if (isset($url)): ?>
+  <a href="<?php echo $url; ?>"><span class="label jenkins-status <?php echo $class ?>"><?php echo $message ?></span></a>
+<?php else: ?>
+  <span class="label jenkins-status <?php echo $class ?>"><?php echo $message ?></span>
+<?php endif; ?>
