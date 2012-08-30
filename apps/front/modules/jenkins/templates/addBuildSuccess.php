@@ -5,7 +5,14 @@
   <?php echo $form->renderHiddenFields(); ?>
 
   <div class="form-header">
-    Add a job to the build branch <?php echo get_partial('buildStatus', array('status' => $group_run['result'], 'label' => $group_run['label'])) ?> 
+    Add a job to the build branch <?php echo get_partial(
+      'buildStatus',
+      array(
+        'status' => $group_run['result'],
+        'label'  => $group_run['label'],
+        'url'    => $group_run['url'],
+      )
+  ); ?> 
   </div>
   <div class="form-content">
     <div>

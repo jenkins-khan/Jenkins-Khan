@@ -23,7 +23,14 @@
         <?php /** @var sfWidgetFormInputCheckbox $widget */ ?>
         <li class="delayed-run">
           <?php echo $widget['launch_job']->render() ?>
-          <?php include_partial('buildStatus', array('status' => $delayed_runs[$id]['group_run_result'], 'label' => $delayed_runs[$id]['group_run_label'])); ?>
+          <?php include_partial(
+            'buildStatus',
+            array(
+              'status' => $delayed_runs[$id]['group_run_result'],
+              'label'  => $delayed_runs[$id]['group_run_label'],
+              'url'    => $delayed_runs[$id]['group_run_url'],
+            )
+          ); ?>
           <?php echo $widget['launch_job']->renderLabel() ?>
           <p class="last-duration">
             <?php if (strlen($delayed_runs[$id]['last_duration'])): ?>
