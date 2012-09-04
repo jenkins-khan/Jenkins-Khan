@@ -2,5 +2,10 @@
 /**
  * @var array $params
  */
-?>
-<?php isset($params['help']) && print $params['help']; ?>
+
+if (isset($params['help']))
+{
+  use_helper('Markdown');
+  echo '<div class="description parameter">' . esc_raw(Markdown($params['help'])) . '</div>';
+}
+
