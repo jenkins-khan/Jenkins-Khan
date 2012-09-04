@@ -141,6 +141,16 @@ class BuildForm extends sfForm
     }
 
     $widget    = new sfWidgetFormSchema($extraParametersWidgets, array('label' => 'Parameters'));
+
+    $widget->setDefaultFormFormatterName('jobParameter');
+    foreach ($parameters as $name => $parameter)
+    {
+      if ($parameter['description'])
+      {
+        $widget->setHelp($name, $parameter['description']);
+      }
+    }
+    
     $validator = new sfValidatorSchema($extraParametersValidators);
 
     return array($widget, $validator);
