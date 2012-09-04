@@ -1,9 +1,9 @@
 <?php /** @var string      $name */ ?>
 <?php /** @var string      $title */ ?>
 <?php /** @var string|null $id */ ?>
+<?php $identifier = isset($identifier) ? $identifier : md5($name); ?>
 
-
-<div class="modal hide" id="<?php echo isset($id) ? $id : md5($name) ?>">
+<div class="modal hide" id="<?php echo isset($id) ? $id : $identifier; ?>">
 
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
@@ -13,7 +13,7 @@
   </div>
 
   <div class="modal-body">
-    <?php include_partial('help/helps/' . $name) ?>
+    <?php include_partial('help/helps/' . $name, array('params' => $params)) ?>
   </div>
 
   <div class="modal-footer">

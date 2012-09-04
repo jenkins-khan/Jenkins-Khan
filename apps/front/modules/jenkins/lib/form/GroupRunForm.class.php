@@ -86,7 +86,9 @@ class GroupRunForm extends sfForm
   {
     $extraParametersWidgets    = array();
     $extraParametersValidators = array();
-    foreach ($this->getJenkins()->getJob($jobName)->getParametersDefinition() as $name => $parameter)
+    $parameters = $this->getJenkins()->getJob($jobName)->getParametersDefinition();
+    $helps = array();
+    foreach ($parameters as $name => $parameter)
     {
       if (in_array($name, array(JenkinsRunPeer::JENKINS_BRANCH_PARAMETER_NAME)))
       {
@@ -118,6 +120,11 @@ class GroupRunForm extends sfForm
 
         $extraParametersValidators[$name] = new sfValidatorString(array('required' => false));
       }
+
+      if ($parameter['description'])
+      {
+        $helps[$name] = $parameter['description'];
+      }
     }
 
     $widgets = array(
@@ -131,7 +138,12 @@ class GroupRunForm extends sfForm
     {
       $widgets['parameters']    = new sfWidgetFormSchema($extraParametersWidgets, array('label' => 'Parameters'));
       $validators['parameters'] = new sfValidatorSchema($extraParametersValidators);
-      $widgets['parameters']->setFormFormatterName('list');
+      
+      $widgets['parameters']->setDefaultFormFormatterName('jobParameter');
+      foreach ($helps as $name => $description)
+      {
+        $widgets['parameters']->setHelp($name, $description);
+      }
     }
 
     $widget    = new sfWidgetFormSchema($widgets);
