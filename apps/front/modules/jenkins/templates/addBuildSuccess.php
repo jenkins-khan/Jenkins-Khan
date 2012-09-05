@@ -30,7 +30,7 @@
     <div class="parameters">
       <ul>
         <?php foreach ($form['parameters'] as $jobName => $widgets): ?>
-          <li class="<?php echo $jobName?>">
+          <li class="parameter <?php echo $jobName?>">
             <?php echo $widgets->renderError() ?>
             <?php echo $widgets->render() ?>
           </li>

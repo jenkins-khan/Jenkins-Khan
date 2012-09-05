@@ -16,9 +16,9 @@
   }
 
   .modal-body {
+    @baseFontModal: 13px;
     * {
-      font-family: 'Verdana';
-      font-size: 13px;
+      font-size: @baseFontModal;
       line-height: 20px;
     }
   
@@ -29,21 +29,19 @@
       }
     }
     
-    .description {
-        code {
-            background-color: #F0F0F0;
-            color: purple;
-            padding: 1px;
-            border: 1px solid #C0C0C0;
-        }
-        ul {
-            margin: 0 0 5px;
-            li {
-                display: list-item;
-                list-style-type: disc;
-                margin-left: 30px;
-            }
-        }
+    pre, code {
+      background-color: @baseColorLighter;
+      color: @purple;
+      padding: 1px;
+      border: 1px solid @grayLight;
+    }
+    ul {
+      margin: 0 0 5px;
+      li {
+        display: list-item;
+        list-style-type: disc;
+        margin-left: 30px;
+      }
     }
     
   }

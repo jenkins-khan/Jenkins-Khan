@@ -55,7 +55,7 @@
    * 
    */
   $.fn.addBuildForm.defaults = {
-    parametersSelector: '.parameters li',
+    parametersSelector: '.parameters li.parameter',
     jobSelector: '#build_job'
   };
 
