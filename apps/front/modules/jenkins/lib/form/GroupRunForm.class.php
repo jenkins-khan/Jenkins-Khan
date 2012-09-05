@@ -34,14 +34,6 @@ class GroupRunForm extends sfForm
     $this->widgetSchema->setNameFormat('group_run[%s]');
 
     $jobs = $this->getJenkins()->getJobs();
-    usort($jobs, function(Jenkins_Job $a, Jenkins_Job $b) {
-      $weight = count($b->getParametersDefinition()) - count($a->getParametersDefinition());
-      if (0 === $weight)
-      {
-        $weight = ($a->getName() > $b->getName()) ? 1 : -1;
-      }
-      return $weight;
-    });
     
     $this->setWidget('sf_guard_user_id', new sfWidgetFormInputHidden());
     $this->setWidget('label', new sfWidgetFormInputText(array('label' => 'Build branch name')));

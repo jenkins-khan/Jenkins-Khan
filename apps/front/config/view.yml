@@ -13,11 +13,13 @@ default:
   
   stylesheets:    
     - ../bootstrap/css/bootstrap.min.css
+    - jquery/jquery.isotope.css
     #- ../less/bootstrap.less: {rel:  stylesheet/less }
     - bootstrap.css
   
   javascripts:
     - jquery/jquery-1.7.1.min.js
+    - jquery/jquery.isotope.min.js
     - ../bootstrap/js/bootstrap.min.js
     - jenkins/modals.js
     #- less-1.2.2.min.js
