@@ -25,10 +25,24 @@
               $(options.inputGroupNameSelector, $this).val($(this).val());
             }
           });
-          
-          
-          $this.createGroupRunForm('displayJobsForView', $this.createGroupRunForm('currentView'));
 
+          var container = $(options.jobsSelector);
+
+          container.isotope({
+            itemSelector: options.jobSelector,
+            layoutMode: 'masonry'
+          });
+
+          $(options.viewTabSelector).click(function(){
+            var selector = $(this).attr(options.viewAttributeName);
+            container.isotope({
+              filter: selector
+            });
+
+            return false;
+          });
+          
+          
           //gestion du panier
           var cart = $(options.cartSelector, $this);
           cart.bind({
@@ -52,7 +66,6 @@
             var viewName = $(this).attr(options.viewAttributeName);
             $(this).parents('ul').find('li').removeClass(options.tabLiActiveClass);
             $(this).addClass(options.tabLiActiveClass);
-            $this.createGroupRunForm('displayJobsForView', viewName);
           });
 
           $(options.removeViewAllJobSelector, $this).click(function() {
@@ -71,7 +84,7 @@
           cart.trigger('reinit');
           
           //ajout d'un job, on met à jour le panier
-          $(':checkbox', $(options.jobsContainerSelector, $this)).change(function(){
+          $(':checkbox', $(options.jobsSelector, $this)).change(function(){
             if ($(this).attr('checked')) {
               cart.trigger('add');
             } else {
@@ -108,17 +121,8 @@
     currentView: function() {
       var options = $(this).data('jenkins-khan.createGroupRunForm').options;
       return $(options.viewTabSelector + '.' + options.tabLiActiveClass, this).attr(options.viewAttributeName);
-    },
-
-    /**
-     * 
-     * @param view
-     */
-    displayJobsForView: function(view) {
-      var options = $(this).data('jenkins-khan.createGroupRunForm').options;
-      $(options.jobsSelector, this).hide();
-      $(options.jobsSelector + '.' + view, this).css('display', 'block');
     }
+
   };
 
   /**
@@ -143,10 +147,10 @@
     viewTabSelector:         '.jenkins-view li',
     inputGitBranchSelector:  ':input[name*="git_branch"]',
     inputGroupNameSelector:  ':input[name*="label"]',
-    viewAttributeName:       'view',
+    viewAttributeName:       'data-view',
     tabLiActiveClass:        'active',
+    jobSelector:            '.job',
     jobsSelector:            '.jobs',
-    jobsContainerSelector:   '.jobs',
     removeViewAllJobSelector:'#removeViewAllJob',
     addViewAllJobSelector:   '#addViewAllJob',
     cartSelector:            '.cart',
