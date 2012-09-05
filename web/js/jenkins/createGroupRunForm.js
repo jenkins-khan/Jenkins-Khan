@@ -41,7 +41,9 @@
 
             return false;
           });
-          
+
+          // move modals out of isotope ==> they couldn't be displayed
+          $("<div id='modalContainer'>").append($(".modal", container)).appendTo($this);
           
           //gestion du panier
           var cart = $(options.cartSelector, $this);
