@@ -95,19 +95,29 @@ class JenkinsGroupRun extends BaseJenkinsGroupRun
   /**
    * @param Jenkins $jenkins
    * @param bool    $delayed
+   * @param bool    $onlyUnstabled
    *
    * @return $this
    */
-  public function rebuild(Jenkins $jenkins, $delayed = false)
+  public function rebuild(Jenkins $jenkins, $delayed = false, $onlyUnstabled = false)
   {
     /** @var JenkinsRun $run */
     foreach ($this->getJenkinsRuns() as $run)
     {
+      $unstabledStatus = array(
+        JenkinsRun::FAILURE,
+        JenkinsRun::UNSTABLE,
+        JenkinsRun::ABORTED,
+        JenkinsRun::UNREACHABLE,
+      );
       if (!$run->isRebuildable())
       {
         continue;
       }
-      $run->rebuild($jenkins, $delayed);
+      if (!$onlyUnstabled || in_array($run->getJenkinsResult($jenkins), $unstabledStatus))
+      {
+        $run->rebuild($jenkins, $delayed);
+      }
     }
     return $this;
   }
