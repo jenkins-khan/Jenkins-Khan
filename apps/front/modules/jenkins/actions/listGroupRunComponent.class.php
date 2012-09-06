@@ -142,6 +142,11 @@ class listGroupRunComponent extends sfComponent
       'label' => 'Relaunch all jobs',
       'url'   => $this->generateUrl('branch_rebuild', $currentGroup),
     );
+    
+    $isJenkinsAvailable && $links[] = array(
+      'label' => 'Relaunch all unstabled jobs',
+      'url'   => $this->generateUrl('branch_rebuild_unstabled', $currentGroup),
+    );
 
     $links[] = array(
       'label' => 'Add all jobs in delayed list',
