@@ -37,6 +37,15 @@ branch_rebuild_delayed:
     id: \d+
     sf_method: [get]
 
+branch_rebuild_unstabled:
+  url: /branch/:git_branch_slug/rebuild/unstabled
+  class: sfPropelRoute
+  options: { model: JenkinsRun, type: object }
+  param: { module: jenkins, action: rebuildBranch, unstabled: 1 }
+  requirements:
+    id: \d+
+    sf_method: [get]
+
 branch_view:
   url: /branch/:git_branch_slug/view/*
   class: sfPropelRoute
