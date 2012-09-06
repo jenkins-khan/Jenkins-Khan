@@ -41,6 +41,10 @@ class topMenuComponent extends sfComponent
             'url'   => 'jenkins/launchAllDelayed',
             'title' => sprintf('Launch all delayed jobs (%s)', $nbJobDelayed),
           ),
+          'Clean delayed jobs' => array(
+            'url'   => 'jenkins/cleanAllDelayed',
+            'title' => sprintf('Clean all delayed jobs (%s)', $nbJobDelayed),
+          ),
         )
       ),
     );
