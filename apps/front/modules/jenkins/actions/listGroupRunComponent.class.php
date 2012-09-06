@@ -164,7 +164,7 @@ class listGroupRunComponent extends sfComponent
       'url'   => 'jenkins/deleteGroupRun?id=' . $currentGroup->getId(),
     );
     
-    $links[] = array(
+    $isJenkinsAvailable && $links[] = array(
       'label' => 'Cancel all jobs',
       'url'   => 'jenkins/cancelRun?group_run_id=' . $currentGroup->getId(),
     );
