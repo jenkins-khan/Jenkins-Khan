@@ -14,28 +14,10 @@ class rebuildBranchAction extends baseJenkinsAction
 
     $groupRun   = JenkinsGroupRunPeer::retrieveBySfGuardUserIdAndGitBranchSlug($userId, $branchName);
     $this->forward404If(null === $groupRun, sprintf('Can\'t retrieve JenkinsGroupRun with branch name %s and user id %s', $branchName, $userId));
-
-//    $message = sprintf('The build [%s] has been relaunched', $groupRun->getLabel());
-//    
-//    if ($request->getParameter('delayed'))
-//    {
-//      $groupRun->rebuild($this->getJenkins(), true);
-//      JenkinsRunPeer::fillEmptyJobBuildNumber($this->getJenkins(), $this->getUser()->getUserId());
-//      $message = sprintf('The jobs of build [%s] have been added to the delayed list', $groupRun->getLabel());
-//    }
-//    elseif ($request->getParameter('unstabled'))
-//    {
-//      
-//    }
-//    else
-//    {
-//      $groupRun->rebuild($this->getJenkins(), false);
-//      JenkinsRunPeer::fillEmptyJobBuildNumber($this->getJenkins(), $this->getUser()->getUserId());
-//    }
     
     $delayed       = $request->getParameter('delayed') == 1;
-    $justUnstabled = $request->getParameter('unstabled') == 1;
-    $groupRun->rebuild($this->getJenkins(), $delayed, $justUnstabled);
+    $onlyUnstabled = $request->getParameter('unstabled') == 1;
+    $groupRun->rebuild($this->getJenkins(), $delayed, $onlyUnstabled);
     JenkinsRunPeer::fillEmptyJobBuildNumber($this->getJenkins(), $this->getUser()->getUserId());
     
     $message = sprintf('The build [%s] has been relaunched', $groupRun->getLabel());
@@ -43,7 +25,7 @@ class rebuildBranchAction extends baseJenkinsAction
     {
       $message = sprintf('The jobs of build [%s] have been added to the delayed list', $groupRun->getLabel());
     }
-    elseif ($justUnstabled)
+    elseif ($onlyUnstabled)
     {
       $message = sprintf('All the jobs of build [%s] have been added to the delayed list', $groupRun->getLabel());
     }

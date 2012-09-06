@@ -95,11 +95,11 @@ class JenkinsGroupRun extends BaseJenkinsGroupRun
   /**
    * @param Jenkins $jenkins
    * @param bool    $delayed
-   * @param bool    $justUnstabled
+   * @param bool    $onlyUnstabled
    *
    * @return $this
    */
-  public function rebuild(Jenkins $jenkins, $delayed = false, $justUnstabled = false)
+  public function rebuild(Jenkins $jenkins, $delayed = false, $onlyUnstabled = false)
   {
     /** @var JenkinsRun $run */
     foreach ($this->getJenkinsRuns() as $run)
@@ -114,7 +114,7 @@ class JenkinsGroupRun extends BaseJenkinsGroupRun
       {
         continue;
       }
-      if (!$justUnstabled || in_array($run->getJenkinsResult($jenkins), $unstabledStatus))
+      if (!$onlyUnstabled || in_array($run->getJenkinsResult($jenkins), $unstabledStatus))
       {
         $run->rebuild($jenkins, $delayed);
       }
