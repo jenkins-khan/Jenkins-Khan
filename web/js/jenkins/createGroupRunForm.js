@@ -103,8 +103,8 @@
      */
     removeViewAllJob: function() {
       var options = $(this).data('jenkins-khan.createGroupRunForm').options;
-
-      $(options.jobsSelector + ' :visible:checkbox', this).removeAttr('checked');
+      
+      $(options.jobsSelector + ' .job:not(.isotope-hidden) :visible:checkbox', this).removeAttr('checked');
     },
     
     
@@ -114,7 +114,7 @@
     addViewAllJob: function() {
       var options = $(this).data('jenkins-khan.createGroupRunForm').options;
 
-      $(options.jobsSelector + ' :visible:checkbox', this).attr('checked','checked');
+      $(options.jobsSelector + ' .job:not(.isotope-hidden) :visible:checkbox', this).attr('checked','checked');
     },
 
     /**
