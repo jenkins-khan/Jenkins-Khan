@@ -4,24 +4,52 @@ class cancelRunAction extends baseJenkinsAction
 {
 
   /**
-   *
    * @param sfRequest $request The current sfRequest object
    *
-   * @return mixed     A string containing the view name associated with this action
+   * @return mixed|void A string containing the view name associated with this action|void
+   * @throws Exception
    */
   function execute($request)
   {
-    $this->forward404Unless($request->hasParameter('run_id'), 'run_id parameter is required');
-    $jenkinsRun = JenkinsRunPeer::retrieveByPK($request->getParameter('run_id'));
-
-    $this->forward404Unless(
-      $jenkinsRun instanceOf JenkinsRun,
-      sprintf('can\'t create JenkinsRun with id %s', $request->getParameter('run_id'))
-    );
+    $jenkins = $this->getJenkins();
     
-    $jenkins           = $this->getJenkins();
-    $jenkinsGroupRunId = $jenkinsRun->getJenkinsGroupRunId();
+    if ($request->hasParameter('group_run_id'))
+    {
+      $jenkinsGroupRun = JenkinsGroupRunPeer::retrieveByPK($request->getParameter('group_run_id'));
+      $this->forward404Unless(
+        $jenkinsGroupRun instanceOf JenkinsGroupRun,
+        sprintf('can\'t create JenkinsGroupRun with id %s', $request->getParameter('group_run_id'))
+      );
+      $jenkinsRuns = $jenkinsGroupRun->getJenkinsRuns();
+      foreach ($jenkinsRuns as $jenkinsRun)
+      {
+        $this->cancelJenkinsRun($jenkinsRun, $jenkins);
+      }
+      $this->getUser()->setFlash('info', sprintf('All builds of group [%s] have been canceled', $jenkinsGroupRun->getLabel()));
+      $this->redirect($this->generateUrl('branch_view', $jenkinsGroupRun));
+    }
+    elseif ($request->hasParameter('run_id'))
+    {
+      $jenkinsRun = JenkinsRunPeer::retrieveByPK($request->getParameter('run_id'));
+      $this->forward404Unless(
+        $jenkinsRun instanceOf JenkinsRun,
+        sprintf('can\'t create JenkinsRun with id %s', $request->getParameter('run_id'))
+      );
+      $this->cancelJenkinsRun($jenkinsRun, $jenkins);
+      $this->redirect($this->generateUrl('branch_view', $jenkinsRun->getJenkinsGroupRun()));
+    }
+    else
+    {
+      throw new Exception('run_id or group_run_id parameter is required');
+    }
+  }
 
+  /**
+   * @param JenkinsRun $jenkinsRun
+   * @param Jenkins    $jenkins
+   */
+  private function cancelJenkinsRun(JenkinsRun $jenkinsRun, Jenkins $jenkins)
+  {
     if (($build = $jenkinsRun->getJenkinsBuild($jenkins)) instanceof Jenkins_Build)
     {
       /** @var Jenkins_Build $build */
@@ -55,7 +83,6 @@ class cancelRunAction extends baseJenkinsAction
         )
       );
     }
-
-    $this->redirect($this->generateUrl('branch_view', $jenkinsRun->getJenkinsGroupRun()));
   }
+  
 }
