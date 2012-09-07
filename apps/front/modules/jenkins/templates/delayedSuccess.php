@@ -51,9 +51,12 @@
       </ol>
     <?php endif; ?>
   </div>
+  <?php if (count($form['runs']) > 0): ?>
   <div class="form-footer">
-    <input type="submit" value="Launch" class="btn btn-large btn-primary"/>
+    <input type="submit" name="delete_delayed" value="Delete" class="btn btn-large btn-primary btn-delete"/>
+    <input type="submit" name="launch_delayed" value="Launch" class="btn btn-large btn-primary"/>
   </div>
+  <?php endif; ?>
 </form>
 
 

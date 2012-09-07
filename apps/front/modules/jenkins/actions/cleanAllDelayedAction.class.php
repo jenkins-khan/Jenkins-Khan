@@ -15,6 +15,7 @@ class cleanAllDelayedAction extends baseJenkinsAction
     foreach ($runs as $run)
     {
       $run->setLaunched(1);
+      $run->setJobBuildNumber(null);
       $run->save();
       $numDelayedJobs--;
     }
