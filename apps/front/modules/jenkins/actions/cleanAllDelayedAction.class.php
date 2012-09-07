@@ -14,7 +14,8 @@ class cleanAllDelayedAction extends baseJenkinsAction
     $numDelayedJobs = count($runs);
     foreach ($runs as $run)
     {
-      $run->delete();
+      $run->setLaunched(1);
+      $run->save();
       $numDelayedJobs--;
     }
     if ($numDelayedJobs > 0)
