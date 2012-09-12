@@ -31,7 +31,8 @@
           container.isotope({
             itemSelector: options.jobSelector,
             layoutMode: 'masonry',
-            filter: $(options.viewTabSelector + '.' + options.tabLiActiveClass, this).attr(options.viewAttributeName)
+            filter: $(options.viewTabSelector + '.' + options.tabLiActiveClass, this).attr(options.viewAttributeName),
+            transformsEnabled: false
           });
 
           $(options.viewTabSelector).click(function(){
