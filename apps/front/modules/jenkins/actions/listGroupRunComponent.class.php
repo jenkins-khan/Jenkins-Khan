@@ -144,7 +144,7 @@ class listGroupRunComponent extends sfComponent
     );
     
     $isJenkinsAvailable && $links[] = array(
-      'label' => 'Relaunch all unstabled jobs',
+      'label' => 'Relaunch all unstable jobs',
       'url'   => $this->generateUrl('branch_rebuild_unstabled', $currentGroup),
     );
 
