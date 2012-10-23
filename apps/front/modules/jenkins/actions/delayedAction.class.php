@@ -22,34 +22,51 @@ class delayedAction extends baseJenkinsAction
         $messages = array();
         foreach ($form->getValue('runs') as $id => $datas)
         {
-          $run = JenkinsRunPeer::retrieveByPK($id);
-          if ('on' !== $datas['launch_job'])
+          if ($request->getParameter('launch_delayed'))
           {
-            $run->setLaunchDelayed(null);
-            $run->save();
-            continue;
-          }
+            //launch selected jobs
+            $run = JenkinsRunPeer::retrieveByPK($id);
+            if ('on' !== $datas['launch_job'])
+            {
+              $run->setLaunchDelayed(null);
+              $run->save();
+              continue;
+            }
 
-          $launchAt = null;
-          if (strlen($datas['scheduled_at']) > 0)
-          {
-            $launchAt = strtotime($datas['scheduled_at']);
-          }
-          
-          if (null === $launchAt)
-          {
-            $run->launchDelayed($this->getJenkins());
-            $messages[] = sprintf('The job [%s] in build branch has been launched', $run->getJobName(), $run->getGitBranch());
+            $launchAt = null;
+            if (strlen($datas['scheduled_at']) > 0)
+            {
+              $launchAt = strtotime($datas['scheduled_at']);
+            }
+
+            if (null === $launchAt)
+            {
+              $run->launchDelayed($this->getJenkins());
+              $messages[] = sprintf('The job [%s] in build branch has been launched', $run->getJobName(), $run->getGitBranch());
+            }
+            else
+            {
+              $run->setLaunchDelayed($launchAt);
+              $run->save();
+              $messages[] = sprintf(
+                'The job [%s] in build %s branch will be launched at %s ',
+                $run->getJobName(),
+                $run->getGitBranch(),
+                $run->getLaunchDelayed('Y-m-d H:i')
+              );
+            }
           }
           else
           {
-            $run->setLaunchDelayed($launchAt);
+            //undelayed selected jobs
+            $run = JenkinsRunPeer::retrieveByPK($id);
+            $run->setLaunched(1);
+            $run->setJobBuildNumber(null);
             $run->save();
             $messages[] = sprintf(
-              'The job [%s] in build %s branch will be launched at %s ', 
-              $run->getJobName(), 
-              $run->getGitBranch(), 
-              $run->getLaunchDelayed('Y-m-d H:i')
+              'The job [%s] in build branch has been deleted from the list',
+              $run->getJobName(),
+              $run->getGitBranch()
             );
           }
         }
