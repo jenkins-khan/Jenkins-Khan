@@ -94,7 +94,7 @@ class createGroupRunAction extends baseJenkinsAction
         else 
         {
           $label = 1 === $nbJobs ? 'Job has ' : 'Jobs have ';
-          $this->getUser()->setFlash('info', $label . ($autoLaunch ? "been launched" : "been registred in delayed list"));
+          $this->getUser()->setFlash('info', $label . ($autoLaunch ? "been launched" : "been registered in delayed list"));
         }
         $this->redirect($this->generateUrl('branch_view', $runGroup));
       }

@@ -425,7 +425,7 @@ class JenkinsRun extends BaseJenkinsRun
     //and store the JenkinsRun has the only in the JenkinsGroupRun
     
     //and later, when the GroupRun is used, 
-    //the collection of run is initiliazed but uncomplete 
+    //the collection of run is initialized but uncomplete
     //and it'll display a GroupRun with this only only Ru
     
     return JenkinsGroupRunPeer::retrieveByPK($this->getJenkinsGroupRunId())->getGitBranch();
