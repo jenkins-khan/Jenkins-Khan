@@ -26,10 +26,10 @@
                   )); ?>
                   <a href="#" class="dropdown-toggle <?php echo $menu['dropdown_class'] ?>" data-toggle="dropdown"><b class="caret"></b></a>
                   <ul class="dropdown-menu dropdown-right">
-                    <?php foreach ($menu['dropdowns'] as $name => $dropdown): ?>
+                    <?php foreach ($menu['dropdowns'] as $dropdownName => $dropdown): ?>
                       <li>
-                        <?php echo link_to($name, $dropdown['url'], array(
-                          'title' => isset($dropdown['title']) ? $dropdown['title'] : $name
+                        <?php echo link_to($dropdownName, $dropdown['url'], array(
+                          'title' => isset($dropdown['title']) ? $dropdown['title'] : $dropdownName
                         )) ?>
                       </li>
                     <?php endforeach; ?>
