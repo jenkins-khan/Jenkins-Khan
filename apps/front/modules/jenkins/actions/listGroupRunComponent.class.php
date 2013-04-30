@@ -62,7 +62,7 @@ class listGroupRunComponent extends sfComponent
         'url_console_log'     => $urlBuild . '/console',
         'url_rebuild'         => $this->generateUrl('run_rebuild', $run),
         'dropdown_links'      => $this->buildDropdownLinksJenkinsRun($run, $jenkins, $isRunning, $isJenkinsAvailable),
-        'title_url_rebuild'   => $isRunning ? "Cancel current build and relaunch" : (!$run->isRebuildable() ? "Launch build immediatly" : "Relaunch build")
+        'title_url_rebuild'   => $isRunning ? "Cancel current build and relaunch" : (!$run->isRebuildable() ? "Launch build immediately" : "Relaunch build")
       );
     }
 

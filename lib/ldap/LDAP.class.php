@@ -98,8 +98,8 @@ class LDAP
     return $this->version;
   }
 
-    /**
-   * @param $RNDFormat
+  /**
+   * @param $RDNFormat
    * @return LDAP
    */
   public function setRDNFormat($RDNFormat)

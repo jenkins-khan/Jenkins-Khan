@@ -104,7 +104,7 @@ class BuildForm extends sfForm
   }
 
   /**
-   * @param string $jobName
+   * @param array $parameters
    * @return array
    */
   private function createBuildWidgetValidator($parameters)
